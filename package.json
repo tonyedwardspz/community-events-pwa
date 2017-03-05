@@ -1,0 +1,29 @@
+{
+  "engines": {
+    "node": "6.9.5",
+    "npm": "3.10.10"
+  },
+  "name": "community-events-pwa",
+  "version": "1.0.0",
+  "description": "A progressive web application for community run events",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tonyedwardspz/community-events-pwa.git"
+  },
+  "author": "tonyedwardspz",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tonyedwardspz/community-events-pwa/issues"
+  },
+  "homepage": "https://github.com/tonyedwardspz/community-events-pwa#readme",
+  "private": true,
+  "dependencies": {
+    "dotenv": "^4.0.0",
+    "express": "^4.15.0",
+    "gulp": "^3.9.1"
+  }
+}

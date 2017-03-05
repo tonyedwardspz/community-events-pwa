@@ -1,0 +1,47 @@
+{
+  "strict": "global",
+  "esversion": 6,
+  "quotmark": "single",
+  "undef": true,
+  "curly": true,
+  "eqeqeq": true,
+  "browser": true,
+  "devel": true,
+  "node": true,
+
+  "globals": {
+    "app": true,
+    "clearDOM": true,
+    "randomString": true,
+    "getBreadcrumbs": true,
+    "convertDateToLocale": true,
+    "convertDateForInput": true,
+    "getDefaultDate": true,
+    "addRoutes": true,
+    "getDateOneYearAgo": true,
+    "isDateAfterToday": true,
+    "defaultDateInputMin": true,
+    "defaultDateInputMax": true,
+    "setupPopStateListener": true,
+    "loadContent": true,
+    "getCookie": true,
+    "updateBrowserHistory": true,
+    "_root": true,
+    "self": true,
+    "caches": true,
+
+    "updateGoogleAnalytics": true,
+    "ga": true,
+
+    "require": true,
+    "module": true,
+    "$": true,
+    "Headers": true,
+    "Response": true,
+
+    "describe": true,
+    "it": true,
+    "QUnit": true,
+    "Database": true
+  }
+}
