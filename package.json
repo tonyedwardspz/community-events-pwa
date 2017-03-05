@@ -20,5 +20,10 @@
     "url": "https://github.com/tonyedwardspz/community-events-pwa/issues"
   },
   "homepage": "https://github.com/tonyedwardspz/community-events-pwa#readme",
-  "private": true
+  "private": true,
+  "dependencies": {
+    "dotenv": "^4.0.0",
+    "express": "^4.15.0",
+    "gulp": "^3.9.1"
+  }
 }
