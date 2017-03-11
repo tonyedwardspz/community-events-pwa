@@ -8,7 +8,9 @@
   "description": "A progressive web application for community run events",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server.js",
+    "test": "gulp && mocha test",
+    "postinstall": "gulp --env=PRODUCTION"
   },
   "repository": {
     "type": "git",
@@ -62,14 +64,13 @@
     "mongodb": "^2.2.11",
     "mongoose": "^4.6.5",
     "passport": "^0.3.2",
+    "passport-twitter": "^1.0.4",
     "pushpad": "^0.3.1",
     "qunitjs": "^2.2.0",
     "read-multiple-files": "^1.1.1",
     "request": "^2.76.0",
     "require-dir": "^0.3.0",
     "run-sequence": "^1.1.4",
-    "sw-offline-google-analytics": "^1.1.1",
-    "twitter-text": "^1.14.1",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0"
   }
