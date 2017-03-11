@@ -15,11 +15,13 @@ gulp.task('default', function(cb) {
     cb);
 });
 
-gulp.task('dev', function() {
+gulp.task('dev', function(cb) {
   return runSequence(
     'clean',
     allTasks,
     'styles',
     'watch',
-    'nodemon');
+    'nodemon',
+    // 'serve',
+    cb);
 });
