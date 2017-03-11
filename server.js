@@ -12,19 +12,14 @@ if (!process.env.PRODUCTION) {
 // require('./server/database/database');
 
 // Configure passport authentication
-// require('./server/config/passport')(passport);
+require('./server/config/passport')(passport);
 
 // Configure the express app
 var app = express();
-// require('./server/config/express')(app, passport, __dirname);
+require('./server/config/express')(app, passport, __dirname);
 
 // Load route configuration
-// require('./server/config/routes')(app, passport, __dirname);
-
-var path = require('path');
-app.get('/', function(req, res) {
-    res.sendFile(path.join(__dirname + '/client/index.html'));
-});
+require('./server/config/routes')(app, passport, __dirname);
 
 // Start the app server
 let port = process.env.PORT || 8080;
