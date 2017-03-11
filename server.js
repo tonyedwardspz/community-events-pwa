@@ -1,7 +1,7 @@
 'use strict';
 
 var express = require('express');
-// var passport = require('passport');
+var passport = require('passport');
 
 // Load environmental variables (only applied to dev environment)
 if (!process.env.PRODUCTION) {
