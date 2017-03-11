@@ -1,8 +1,7 @@
 'use strict';
 
-// let BufferAppStrategy = require('passport-bufferapp').Strategy;
+let TwitterStrategy = require('passport-twitter').Strategy;
 let request = require('request');
-
 
 /**
 * Sets up passport user authenication for buffer
@@ -19,45 +18,14 @@ module.exports = function(passport) {
     });
   });
 
-//   passport.use(new BufferAppStrategy({
-//       clientID: process.env.BUFFER_CLIENT_ID,
-//       clientSecret: process.env.BUFFER_CLIENT_SECRET,
-//       callbackURL: process.env.BUFFER_REDIRECT_URI
-//     },
-//     function(accessToken, refreshToken, profile, done) {
-
-//       UserModel.findOne({ 'userID': profile.id }, function(err, user) {
-//         if (err) {
-//           return done(err);
-//         } else if (!user) {
-//           user = new UserModel({
-//               name: profile._json.name,
-//               userID: profile.id,
-//               email: null,
-//               maxDailyPosts : 1,
-//               accessToken: accessToken,
-//               refreshToken: refreshToken
-//           });
-
-//           request.get('https://api.bufferapp.com/1/profiles.json?access_token=' + accessToken, function (e, r, body) {
-
-//             user.accountIDS = User.sortBufferAccountIDs(JSON.parse(body));
-//             user.save(function(err) {
-//                 if (err) {console.log(err);}
-//                 return done(err, user);
-//             });
-//           });
-//         } else {
-//           request.get('https://api.bufferapp.com/1/profiles.json?access_token=' + accessToken, function (e, r, body) {
-
-//             user.accountIDS = User.sortBufferAccountIDs(JSON.parse(body));
-//             user.save(function(err) {
-//                 if (err) {console.log(err);}
-//                 return done(err, user);
-//             });
-//           });
-//         }
-//       });
-//     }
-//   ));
+  passport.use(new TwitterStrategy({
+    consumerKey: process.env.TWITTER_CONSUMER_KEY,
+    consumerSecret: process.env.TWITTER_CONSUMER_SECRET,
+    callbackURL: process.env.TWITTER_REDIRECT_URI
+  },
+  function(token, tokenSecret, profile, cb) {
+    User.findOrCreate({ twitterId: profile.id }, function (err, user) {
+      return cb(err, user);
+    });
+  }));
 };

@@ -18,13 +18,13 @@ module.exports = function(app, passport) {
     res.redirect('/');
   }
 
-  //-------------- Dashboard / Data Routes --------------\\
+  //-------------- Data Routes --------------\\
 
-  app.get('/getAllData/:id', ensureAuthenticated, dash.getAllData);
+  // app.get('/getAllData/:id', ensureAuthenticated, dash.getAllData);
 
   //-------------- User / Authentication Routes --------------\\
 
-  app.get('/user/auth', passport.authenticate('twitter'), users.auth);
+  // app.get('/user/auth', passport.authenticate('twitter'), users.auth);
 
   app.get('/user/auth/twitter/callback',
     passport.authenticate('twitter', {
@@ -38,7 +38,7 @@ module.exports = function(app, passport) {
     }
   );
 
-  app.put('/user/:id', ensureAuthenticated, users.update);
+  // app.put('/user/:id', ensureAuthenticated, users.update);
 
 
    //-------------- Misc Routes --------------\\
