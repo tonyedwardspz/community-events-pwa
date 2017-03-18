@@ -8,10 +8,12 @@ class DashboardController extends BaseController {
 
   /** Fetches all user data, unpack it and display the dashboard view */
   index() {
-    app.db.retrieve(`/getAllData`, data => {
+    // app.db.retrieve(`/getAllData`, data => {
       console.info('[Dashboard]: index');
 
-      this.updateShell('<h1>Show Dashboard</h1>');
-    });
+      let html = app.dashboardView.index();
+
+      this.updateShell(html);
+    // });
   }
 }

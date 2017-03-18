@@ -5,9 +5,22 @@ class UserController extends BaseController {
     super();
   }
 
-  show(id) {
-    console.info('[User] Show: ' + id);
+  show() {
+    console.info('[User] Show');
 
-    this.updateShell(`<h1>Show User: ${id}</h1>`);
+    this.updateShell(`<h1>Show User</h1>`);
+  }
+
+  edit() {
+    console.info('[User] Edit');
+
+    this.updateShell('<h1>Edit User</h1>');
+
+  }
+
+  save() {
+    console.info('[User] Save');
+
+    this.updateShell('<h1>Save User</h1>');
   }
 }

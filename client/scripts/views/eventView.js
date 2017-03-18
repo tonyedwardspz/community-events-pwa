@@ -20,7 +20,10 @@ class EventView {
   * @param {Array.<Event>} events An array of event objects
   * @return {String} The HTML string for display
   */
-  index(events) {
-    return `<h1>This is the event index view</h1>`;
+  index(events = []) {
+    return `
+      <h1>This is the event index view</h1>
+      <a href="/dashboard">Dashboard</a>
+    `;
   }
 }
