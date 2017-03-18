@@ -8,7 +8,7 @@ class OrganisationView {
 
   /**
   * Returns HTML for the show organisation screen
-  * @param {Event} event An organisation object
+  * @param {Organisation} event An organisation object
   * @return {String} The HTML string for display
   */
   show(org) {
