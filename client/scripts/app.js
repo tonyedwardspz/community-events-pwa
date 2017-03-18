@@ -10,6 +10,7 @@ var app;
     user: null,
     shell: document.querySelector('main'),
     db: new Database(),
+    dataController: new DataController(),
     dashboardController: new DashboardController(),
     dashboardView: new DashboardView(),
     eventController: new EventController(),
@@ -23,6 +24,8 @@ var app;
   loadContent();
 
   setupRoutes();
+
+  app.dataController.getData();
 
   // app.dashboardController.index();
 })();
