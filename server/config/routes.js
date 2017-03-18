@@ -63,6 +63,21 @@ module.exports = function(app, passport) {
       res.sendFile(path.join(__dirname + '/../../public//favicon-16x16.png'));
     });
 
+    app.get('/*/scripts/require.js', function(req, res){
+      console.log('[Route] Require All: ' + req.path);
+      res.sendFile(path.resolve(__dirname, '../../public/scripts/require.js'));
+    });
+
+    app.get('/*/scripts/app.js', function(req, res){
+      console.log('[Route] event / app All: ' + req.path);
+      res.sendFile(path.resolve(__dirname, '../../public/scripts/app.js'));
+    });
+
+    app.get('/*/scripts/lib/page.js', function(req, res){
+      console.log('[Route] event / app All: ' + req.path);
+      res.sendFile(path.resolve(__dirname, '../../public/scripts/lib/page.js'));
+    });
+
    // Catch all Route to the main dash (MUST BE LAST ROUTE)
    app.get('*', function(req, res){
      console.log('[Route] Catch All: ' + req.path);

@@ -23,11 +23,18 @@
     "_root": true,
     "self": true,
     "caches": true,
+    "setupRoutes": true,
+    "requirejs": true,
 
     "BaseController": true,
     "EventController": true,
+    "EventView": true,
     "OrganisationController": true,
+    "OrganisationView": true,
     "UserController": true,
+    "UserView": true,
+    "DashboardController": true,
+    "DashboardView": true,
 
     "BaseModel": true,
 

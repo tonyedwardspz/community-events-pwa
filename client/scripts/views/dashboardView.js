@@ -11,7 +11,11 @@ class DashboardView {
   * @param {NotSureYet} data A data object representing the users dashboard
   * @return {String} The HTML string for display
   */
-  index(data) {
-    return `<h1>This is the dashboard view</h1>`;
+  index(data = []) {
+    return `
+      <h1>This is the dashboard view</h1>
+      <a href="/events">Events</a>
+      <a href="/event/kdhf">Event</a>
+    `;
   }
 }

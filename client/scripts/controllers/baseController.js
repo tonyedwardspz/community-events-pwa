@@ -8,7 +8,7 @@ class BaseController {
 
   /** Removes content from the application shell */
   clearDom() {
-    app.shell.innerHtml = '';
+    app.shell.innerHTML = '';
   }
 
   /**
@@ -17,7 +17,6 @@ class BaseController {
   */
   updateShell(html) {
     this.clearDom();
-    app.shell.innerHtml = html;
-
+    app.shell.innerHTML = html;
   }
 }

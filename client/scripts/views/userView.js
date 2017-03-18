@@ -1,7 +1,7 @@
 'use strict';
 
 /** Class representing a organisation's views */
-class OrganisationView {
+class UserView {
   constructor(){
 
   }
