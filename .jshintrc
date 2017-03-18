@@ -35,6 +35,7 @@
     "UserView": true,
     "DashboardController": true,
     "DashboardView": true,
+    "DataController": true,
 
     "BaseModel": true,
 

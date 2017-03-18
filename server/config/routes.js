@@ -1,6 +1,7 @@
 'use strict';
 
 let path = require('path');
+let data = require('../controllers/dataController');
 
 
 /**
@@ -11,16 +12,16 @@ let path = require('path');
 module.exports = function(app, passport) {
 
   function ensureAuthenticated(req, res, next) {
-    if (req.isAuthenticated) {
+    // if (req.isAuthenticated) {
       return next();
-    }
-    console.log('Not authenticated');
-    res.redirect('/');
+    // }
+    // console.log('Not authenticated');
+    // res.redirect('/');
   }
 
   //-------------- Data Routes --------------\\
 
-  // app.get('/getAllData/:id', ensureAuthenticated, dash.getAllData);
+  app.get('/getData', ensureAuthenticated, data.getData);
 
   //-------------- User / Authentication Routes --------------\\
 
