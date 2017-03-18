@@ -9,7 +9,7 @@ if (!process.env.PRODUCTION) {
 }
 
 // Load the database connection
-// require('./server/database/database');
+require('./server/database/database');
 
 // Configure passport authentication
 require('./server/config/passport')(passport);
