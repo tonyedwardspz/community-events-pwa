@@ -24,6 +24,7 @@
     "self": true,
     "caches": true,
     "setupRoutes": true,
+    "requirejs": true,
 
     "BaseController": true,
     "EventController": true,

@@ -20,7 +20,9 @@ var app;
     userView: new UserView()
   };
 
+  loadContent();
+
   setupRoutes();
 
-  app.dashboardController.index();
+  // app.dashboardController.index();
 })();
