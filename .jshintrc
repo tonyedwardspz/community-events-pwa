@@ -51,6 +51,7 @@
     "describe": true,
     "it": true,
     "QUnit": true,
-    "Database": true
+    "Database": true,
+    "fetch": true
   }
 }

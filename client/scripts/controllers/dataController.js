@@ -13,7 +13,6 @@ class DataController extends BaseController {
 
       var html = app.dashboardView.index();
       this.updateShell(html);
-      this.updateHistory('dashboard_index');
     });
   }
 }
