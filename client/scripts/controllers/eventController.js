@@ -8,14 +8,10 @@ class EventController extends BaseController {
   show(id) {
     console.info('[Event] Show: ');
 
-    var thisEvent;
-    app.events.forEach( evt => {
-      if (evt.id === id) {
-        thisEvent = evt;
-      }
-    });
+    let thisEvent = EventModel.findByID(id, app.events);
+    let html = app.eventView.show(thisEvent);
 
-    this.updateShell(`<h1>${thisEvent.title}</h1>`);
+    this.updateShell(html);
   }
 
   index() {
