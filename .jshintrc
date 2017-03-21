@@ -36,6 +36,7 @@
     "DashboardController": true,
     "DashboardView": true,
     "DataController": true,
+    "EventModel": true,
 
     "BaseModel": true,
 
