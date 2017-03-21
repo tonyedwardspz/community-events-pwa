@@ -6,7 +6,7 @@ class DashboardController extends BaseController {
     super();
   }
 
-  /** Fetches all user data, displays the dashboard view */
+  /** Fetches all data, displays the dashboard view */
   index() {
     console.info('[Dashboard]: index');
     app.dataController.getData(() => {

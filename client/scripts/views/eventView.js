@@ -11,8 +11,13 @@ class EventView {
   * @param {Event} event An event object
   * @return {String} The HTML string for display
   */
-  show(event) {
-    return `<h1>This is the event show view</h1>`;
+  show(evnt) {
+    let html = `
+      <h1>${evnt.title}</h1>
+      ${event.description}
+    `;
+
+    return html;
   }
 
   /**
@@ -40,7 +45,7 @@ class EventView {
   eventListItem(event){
     return `<div class="row">
               <div class="column column-75">
-                <h3>${event.title}</h3>
+                <h3><a href="/event/${event.id}">${event.title}</a></h3>
                 <p>${event.start}</p>
                 <p>Location</p>
               </div>

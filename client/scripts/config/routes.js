@@ -3,7 +3,7 @@
 let setupRoutes = () => {
   console.info('[Routes] Setting up');
 
-  requirejs(["lib/page"], function(page) {
+  requirejs(['lib/page'], function(page) {
     page();
 
     // Dashboard
@@ -18,7 +18,7 @@ let setupRoutes = () => {
     });
 
     page('/event/:id', (context) => {
-      app.eventController.index(context.params.id);
+      app.eventController.show(context.params.id);
     });
 
 

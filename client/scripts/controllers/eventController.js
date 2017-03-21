@@ -6,9 +6,16 @@ class EventController extends BaseController {
   }
 
   show(id) {
-    console.info('[Event] Show: ' + id);
+    console.info('[Event] Show: ');
 
-    this.updateShell(`<h1>Show event: ${id}</h1>`);
+    var thisEvent;
+    app.events.forEach( evt => {
+      if (evt.id === id) {
+        thisEvent = evt;
+      }
+    });
+
+    this.updateShell(`<h1>${thisEvent.title}</h1>`);
   }
 
   index() {
