@@ -20,6 +20,7 @@ class Evnt extends BaseModel {
       id: String,
       title: String,
       description: String,
+      organiserID: String,
       ticketURL: String,
       date: Date,
       timeStart: String,
@@ -35,13 +36,12 @@ class Evnt extends BaseModel {
 
   processEventbriteData(events) {
     let processed = [];
-
     events.forEach(evt => {
       processed.push({
         'id': evt.id,
         'title': evt.name.text,
         'description': evt.description.html,
-        'oganiserID': evt.organizer_id,
+        'organiserID': evt.organizer_id,
         'start': evt.start.local,
         'end': evt.end.local,
         'ticketURL': evt.url,

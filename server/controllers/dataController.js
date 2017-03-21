@@ -27,7 +27,7 @@ class DataController extends BaseController {
       let eventbritePromises = [];
       let urls = [];
 
-      allData.organisers = arguments[0][0].organisers;
+      allData.organisations = arguments[0][0].organisers;
 
       arguments[0][0].organisers.forEach( org => {
         urls.push(`${org.apiURL}&token=${process.env.EVENTBRITE_TOKEN}`);

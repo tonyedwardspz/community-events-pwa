@@ -8,18 +8,19 @@ class EventView {
 
   /**
   * Returns HTML for the show event screen
-  * @param {Event} event An event object
+  * @param {Event} evnt An event object
+  * @param {Organisation} org The organiser object relating to the event
   * @return {String} The HTML string for display
   */
-  show(evnt) {
+  show(evnt, org) {
     let html = `
       <div class="row">
       <div class="column column-75">
       <h1>${evnt.title}</h1>
-      <p>${evnt.start}</p>
+      <p>${evnt.getDisplayDate()}</p>
       </div>
       <div class="column">
-        <img src="http://placehold.it/350x150">
+        <img src="${org.logoURL}">
       </div>
       </div>
       <hr>

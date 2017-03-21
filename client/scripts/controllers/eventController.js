@@ -6,10 +6,12 @@ class EventController extends BaseController {
   }
 
   show(id) {
-    console.info('[Event] Show: ');
+    console.info('[Event] Show: ' + id);
 
     let thisEvent = EventModel.findByID(id, app.events);
-    let html = app.eventView.show(thisEvent);
+    let thisOrg = Organisation.findByID(thisEvent.organiserID, app.organisations);
+
+    let html = app.eventView.show(thisEvent, thisOrg);
 
     this.updateShell(html);
   }
