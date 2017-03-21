@@ -13,8 +13,19 @@ class EventView {
   */
   show(evnt) {
     let html = `
+      <div class="row">
+      <div class="column column-75">
       <h1>${evnt.title}</h1>
-      ${event.description}
+      <p>${evnt.start}</p>
+      </div>
+      <div class="column">
+        <img src="http://placehold.it/350x150">
+      </div>
+      </div>
+      <hr>
+      ${evnt.description}
+      <hr>
+      <img src="/public/images/map-placeholder.jpg">
     `;
 
     return html;
