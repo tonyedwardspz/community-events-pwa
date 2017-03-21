@@ -26,4 +26,27 @@ class EventView {
       <a href="/dashboard">Dashboard</a>
     `;
   }
+
+  eventList(events) {
+    let list = ``;
+
+    events.forEach(event => {
+      list += this.eventListItem(event);
+    });
+
+    return list;
+  }
+
+  eventListItem(event){
+    return `<div class="row">
+              <div class="column column-75">
+                <h3>${event.title}</h3>
+                <p>${event.start}</p>
+                <p>Location</p>
+              </div>
+              <div class="column">
+                <img src="http://placehold.it/350x150">
+              </div>
+            </div>`;
+  }
 }

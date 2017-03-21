@@ -5,14 +5,13 @@ class DataController extends BaseController {
     super();
   }
 
-  getData() {
+  getData(cb) {
     app.db.retrieve(`/getData`, data => {
       console.log('[DASH]: Fetch all data');
 
-      console.log(data);
+      EventModel.processEventData(data.events);
 
-      var html = app.dashboardView.index();
-      this.updateShell(html);
+      cb();
     });
   }
 }

@@ -25,7 +25,5 @@ var app;
 
   setupRoutes();
 
-  app.dataController.getData();
-
-  // app.dashboardController.index();
+  app.dashboardController.index();
 })();

@@ -6,14 +6,15 @@ class DashboardController extends BaseController {
     super();
   }
 
-  /** Fetches all user data, unpack it and display the dashboard view */
+  /** Fetches all user data, displays the dashboard view */
   index() {
-    // app.db.retrieve(`/getAllData`, data => {
-      console.info('[Dashboard]: index');
+    console.info('[Dashboard]: index');
+    app.dataController.getData(() => {
 
       let html = app.dashboardView.index();
+      html += app.eventView.eventList(app.events);
 
       this.updateShell(html);
-    // });
+    });
   }
 }

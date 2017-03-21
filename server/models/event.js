@@ -19,7 +19,6 @@ class Evnt extends BaseModel {
     return new mongoose.Schema({
       id: String,
       title: String,
-      subtitle: String,
       description: String,
       ticketURL: String,
       date: Date,
