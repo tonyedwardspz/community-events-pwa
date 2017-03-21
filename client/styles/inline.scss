@@ -24,3 +24,7 @@ $desktop-breakpoint: 120rem;
 body{
   font: 1em 'Roboto', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
 }
+
+.container {
+  max-width: 80em;
+}
