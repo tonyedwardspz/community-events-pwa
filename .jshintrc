@@ -54,6 +54,7 @@
     "it": true,
     "QUnit": true,
     "Database": true,
-    "fetch": true
+    "fetch": true,
+    "sortByDate": true
   }
 }

@@ -13,7 +13,6 @@ class EventView {
   * @return {String} The HTML string for display
   */
   show(evnt, org, orgEvents) {
-    console.log('org events: ', orgEvents);
     let html = `
       <div class="row">
       <div class="column column-75">
