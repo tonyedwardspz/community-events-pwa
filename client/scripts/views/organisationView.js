@@ -14,4 +14,11 @@ class OrganisationView {
   show(org) {
     return `<h1>This is the organisation show view</h1>`;
   }
+
+  upcoming(org, events){
+    return `<h2>Upcoming ${org.name} events</h2>
+            ${app.eventView.eventList(events)}`;
+
+
+  }
 }

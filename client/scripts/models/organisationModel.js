@@ -30,4 +30,17 @@ class Organisation extends BaseModel {
     app.organisations = orgs;
     return;
   }
+
+  static getOrgEvents(id, events){
+    let orgEvents = [];
+
+    events.forEach( obj => {
+      if (obj.organiserID === id) {
+        orgEvents.push(obj);
+      }
+    });
+    return orgEvents;
+
+
+  }
 }

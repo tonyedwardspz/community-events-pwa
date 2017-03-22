@@ -12,7 +12,8 @@ class EventView {
   * @param {Organisation} org The organiser object relating to the event
   * @return {String} The HTML string for display
   */
-  show(evnt, org) {
+  show(evnt, org, orgEvents) {
+    console.log('org events: ', orgEvents);
     let html = `
       <div class="row">
       <div class="column column-75">
@@ -27,6 +28,8 @@ class EventView {
       ${evnt.description}
       <hr>
       <img src="/public/images/map-placeholder.jpg">
+      <hr>
+      ${app.organisationView.upcoming(org, orgEvents)}
     `;
 
     return html;
