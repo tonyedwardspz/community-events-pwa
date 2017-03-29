@@ -50,6 +50,18 @@ class Evnt extends BaseModel {
     });
     return processed;
   }
+
+  extractEventbriteEvents(events) {
+    let results = [];
+
+    events.forEach(event => {
+      event.events.forEach(evt => {
+        results.push(evt);
+      });
+    });
+
+    return results;
+  }
 }
 
 module.exports = new Evnt();

@@ -35,25 +35,20 @@ class DataController extends BaseController {
 
       console.log('API urls: ', urls);
 
-      let results = [];
-
+      // Fetch all the events for organisations
       Promise.all(urls.map( url =>
         fetch(url).then(data => data.json())))
-        .then(events => {
-          events.forEach(event => {
-            event.events.forEach(evt => {
-              results.push(evt);
-            });
-          });
-        })
-        .then(json => {
-          allData.events = Evnt.processEventbriteData(results);
-          res.send(JSON.stringify(allData));
-        })
-        .catch(err => {
-          console.log('Error retrieving events');
-          res.send(500, { error: 'Error retrieving events' });
-        });
+      .then(events => {
+        return Evnt.extractEventbriteEvents(events);
+      })
+      .then(results => {
+        allData.events = Evnt.processEventbriteData(results);
+        res.send(JSON.stringify(allData));
+      })
+      .catch(err => {
+        console.log('Error retrieving events', err);
+        res.send(500, { error: 'Error retrieving events' });
+      });
 
     }, function(err) {
       console.log('ERROR: ' + err);
