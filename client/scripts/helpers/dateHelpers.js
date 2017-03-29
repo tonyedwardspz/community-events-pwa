@@ -23,3 +23,19 @@ let convertDateToLocale = (date) => {
 let isDateAfterToday = (date) => {
   return (new Date(date) >= new Date().setHours(0,0,0,0)) ? true : false;
 };
+
+/**
+* Sorts an array by date, with the oldest first. Use with Array.sort()
+* @param {Event} a Event 1 to compare
+* @param {Event} a Event 2 to compare
+* @return {Integer} The order of items
+*/
+let sortByDate = (a, b) => {
+  if (a.start < b.start) {
+    return -1;
+  } else if (a.date > b.date) {
+    return 1;
+  } else {
+    return 0;
+  }
+};

@@ -13,7 +13,6 @@ class BaseModel {
         item = obj;
       }
     });
-
     return item;
   }
 }

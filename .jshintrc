@@ -37,6 +37,9 @@
     "DashboardView": true,
     "DataController": true,
     "EventModel": true,
+    "Organisation": true,
+    "twitterLink": true,
+    "webLink": true,
 
     "BaseModel": true,
 
@@ -53,6 +56,7 @@
     "it": true,
     "QUnit": true,
     "Database": true,
-    "fetch": true
+    "fetch": true,
+    "sortByDate": true
   }
 }

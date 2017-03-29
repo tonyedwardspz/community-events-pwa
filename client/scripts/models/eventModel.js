@@ -13,6 +13,10 @@ class EventModel extends BaseModel {
     this.source = source;
   }
 
+  getDisplayDate(){
+    return convertDateToLocale(this.start);
+  }
+
   static processEventData(data){
     let events = [];
     data.forEach(evt => {

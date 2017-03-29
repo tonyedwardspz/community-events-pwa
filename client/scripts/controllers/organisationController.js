@@ -8,6 +8,11 @@ class OrganisationController extends BaseController {
   show(id) {
     console.info('[Organisation] Show: ' + id);
 
-    this.updateShell(`<h1>Show Organisation: ${id}</h1>`);
+    let org = Organisation.findByID(id, app.organisations);
+    let orgEvents = Organisation.getOrgEvents(id, app.events);
+
+    let html = app.organisationView.show(org, orgEvents);
+
+    this.updateShell(html);
   }
 }

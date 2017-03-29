@@ -10,7 +10,7 @@
 let loadContent = () => {
   try {
     let url = window.location.href.split('/');
-    console.log('url', url);
+    console.log('Load content - url: ', url);
     console.log(url[3]);
 
     if (url[3] === 'event'){
