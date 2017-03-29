@@ -38,6 +38,8 @@
     "DataController": true,
     "EventModel": true,
     "Organisation": true,
+    "twitterLink": true,
+    "webLink": true,
 
     "BaseModel": true,
 
