@@ -11,38 +11,29 @@ class DataController extends BaseController {
   }
 
   getData(req, res) {
-    console.log('gettig all data');
+    console.log('[Data Controller] Getting all data');
 
     let allData = {};
-
-    let mongoModel = Organiser.getMongooseModel();
 
     let promises = [];
     promises.push(Organiser.getDatabasePromise());
 
     // Run all promises and process when all return data or error
     Promise.all(promises).then(function() {
-      console.log('[Data] All database promises resolved');
-
-      let eventbritePromises = [];
-      let urls = [];
+      console.log('[Data Controller] All database promises resolved');
 
       allData.organisations = arguments[0][0].organisers;
+      let urls = Organiser.extractURLS(allData.organisations);
 
-      arguments[0][0].organisers.forEach( org => {
-        urls.push(`${org.apiURL}&token=${process.env.EVENTBRITE_TOKEN}`);
-      });
-
-      console.log('API urls: ', urls);
-
-      // Fetch all the events for organisations
+      // Fetch all the events for all organisations
       Promise.all(urls.map( url =>
         fetch(url).then(data => data.json())))
       .then(events => {
-        return Evnt.extractEventbriteEvents(events);
+        // Process eventbrite events & store in data structure
+        let data = Evnt.extractEventbriteEvents(events);
+        allData.events = Evnt.processEventbriteData(data);
       })
-      .then(results => {
-        allData.events = Evnt.processEventbriteData(results);
+      .then(() => {
         res.send(JSON.stringify(allData));
       })
       .catch(err => {
