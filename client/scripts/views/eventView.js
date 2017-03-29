@@ -18,6 +18,7 @@ class EventView {
       <div class="column column-75">
       <h1>${evnt.title}</h1>
       <p>${evnt.getDisplayDate()}</p>
+      <p>Location</p>
       </div>
       <div class="column">
         <img src="${org.logoURL}">
@@ -28,7 +29,10 @@ class EventView {
       <hr>
       <img src="/public/images/map-placeholder.jpg">
       <hr>
-      ${app.organisationView.upcoming(org, orgEvents)}
+      <h2>Upcoming <a href="/organisation/${org.id}">${org.name}</a> events</h2>
+      ${app.organisationView.upcoming(org, orgEvents, false)}
+      <a href="/organisation/${org.id}" class="button pull-right">
+      View all events</a>
     `;
 
     return html;
@@ -46,12 +50,21 @@ class EventView {
     `;
   }
 
-  eventList(events) {
+  eventList(events, showImage = true) {
+    if (events.length === 0) {
+      return 'No upcoming events';
+    }
+
     let list = ``;
 
     events.forEach(event => {
-      list += this.eventListItem(event);
+      if (showImage){
+        list += this.eventListItem(event);
+      } else {
+        list += this.eventListItemNoImage(event);
+      }
     });
+
 
     return list;
   }
@@ -60,11 +73,24 @@ class EventView {
     return `<div class="row">
               <div class="column column-75">
                 <h3><a href="/event/${event.id}">${event.title}</a></h3>
-                <p>${event.start}</p>
+                <p>${event.getDisplayDate()}</p>
                 <p>Location</p>
               </div>
               <div class="column">
                 <img src="http://placehold.it/350x150">
+              </div>
+            </div>`;
+  }
+
+  eventListItemNoImage(event){
+    return `<div class="row">
+              <div class="column column-75">
+                <h3><a href="/event/${event.id}">${event.title}</a></h3>
+                <p>${event.getDisplayDate()}<br />
+                   Location</p>
+              </div>
+              <div class="column">
+                <a href="/event/${event.id}" class="button">View Event</a>
               </div>
             </div>`;
   }

@@ -3,7 +3,7 @@
 let setupRoutes = () => {
   console.info('[Routes] Setting up');
 
-  requirejs(['lib/page'], function(page) {
+  requirejs(['lib/page'], (page) => {
     page();
 
     // Dashboard

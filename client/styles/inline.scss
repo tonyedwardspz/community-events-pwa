@@ -28,3 +28,11 @@ body{
 .container {
   max-width: 80em;
 }
+
+.pull-right {
+  float:right;
+}
+
+.pull-right::after {
+  clear: both;
+}

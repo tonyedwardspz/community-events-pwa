@@ -11,14 +11,31 @@ class OrganisationView {
   * @param {Organisation} event An organisation object
   * @return {String} The HTML string for display
   */
-  show(org) {
-    return `<h1>This is the organisation show view</h1>`;
+  show(org, orgEvents) {
+    const website = org.website ? `<a href="${org.website}" target="_blank">
+                                   ${org.website}</a>` : '';
+    const twitter = org.twitterHandle ? `<a href="https://twitter.com/
+                                         ${org.twitterHandle}" target="_blank">
+                                         https://twitter.com/${org.twitterHandle}</a>`: '';
+    return `<div class="row">
+              <div class="column column-75">
+                <h1>${org.name}</h1>
+                <p>${website}<br />
+                   ${twitter}</p>
+              </div>
+              <div class="column">
+                <img src="${org.logoURL}">
+              </div>
+              <div class="column">
+              </div>
+            </div>
+            <hr>
+            <h2>Upcoming Events</h2>
+            ${this.upcoming(org, orgEvents, false)}
+            `;
   }
 
-  upcoming(org, events){
-    return `<h2>Upcoming ${org.name} events</h2>
-            ${app.eventView.eventList(events)}`;
-
-
+  upcoming(org, events, showImage = true){
+    return `${app.eventView.eventList(events, showImage)}`;
   }
 }
