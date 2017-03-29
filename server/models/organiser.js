@@ -29,6 +29,18 @@ class Organiser extends BaseModel {
     let mongoModel = this.getMongooseModel();
     return this.getPromise(mongoModel, 'organisers');
   }
+
+  extractURLS(orgs) {
+    let urls = [];
+
+    orgs.forEach( org => {
+      urls.push(`${org.apiURL}&token=${process.env.EVENTBRITE_TOKEN}`);
+    });
+
+    console.log('API urls: ', urls);
+
+    return urls;
+  }
 }
 
 module.exports = new Organiser();
