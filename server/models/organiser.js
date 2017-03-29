@@ -24,12 +24,21 @@ class Organiser extends BaseModel {
     });
   }
 
+  /**
+  * Returns a promise to get the organisers from the database
+  * @return {Promise} The organisers promise
+  */
   getDatabasePromise() {
     console.log('get database promise');
     let mongoModel = this.getMongooseModel();
     return this.getPromise(mongoModel, 'organisers');
   }
 
+  /**
+  * Returns an array of urls which need to be fetched from eventbrite
+  * @param {Orgnisations.Array} orgs The organisations data
+  * @return {String} An array of url strings
+  */
   extractURLS(orgs) {
     let urls = [];
 
