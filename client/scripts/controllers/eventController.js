@@ -11,6 +11,7 @@ class EventController extends BaseController {
     let thisEvent = EventModel.findByID(id, app.events);
     let thisOrg = Organisation.findByID(thisEvent.organiserID, app.organisations);
     let orgEvents = Organisation.getOrgEvents(thisEvent.organiserID, app.events);
+    orgEvents.sort(sortByDate);
 
     let html = app.eventView.show(thisEvent, thisOrg, orgEvents);
 
