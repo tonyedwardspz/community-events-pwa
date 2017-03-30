@@ -16,6 +16,7 @@ class DataController extends BaseController {
 
       EventModel.processEventData(data.events);
       Organisation.processOrgData(data.organisations);
+      Venue.processVenueData(data.venues);
 
       cb();
     });

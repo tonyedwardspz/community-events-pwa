@@ -37,7 +37,7 @@ class OrganisationView {
   * Returns HTML for the list of upcoming organisation events
   * @param {Organisation} organisatiom An organisation to be displayed
   * @param {Event.Array} events The organisations upcoming events
-  * @param {Boolean} [showImage] Should the associated image be displayed?
+  * @param {Boolean} [showImage=true] Should the associated image be displayed?
   * @return {String} The HTML string for display
   */
   upcoming(org, events, showImage = true){

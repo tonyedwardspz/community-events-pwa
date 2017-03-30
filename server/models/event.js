@@ -42,13 +42,26 @@ class Evnt extends BaseModel {
         'title': evt.name.text,
         'description': evt.description.html,
         'organiserID': evt.organizer_id,
+        'venueID': evt.venue_id,
         'start': evt.start.local,
         'end': evt.end.local,
         'ticketURL': evt.url,
-        'source': 'eventbrite'
+        'source': 'eventbrite',
       });
     });
     return processed;
+  }
+
+  extractEventbriteEvents(events) {
+    let results = [];
+
+    events.forEach(event => {
+      event.events.forEach(evt => {
+        results.push(evt);
+      });
+    });
+
+    return results;
   }
 }
 

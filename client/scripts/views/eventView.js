@@ -10,15 +10,17 @@ class EventView {
   * Returns HTML for the show event screen
   * @param {Event} evnt An event object
   * @param {Organisation} org The organiser object relating to the event
+  * @param {Event.Array} orgEvents The upcoming events for the parent organisation
+  * @param {Venue} venue The events venue
   * @return {String} The HTML string for display
   */
-  show(evnt, org, orgEvents) {
-    let html = `
+  show(evnt, org, orgEvents, venue) {
+    return `
       <div class="row">
       <div class="column column-75">
       <h1>${evnt.title}</h1>
-      <p>${evnt.getDisplayDate()}</p>
-      <p>Location</p>
+      <p>${evnt.getDisplayDate()}<br />
+         Location: ${venue.getDisplayVenue()}</p>
       </div>
       <div class="column">
         <img src="${org.logoURL}">
@@ -34,13 +36,11 @@ class EventView {
       <a href="/organisation/${org.id}" class="button pull-right">
       View all events</a>
     `;
-
-    return html;
   }
 
   /**
   * Returns HTML for the index of events
-  * @param {Array.<Event>} events An array of event objects
+  * @param {Array.<Event>} [events] An array of event objects
   * @return {String} The HTML string for display
   */
   index(events = []) {

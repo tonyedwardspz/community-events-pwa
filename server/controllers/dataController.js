@@ -3,6 +3,7 @@
 let BaseController = require('./baseController');
 let Evnt = require('../models/event');
 let Organiser = require('../models/organiser');
+let Venue = require('../models/venue');
 let fetch = require('node-fetch');
 
 class DataController extends BaseController {
@@ -11,49 +12,44 @@ class DataController extends BaseController {
   }
 
   getData(req, res) {
-    console.log('gettig all data');
+    console.log('[Data Controller] Getting all data');
 
     let allData = {};
-
-    let mongoModel = Organiser.getMongooseModel();
-
     let promises = [];
     promises.push(Organiser.getDatabasePromise());
 
     // Run all promises and process when all return data or error
     Promise.all(promises).then(function() {
-      console.log('[Data] All database promises resolved');
-
-      let eventbritePromises = [];
-      let urls = [];
+      console.log('[Data Controller] All database promises resolved');
 
       allData.organisations = arguments[0][0].organisers;
+      let urls = Organiser.extractURLS(allData.organisations);
 
-      arguments[0][0].organisers.forEach( org => {
-        urls.push(`${org.apiURL}&token=${process.env.EVENTBRITE_TOKEN}`);
-      });
-
-      console.log('API urls: ', urls);
-
-      let results = [];
-
+      // Fetch all the events for all organisations
       Promise.all(urls.map( url =>
         fetch(url).then(data => data.json())))
-        .then(events => {
-          events.forEach(event => {
-            event.events.forEach(evt => {
-              results.push(evt);
-            });
-          });
-        })
-        .then(json => {
-          allData.events = Evnt.processEventbriteData(results);
-          res.send(JSON.stringify(allData));
-        })
-        .catch(err => {
-          console.log('Error retrieving events');
-          res.send(500, { error: 'Error retrieving events' });
+      .then(events => {
+        // Process eventbrite events & store in data structure
+        let data = Evnt.extractEventbriteEvents(events);
+        allData.events = Evnt.processEventbriteData(data);
+        return allData;
+      })
+      .then(data => Venue.venuesPromise(data))
+      .then(venues => {
+        let results = [];
+        venues.forEach(v => {
+          results.push(Venue.processEventbriteVenueData(v));
         });
+        return results;
+      })
+      .then(venues => allData.venues = venues)
+      .then(() => {
+        res.send(JSON.stringify(allData));
+      })
+      .catch(err => {
+        console.log('Error retrieving events', err);
+        res.send(500, { error: 'Error retrieving events' });
+      });
 
     }, function(err) {
       console.log('ERROR: ' + err);

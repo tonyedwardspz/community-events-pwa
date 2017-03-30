@@ -21,7 +21,7 @@ var app;
     userView: new UserView()
   };
 
-  loadContent();
+  // loadContent();
 
   setupRoutes();
 
