@@ -46,8 +46,6 @@ class Organiser extends BaseModel {
       urls.push(`${org.apiURL}&token=${process.env.EVENTBRITE_TOKEN}`);
     });
 
-    console.log('API urls: ', urls);
-
     return urls;
   }
 }
