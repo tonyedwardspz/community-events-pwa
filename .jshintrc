@@ -41,6 +41,7 @@
     "twitterLink": true,
     "webLink": true,
     "processEventbriteVenueData": true,
+    "Venue": true,
 
     "BaseModel": true,
 
