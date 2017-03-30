@@ -3,6 +3,7 @@
 let BaseController = require('./baseController');
 let Evnt = require('../models/event');
 let Organiser = require('../models/organiser');
+let Venue = require('../models/venue');
 let fetch = require('node-fetch');
 
 class DataController extends BaseController {
@@ -14,7 +15,6 @@ class DataController extends BaseController {
     console.log('[Data Controller] Getting all data');
 
     let allData = {};
-
     let promises = [];
     promises.push(Organiser.getDatabasePromise());
 
@@ -32,7 +32,10 @@ class DataController extends BaseController {
         // Process eventbrite events & store in data structure
         let data = Evnt.extractEventbriteEvents(events);
         allData.events = Evnt.processEventbriteData(data);
+        return allData;
       })
+      .then(data => Venue.venuesPromise(data))
+      .then(venues => allData.venues = venues)
       .then(() => {
         res.send(JSON.stringify(allData));
       })
