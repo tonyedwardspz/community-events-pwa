@@ -12,6 +12,10 @@ class Venue extends BaseModel {
     this.long = long;
   }
 
+  getDisplayVenue() {
+    return `${this.name}, ${this.geographic}`;
+  }
+
   static processVenueData(data) {
     let venues = [];
     data.forEach(venue => {
