@@ -35,6 +35,13 @@ class DataController extends BaseController {
         return allData;
       })
       .then(data => Venue.venuesPromise(data))
+      .then(venues => {
+        let results = [];
+        venues.forEach(v => {
+          results.push(Venue.processEventbriteVenueData(v));
+        });
+        return results;
+      })
       .then(venues => allData.venues = venues)
       .then(() => {
         res.send(JSON.stringify(allData));

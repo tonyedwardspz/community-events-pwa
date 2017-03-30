@@ -20,21 +20,16 @@ class Venue extends BaseModel {
     events.forEach( event => {
       urls.push(`${stub}${event.venueID}/?token=${process.env.EVENTBRITE_TOKEN}`);
     });
-
-    console.log('[API] Venue urls: ', urls);
-
     return urls;
   }
 
   venuesPromise(allData) {
-    console.log('getting venue promise');
     return new Promise((resolve, reject) => {
       let venueURLS = this.extractURLS(allData.events);
 
       Promise.all(venueURLS.map( url =>
         fetch(url).then(data => data.json())))
       .then(venues => {
-        console.log(venues);
         resolve(venues);
       })
       .catch(err => {
