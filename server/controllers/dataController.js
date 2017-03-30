@@ -43,9 +43,9 @@ class DataController extends BaseController {
         return results;
       })
       .then(venues => allData.venues = venues)
-      .then(() => {
-        res.send(JSON.stringify(allData));
-      })
+      .then(data => Evnt.meetupPromise(allData.organisations))
+      .then(events => console.log(events))
+      .then(() => res.send(JSON.stringify(allData)))
       .catch(err => {
         console.log('Error retrieving events', err);
         res.send(500, { error: 'Error retrieving events' });
