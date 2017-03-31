@@ -18,6 +18,9 @@ class BaseModel {
               case 'organisers':
                 resolve({ 'organisers' : data});
                 break;
+              case 'subgroups':
+                resolve({ 'subgroups' : data});
+                break;
               default:
                 console.log('Promise default hit');
                 break;
