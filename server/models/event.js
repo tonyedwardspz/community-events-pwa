@@ -1,37 +1,11 @@
 'use strict';
 
-let mongoose = require('mongoose');
 let BaseModel = require('./base');
 let fetch = require('node-fetch');
 
 class Evnt extends BaseModel {
   constructor() {
     super();
-    this.mongooseModel = mongoose.model('events', this.getMongooseSchema());
-  }
-
-  getMongooseModel() {
-    console.log('getting mongoose model', this.mongooseModel);
-    return this.mongooseModel;
-  }
-
-  getMongooseSchema() {
-    return new mongoose.Schema({
-      id: String,
-      title: String,
-      description: String,
-      organiserID: String,
-      ticketURL: String,
-      date: Date,
-      timeStart: String,
-      timeEnd: String,
-      hashtag: String
-    });
-  }
-
-  getDatabasePromise() {
-    let mongoModel = this.getMongooseModel();
-    return this.getPromise(mongoModel, 'events');
   }
 
   processEventbriteData(events) {
@@ -52,6 +26,54 @@ class Evnt extends BaseModel {
     return processed;
   }
 
+  processMeetupData(events, subgroups) {
+    let processed = [];
+    events.forEach(evt => {
+      console.log(evt.venue);
+      processed.push({
+        'id': evt.id,
+        'title': evt.name,
+        'description': evt.description,
+        'organiserID': evt.group.urlname,
+        'venueID': evt.venue.id,
+        'start': this.convertEpochDate(evt.time, evt.utc_offset),
+        'end': this.getEndDate(evt.time, evt.utc_offset, evt.duration),
+        'ticketURL': evt.link,
+        'source': 'meetup',
+      });
+    });
+
+
+    // match events to subgroups to handle multiple groups on cornwall digi
+    // Why do the Cornish have to be different? :)
+    processed.forEach(evt => {
+      subgroups.forEach(sub => {
+        if (evt.title.includes(sub.name)){
+          evt.organiserID = sub.id;
+        }
+      });
+    });
+    return processed;
+  }
+
+  convertEpochDate(stamp, offset) {
+    let stmp = parseInt(stamp);
+
+    if (offset.toString().includes('-')){
+      let off = offset.slice(1, offset.length);
+      stmp -= parseInt(off);
+    } else {
+      stmp += parseInt(offset);
+    }
+    return new Date(stmp);
+  }
+
+  getEndDate(stamp, offset, length) {
+    let duration = length === undefined ? 10800000 : length;
+    let start = this.convertEpochDate(stamp, offset);
+    return new Date(start.getTime() + duration);
+  }
+
   extractEventbriteEvents(events) {
     let results = [];
 
@@ -62,6 +84,35 @@ class Evnt extends BaseModel {
     });
 
     return results;
+  }
+
+  meetupPromise(urls) {
+    return new Promise((resolve, reject) => {
+      let eventURLS = this.getMeetupURLS(urls);
+
+      Promise.all(eventURLS.map( url =>
+        fetch(url).then(data => data.json())))
+      .then(events => {
+        resolve(events);
+      })
+      .catch(err => {
+        console.log('meetup promise error', err);
+        reject(err);
+      });
+    });
+  }
+
+  getMeetupURLS(orgs) {
+    let urls = [];
+    const stub = 'https://api.meetup.com/';
+
+    orgs.forEach(org => {
+      if (org.apiURL === 'null'){
+        urls.push(
+          `${stub}${org.id}/events?key=${process.env.MEETUP_TOKEN}&sign=true`);
+      }
+    });
+    return urls;
   }
 }
 

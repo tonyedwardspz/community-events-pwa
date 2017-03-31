@@ -42,6 +42,7 @@
     "webLink": true,
     "processEventbriteVenueData": true,
     "Venue": true,
+    "processMeetupData": true,
 
     "BaseModel": true,
 
