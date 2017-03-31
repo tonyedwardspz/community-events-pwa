@@ -52,6 +52,54 @@ class Evnt extends BaseModel {
     return processed;
   }
 
+  processMeetupData(events, subgroups) {
+    let processed = [];
+    events.forEach(evt => {
+      console.log(evt.venue);
+      processed.push({
+        'id': evt.id,
+        'title': evt.name,
+        'description': evt.description,
+        'organiserID': evt.group.urlname,
+        'venueID': evt.venue.id,
+        'start': this.convertEpochDate(evt.time, evt.utc_offset),
+        'end': this.getEndDate(evt.time, evt.utc_offset, evt.duration),
+        'ticketURL': evt.link,
+        'source': 'meetup',
+      });
+    });
+
+
+    // match events to subgroups to handle multiple groups on cornwall digi
+    // Why do the Cornish have to be different? :)
+    processed.forEach(evt => {
+      subgroups.forEach(sub => {
+        if (evt.title.includes(sub.name)){
+          evt.organiserID = sub.id;
+        }
+      });
+    });
+    return processed;
+  }
+
+  convertEpochDate(stamp, offset) {
+    let stmp = parseInt(stamp);
+
+    if (offset.toString().includes('-')){
+      let off = offset.slice(1, offset.length);
+      stmp -= parseInt(off);
+    } else {
+      stmp += parseInt(offset);
+    }
+    return new Date(stmp);
+  }
+
+  getEndDate(stamp, offset, length) {
+    let duration = length === undefined ? 10800000 : length;
+    let start = this.convertEpochDate(stamp, offset);
+    return new Date(start.getTime() + duration);
+  }
+
   extractEventbriteEvents(events) {
     let results = [];
 
@@ -71,7 +119,6 @@ class Evnt extends BaseModel {
       Promise.all(eventURLS.map( url =>
         fetch(url).then(data => data.json())))
       .then(events => {
-        console.log('meetup events', events);
         resolve(events);
       })
       .catch(err => {
@@ -91,7 +138,6 @@ class Evnt extends BaseModel {
           `${stub}${org.id}/events?key=${process.env.MEETUP_TOKEN}&sign=true`);
       }
     });
-    console.log('meetup urls', urls);
     return urls;
   }
 }
