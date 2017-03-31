@@ -11,7 +11,7 @@ class Venue extends BaseModel {
   /**
   * Returns an array of urls which need to be fetched from eventbrite
   * @param {Events.Array} events The organisations data
-  * @return {String} An array of url strings
+  * @return {String.Array} An array of url strings
   */
   extractURLS(events) {
     let urls = [];
@@ -33,11 +33,9 @@ class Venue extends BaseModel {
         resolve(venues);
       })
       .catch(err => {
-        console.log(err);
+        console.log('venue promise error',  err);
         reject(err);
       });
-
-
     });
   }
 
@@ -54,6 +52,41 @@ class Venue extends BaseModel {
     venue.geographic = data.address.localized_area_display;
 
     return venue;
+  }
+
+  processMeetupVenueData(data) {
+    let processed = [];
+
+    data.forEach(evt => {
+      let ven = evt.venue;
+      let venue = {};
+
+      venue.id = ven.id;
+      venue.name = ven.name;
+
+      let addressPostcode = this.extractPostcode(ven.address_1);
+      if (addressPostcode){
+        venue.address = `${ven.city}, ${ven.address_1}`;
+      } else {
+        venue.address = `${ven.address_1}, ${ven.city}`;
+      }
+
+      if (addressPostcode){
+        venue.postcode = addressPostcode[0];
+      } else if (this.extractPostcode(ven.city)){
+        venue.postcode = ven.city;
+      } else {
+        venue.postcode = null;
+      }
+
+      venue.lat = ven.lat;
+      venue.long = ven.lon;
+      venue.geographic = ven.city;
+
+      processed.push(venue);
+    });
+
+    return processed;
   }
 
   extractPostcode(address) {
