@@ -9,7 +9,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "test": "gulp && mocha tests --recursive --watch",
+    "test": "mocha tests --recursive",
     "postinstall": "gulp --env=PRODUCTION"
   },
   "repository": {
