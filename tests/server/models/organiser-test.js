@@ -38,7 +38,7 @@ describe('Organiser', () => {
   });
 
   it('Should return a mongoose schema', ()=>  {
-    expect(Organiser.getMongooseSchema().name).to.equal(mongoose.schema);
+    expect(Organiser.mongooseSchema.name).to.equal(mongoose.schema);
   });
 
 

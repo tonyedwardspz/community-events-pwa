@@ -9,7 +9,7 @@ class Subgroup extends BaseModel {
     if (mongoose.models.subgroups) {
       this.mongooseModel = mongoose.models.subgroups;
     } else {
-      this.mongooseModel = mongoose.model('subgroups', this.getMongooseSchema());
+      this.mongooseModel = mongoose.model('subgroups', this.mongooseSchema);
     }
   }
 
@@ -17,7 +17,7 @@ class Subgroup extends BaseModel {
   * Returns a mongoose schema for subgroups
   * @return {Mongoose.schema} The subgroups mongoose schema
   */
-  getMongooseSchema() {
+  get mongooseSchema() {
     return new mongoose.Schema({
       id: String,
       name: String,

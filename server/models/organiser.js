@@ -10,11 +10,11 @@ class Organiser extends BaseModel {
     if (mongoose.models.organisers) {
       this.mongooseModel = mongoose.models.organisers;
     } else {
-      this.mongooseModel = mongoose.model('organisers', this.getMongooseSchema());
+      this.mongooseModel = mongoose.model('organisers', this.mongooseSchema);
     }
   }
 
-  getMongooseSchema() {
+  get mongooseSchema() {
     return new mongoose.Schema({
       id: String,
       name: String,
