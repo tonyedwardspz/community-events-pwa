@@ -29,7 +29,6 @@ class Evnt extends BaseModel {
   processMeetupData(events, subgroups) {
     let processed = [];
     events.forEach(evt => {
-      console.log(evt.venue);
       processed.push({
         'id': evt.id,
         'title': evt.name,
@@ -84,35 +83,6 @@ class Evnt extends BaseModel {
     });
 
     return results;
-  }
-
-  meetupPromise(urls) {
-    return new Promise((resolve, reject) => {
-      let eventURLS = this.getMeetupURLS(urls);
-
-      Promise.all(eventURLS.map( url =>
-        fetch(url).then(data => data.json())))
-      .then(events => {
-        resolve(events);
-      })
-      .catch(err => {
-        console.log('meetup promise error', err);
-        reject(err);
-      });
-    });
-  }
-
-  getMeetupURLS(orgs) {
-    let urls = [];
-    const stub = 'https://api.meetup.com/';
-
-    orgs.forEach(org => {
-      if (org.apiURL === 'null'){
-        urls.push(
-          `${stub}${org.id}/events?key=${process.env.MEETUP_TOKEN}&sign=true`);
-      }
-    });
-    return urls;
   }
 }
 

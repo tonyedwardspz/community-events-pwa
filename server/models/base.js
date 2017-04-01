@@ -4,7 +4,6 @@ class BaseModel {
   constructor() { }
 
   getPromise(mongoModel, model, id=null) {
-    console.log('[BASE] get promise');
     return new Promise(
       (resolve, reject) => {
         mongoModel.find({}, function(err, data) {

@@ -26,6 +26,9 @@ class DataController extends BaseController {
       console.log('[Data Controller] All database promises resolved');
 
       allData.organisations = arguments[0][0].organisers;
+
+      // console.log(allData.organisations);
+
       let subgroups = arguments[0][1].subgroups;
       let urls = Organiser.extractURLS(allData.organisations);
 
@@ -47,7 +50,7 @@ class DataController extends BaseController {
         return results;
       })
       .then(venues => allData.venues = venues)
-      .then(data => Evnt.meetupPromise(allData.organisations))
+      .then(data => Organiser.meetupPromise(allData.organisations))
       .then(events => {
         let processed = Evnt.processMeetupData(events[0], subgroups);
         let venues = Venue.processMeetupVenueData(events[0]);
