@@ -27,16 +27,6 @@ class Subgroup extends BaseModel {
       apiURL: String
     });
   }
-
-  /**
-  * Returns a promise to get the subgroups from the database
-  * @return {Promise} The subgroup promise
-  */
-  getDatabasePromise() {
-    console.log('get subgroup database promise');
-    let mongoModel = this.getMongooseModel();
-    return this.getPromise(mongoModel, 'subgroups');
-  }
 }
 
 module.exports = new Subgroup();

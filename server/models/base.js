@@ -11,6 +11,15 @@ class BaseModel {
     return this.mongooseModel;
   }
 
+  /**
+  * Returns a promise to get the organisers from the database
+  * @return {Promise} The organisers promise
+  */
+  getDatabasePromise(model) {
+    let mongoModel = this.getMongooseModel();
+    return this.getPromise(mongoModel, model);
+  }
+
   getPromise(mongoModel, model, id=null) {
     return new Promise(
       (resolve, reject) => {

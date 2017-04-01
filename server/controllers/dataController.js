@@ -17,8 +17,8 @@ class DataController extends BaseController {
 
     let allData = {};
     let promises = [];
-    promises.push(Organiser.getDatabasePromise());
-    promises.push(Subgroup.getDatabasePromise());
+    promises.push(Organiser.getDatabasePromise('organisers'));
+    promises.push(Subgroup.getDatabasePromise('subgroups'));
     console.log('Promises', promises);
 
     // Run all promises and process when all return data or error
