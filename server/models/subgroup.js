@@ -14,14 +14,6 @@ class Subgroup extends BaseModel {
   }
 
   /**
-  * Returns a mongoose model for subgroups
-  * @return {Mongoose.model} The subgroups mongoose model
-  */
-  getMongooseModel() {
-    return this.mongooseModel;
-  }
-
-  /**
   * Returns a mongoose schema for subgroups
   * @return {Mongoose.schema} The subgroups mongoose schema
   */

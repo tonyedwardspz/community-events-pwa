@@ -3,6 +3,14 @@
 class BaseModel {
   constructor() { }
 
+  /**
+  * Returns a mongoose model for subgroups
+  * @return {Mongoose.model} The subgroups mongoose model
+  */
+  getMongooseModel() {
+    return this.mongooseModel;
+  }
+
   getPromise(mongoModel, model, id=null) {
     return new Promise(
       (resolve, reject) => {

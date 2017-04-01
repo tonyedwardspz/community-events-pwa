@@ -14,10 +14,6 @@ class Organiser extends BaseModel {
     }
   }
 
-  getMongooseModel() {
-    return this.mongooseModel;
-  }
-
   getMongooseSchema() {
     return new mongoose.Schema({
       id: String,
