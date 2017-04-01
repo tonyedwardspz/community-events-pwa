@@ -1,6 +1,5 @@
 'use strict';
 
-
 exports.meetupEvents = [ { created: 1489251435000,
     id: '238342770',
     name: 'April Tech Jam - Bodmin Library',
