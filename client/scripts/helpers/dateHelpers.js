@@ -31,11 +31,5 @@ let isDateAfterToday = (date) => {
 * @return {Integer} The order of items
 */
 let sortByDate = (a, b) => {
-  if (a.start < b.start) {
-    return -1;
-  } else if (a.date > b.date) {
-    return 1;
-  } else {
-    return 0;
-  }
+  return new Date(a.start) - new Date(b.start);
 };
