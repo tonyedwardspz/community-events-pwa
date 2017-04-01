@@ -1,0 +1,23 @@
+'use strict';
+
+exports.organisations = [ { _id: '58ce8d29734d1d60d9849ac3',
+    id: '6377821409',
+    name: 'ThinqTanq',
+    twitterHandle: 'THINQTANQSPACES',
+    logoURL: 'https://pbs.twimg.com/profile_images/839449803230752768/egea66T8.jpg',
+    website: 'http://thinqtanq.spaces.nexudus.com/en',
+    apiURL: 'https://www.eventbriteapi.com/v3/organizers/6377821409/events/?status=live&order_by=start_desc' },
+  { _id: '58ce8d86734d1d60d9849ac5',
+    id: '11761620027',
+    name: 'Plymouth Game Devs',
+    twitterHandle: 'PlymGameDevs',
+    logoURL: 'https://pbs.twimg.com/profile_images/765905263778037760/dqmgafHS.jpg',
+    website: 'https://www.facebook.com/groups/PlymouthGameDevs/',
+    apiURL: 'https://www.eventbriteapi.com/v3/organizers/11761620027/events/?status=live&order_by=start_desc' },
+  { _id: '58dd6f2c734d1d01a238a259',
+    id: 'Cornwall-Digital',
+    name: 'Cornwall Digital Meetup',
+    twitterHandle: 'CornwallDMG',
+    logoURL: 'https://pbs.twimg.com/profile_images/2953750026/d887343ae49b917d888934035d4e1935.jpeg',
+    website: 'https://www.meetup.com/Cornwall-Digital/',
+    apiURL: 'null' } ];
