@@ -6,7 +6,11 @@ let BaseModel = require('./base');
 class Subgroup extends BaseModel {
   constructor() {
     super();
-    this.mongooseModel = mongoose.model('subgroups', this.getMongooseSchema());
+    if (mongoose.models.subgroups) {
+      this.mongooseModel = mongoose.models.subgroups;
+    } else {
+      this.mongooseModel = mongoose.model('subgroups', this.getMongooseSchema());
+    }
   }
 
   /**
