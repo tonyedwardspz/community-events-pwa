@@ -6,9 +6,7 @@
 * @return {String} The HTML string for the link
 */
 let twitterLink = (handle) => {
-  return `<a href="https://twitter.com/
-         ${handle}" target="_blank">
-         https://twitter.com/${handle}</a>`;
+  return `<a href="https://twitter.com/${handle}" target="_blank">https://twitter.com/${handle}</a>`;
 };
 
 /**
