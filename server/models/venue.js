@@ -23,9 +23,9 @@ class Venue extends BaseModel {
     return urls;
   }
 
-  venuesPromise(allData) {
+  venuesPromise(events) {
     return new Promise((resolve, reject) => {
-      let venueURLS = this.extractURLS(allData.events);
+      let venueURLS = this.extractURLS(events);
 
       Promise.all(venueURLS.map( url =>
         fetch(url).then(data => data.json())))
@@ -39,19 +39,26 @@ class Venue extends BaseModel {
     });
   }
 
-  processEventbriteVenueData(data) {
-    let venue = {};
+  processEventbriteVenueData(allData) {
+    let results = [];
+    
+    allData.forEach(data => {
+      let venue = {};
 
-    venue.id = data.id;
-    venue.name = data.name;
-    venue.address = data.address.localized_address_display;
-    venue.postcode = data.address.postcode ? data.address.postcode :
-                     this.extractPostcode(venue.address)[0];
-    venue.lat = data.latitude;
-    venue.long = data.longitude;
-    venue.geographic = data.address.localized_area_display;
+      venue.id = data.id;
+      venue.name = data.name;
+      venue.address = data.address.localized_address_display;
+      venue.postcode = data.address.postcode ? data.address.postcode :
+                       this.extractPostcode(venue.address)[0];
+      venue.lat = data.latitude;
+      venue.long = data.longitude;
+      venue.geographic = data.address.localized_area_display;
 
-    return venue;
+      results.push(venue);
+    });
+
+    console.log(results);
+    return results;
   }
 
   processMeetupVenueData(data) {
@@ -85,7 +92,6 @@ class Venue extends BaseModel {
 
       processed.push(venue);
     });
-
     return processed;
   }
 

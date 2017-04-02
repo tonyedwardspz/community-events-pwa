@@ -41,14 +41,8 @@ class DataController extends BaseController {
         allData.events = Evnt.processEventbriteData(data);
         return allData;
       })
-      .then(data => Venue.venuesPromise(data))
-      .then(venues => {
-        let results = [];
-        venues.forEach(v => {
-          results.push(Venue.processEventbriteVenueData(v));
-        });
-        return results;
-      })
+      .then(data => Venue.venuesPromise(data.events))
+      .then(venues => Venue.processEventbriteVenueData(venues))
       .then(venues => allData.venues = venues)
       .then(data => Organiser.meetupPromise(allData.organisations))
       .then(events => {
