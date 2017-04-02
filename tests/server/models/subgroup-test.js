@@ -9,7 +9,7 @@ var expect = chai.expect;
 let Subgroup = require('../../../server/models/subgroup');
 let mongoose = require('mongoose');
 
-describe('Subgroup', () => {
+describe('Subgroup Model', () => {
 
   it('Should return a promise to get model from database', ()=>  {
     let promise = Subgroup.getDatabasePromise('subgroups');

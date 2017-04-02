@@ -11,7 +11,7 @@ let Evnt = require('../../../server/models/event');
 let data = require('../data/event-data');
 
 
-describe('Event', () => {
+describe('Event Model', () => {
 
   it('Should convert a epoch timstamp to the start date string', () => {
     let dateString = Evnt.convertEpochDate('1493398800000', '3600000');

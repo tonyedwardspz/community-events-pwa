@@ -10,7 +10,7 @@ let Organiser = require('../../../server/models/organiser');
 let data = require('../data/organiser-data');
 let mongoose = require('mongoose');
 
-describe('Organiser', () => {
+describe('Organiser Model', () => {
 
   it('Should return the api endpoints to retieve meetup events from', ()=>  {
     let urls = Organiser.getMeetupURLS(data.organisations);
