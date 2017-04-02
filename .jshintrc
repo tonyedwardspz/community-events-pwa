@@ -25,6 +25,7 @@
     "caches": true,
     "setupRoutes": true,
     "requirejs": true,
+    "getNextSixMonths": true,
 
     "BaseController": true,
     "EventController": true,
@@ -43,6 +44,7 @@
     "processEventbriteVenueData": true,
     "Venue": true,
     "processMeetupData": true,
+    "getMonthNumberFromName": true,
 
     "BaseModel": true,
 

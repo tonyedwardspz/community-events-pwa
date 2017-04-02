@@ -17,7 +17,6 @@ describe('Date Helpers', () => {
     it('Returns UK formatted date when passed a string', () => {
       assert.equal('1/12/2017', convertDateToLocale('2017-01-12T08:45:00.000Z'));
     });
-
   });
 
 
@@ -31,7 +30,6 @@ describe('Date Helpers', () => {
     it('Sorts an array of events by date', () => {
       assert.equal(data[0].name, expected[0].name);
     });
-
   });
 
   describe('#isDateAfterToday()', () => {
@@ -43,6 +41,26 @@ describe('Date Helpers', () => {
     it('Returns false if date is before today', () => {
       assert.equal(false, isDateAfterToday('2010-01-01T00:00:00Z'));
     });
+  });
 
+  describe('#getNextSixMonths()', () => {
+    let expected = ['Apr','May','Jun','Jul','Aug','Sep'];
+    let actual = getNextSixMonths(new Date('2017-04-01T13:00:00'));
+
+    it('Returns an array containing 6 three letter month names', () => {
+      assert.deepEqual(expected, actual);
+      assert.equal(6, actual.length);
+      assert.equal(3, actual[0].length);
+    });
+  });
+
+  describe('#getMonthNumberFromName()', () => {
+
+    it('Returns the correct month number from the supplied name', () => {
+      assert.equal(0, getMonthNumberFromName('jan'));
+      assert.equal(0, getMonthNumberFromName('Jan'));
+      assert.equal(11, getMonthNumberFromName('dec'));
+      assert.equal(-1, getMonthNumberFromName('dgisdahdsahj'));
+    });
   });
 });

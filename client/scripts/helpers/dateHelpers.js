@@ -36,10 +36,10 @@ let sortByDate = (a, b) => {
 
 /**
 * Gets an array containing the next 6 months of truncated month names
+* @param {Date} [today] date The date representing 'today' ( only needed for testing).
 * @return {String.Array} The array of truncated month names
 */
-let getNextSixMonths = () => {
-  let date = new Date();
+let getNextSixMonths = (date = new Date()) => {
   const months = ['Jan','Feb','Mar','Apr','May','Jun',
                   'Jul','Aug','Sep','Oct','Nov','Dec'];
   let sortedMonths = [];
@@ -53,12 +53,17 @@ let getNextSixMonths = () => {
   return sortedMonths;
 };
 
+/**
+* Returns an integer representing the supplied month for use with Date objects
+* @param {String} name The three leter representation of a month
+* @return {Integer} The integer for the supplied month
+*/
 let getMonthNumberFromName = (name) => {
   const months = ['Jan','Feb','Mar','Apr','May','Jun',
                   'Jul','Aug','Sep','Oct','Nov','Dec'];
   let monthNumber = -1;
   for(let i = 0; i <= months.length -1; i++) {
-    if (months[i].toLowerCase() === name) {
+    if (months[i].toLowerCase() === name.toLowerCase()) {
       monthNumber = i;
     }
   }
