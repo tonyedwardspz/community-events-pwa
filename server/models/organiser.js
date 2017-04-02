@@ -14,6 +14,10 @@ class Organiser extends BaseModel {
     }
   }
 
+  /**
+  * Returns the mongoose schema for the organiser model
+  * @return {Mongoose.schema} The schema for the organiser model
+  */
   get mongooseSchema() {
     return new mongoose.Schema({
       id: String,
@@ -41,6 +45,12 @@ class Organiser extends BaseModel {
     return urls;
   }
 
+  /**
+  * Returns an promise to get all data from the mongo database
+  * @param {String.Array} urls An array of strings representing the organisers
+  * whose events should be retrieved from meetup
+  * @return {Promise} A promise to retrieve event data from provided urls
+  */
   meetupPromise(urls) {
     return new Promise((resolve, reject) => {
       let eventURLS = this.getMeetupURLS(urls);
@@ -57,6 +67,12 @@ class Organiser extends BaseModel {
     });
   }
 
+  /**
+  * Returns an promise to get all data from the mongo database
+  * @param {Organisations.Array} orgs The organisations whose urls need to
+  * extracted from
+  * @return {String.Array} An array of URL strings
+  */
   getMeetupURLS(orgs) {
     let urls = [];
     const stub = 'https://api.meetup.com/';

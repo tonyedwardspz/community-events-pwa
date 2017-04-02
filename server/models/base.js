@@ -20,7 +20,13 @@ class BaseModel {
     return this.getPromise(mongoModel, model);
   }
 
-  getPromise(mongoModel, model, id=null) {
+  /**
+  * Returns an promise to get all data from the mongo database
+  * @param {Mongo.model} mongoModel The mongo model to be retrieved
+  * @param {String} model A string representing the model
+  * @return {Promise} A promise to retieve data
+  */
+  getPromise(mongoModel, model) {
     return new Promise(
       (resolve, reject) => {
         mongoModel.find({}, function(err, data) {
