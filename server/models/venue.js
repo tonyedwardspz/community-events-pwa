@@ -41,10 +41,9 @@ class Venue extends BaseModel {
 
   processEventbriteVenueData(allData) {
     let results = [];
-    
+
     allData.forEach(data => {
       let venue = {};
-
       venue.id = data.id;
       venue.name = data.name;
       venue.address = data.address.localized_address_display;
@@ -57,7 +56,6 @@ class Venue extends BaseModel {
       results.push(venue);
     });
 
-    console.log(results);
     return results;
   }
 
