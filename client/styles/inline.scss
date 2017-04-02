@@ -4,7 +4,7 @@ $desktop-breakpoint: 120rem;
 
 // Google fonts
 
-/* latin */
+// latin
 @font-face {
   font-family: 'Roboto';
   font-style: normal;
@@ -21,7 +21,7 @@ $desktop-breakpoint: 120rem;
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
 }
 
-body{
+body {
   font: 1em 'Roboto', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
 }
 
@@ -30,9 +30,23 @@ body{
 }
 
 .pull-right {
-  float:right;
+  float: right;
 }
 
 .pull-right::after {
   clear: both;
+}
+
+.month-boxes.row{
+  flex-direction: row;
+}
+
+.month-box {
+  text-align: center;
+
+  &.current {
+    a {
+      background-color: pink;
+    }
+  }
 }
