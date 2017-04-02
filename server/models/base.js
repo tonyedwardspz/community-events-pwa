@@ -28,9 +28,6 @@ class BaseModel {
             reject(err);
           } else {
             switch (model) {
-              case 'events':
-                resolve({ 'events' : data });
-                break;
               case 'organisers':
                 resolve({ 'organisers' : data});
                 break;
