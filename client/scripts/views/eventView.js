@@ -95,4 +95,20 @@ class EventView {
               </div>
             </div>`;
   }
+
+  monthButtons(months){
+      let html =  `<div class="month-boxes">`;
+
+      months.forEach(month => {
+        html += `
+          <div class="month-box">
+            <a href="/events/month/${month.toLowerCase()}">${month}</a>
+          </div>
+        `;
+      });
+
+      html += `</div>`;
+
+      return html;
+  }
 }

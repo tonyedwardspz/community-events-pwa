@@ -39,4 +39,18 @@ class EventModel extends BaseModel {
     app.events = events;
     return;
   }
+
+  static getEventsForMonth(month) {
+    let events = [];
+    app.events.forEach(event => {
+      let eventDate = new Date(event.start);
+      let eventMonth = eventDate.getMonth();
+
+      if (month === eventMonth){
+        events.push(event);
+      }
+    });
+    console.log(`[Events] Get events for month ${month}: `, events);
+    return events;
+  }
 }

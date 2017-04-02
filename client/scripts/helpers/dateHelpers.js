@@ -33,3 +33,34 @@ let isDateAfterToday = (date) => {
 let sortByDate = (a, b) => {
   return new Date(a.start) - new Date(b.start);
 };
+
+/**
+* Gets an array containing the next 6 months of truncated month names
+* @return {String.Array} The array of truncated month names
+*/
+let getNextSixMonths = () => {
+  let date = new Date();
+  const months = ['Jan','Feb','Mar','Apr','May','Jun',
+                  'Jul','Aug','Sep','Oct','Nov','Dec'];
+  let sortedMonths = [];
+  for(let i = date.getMonth(); i <= months.length -1; i++){
+    sortedMonths.push(months[i]);
+  }
+  for(let i = 0; i < date.getMonth(); i++){
+    sortedMonths.push(months[i]);
+  }
+  sortedMonths.length = 6;
+  return sortedMonths;
+};
+
+let getMonthNumberFromName = (name) => {
+  const months = ['Jan','Feb','Mar','Apr','May','Jun',
+                  'Jul','Aug','Sep','Oct','Nov','Dec'];
+  let monthNumber = -1;
+  for(let i = 0; i <= months.length -1; i++) {
+    if (months[i].toLowerCase() === name) {
+      monthNumber = i;
+    }
+  }
+  return monthNumber;
+};

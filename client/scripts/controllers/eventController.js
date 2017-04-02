@@ -25,6 +25,18 @@ class EventController extends BaseController {
     this.updateShell(html);
   }
 
+  showMonth(month) {
+    console.info(`[Event] Show months events: `, month);
+
+    let monthNumber = getMonthNumberFromName(month);
+    let events = EventModel.getEventsForMonth(monthNumber);
+
+    let html = app.eventView.eventList(events);
+
+    this.updateShell(html);
+
+  }
+
   index() {
     console.log('[Event] Index');
 

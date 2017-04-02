@@ -21,6 +21,10 @@ let setupRoutes = () => {
       app.eventController.show(context.params.id);
     });
 
+    page('/events/month/:id', (context) => {
+      app.eventController.showMonth(context.params.id);
+    });
+
 
     // Organisations
     page('/organisations', (context) => {
