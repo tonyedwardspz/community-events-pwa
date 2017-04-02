@@ -12,7 +12,7 @@ if (!process.env.PRODUCTION) {
 require('./server/database/database');
 
 // Configure passport authentication
-require('./server/config/passport')(passport);
+// require('./server/config/passport')(passport);
 
 // Configure the express app
 var app = express();
