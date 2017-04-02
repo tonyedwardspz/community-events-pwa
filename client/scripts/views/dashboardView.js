@@ -14,8 +14,6 @@ class DashboardView {
   index(data = []) {
     return `
       <h1>This is the dashboard view</h1>
-      <a href="/events">Events</a>
-      <a href="/event/kdhf">Event</a>
     `;
   }
 }

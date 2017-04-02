@@ -26,7 +26,6 @@
   "dependencies": {
     "babel-polyfill": "^6.16.0",
     "babel-preset-es2015": "^6.18.0",
-    "babelify": "^7.3.0",
     "body-parser": "^1.15.2",
     "browser-sync": "^2.18.8",
     "buffer-node": "^1.0.2",
