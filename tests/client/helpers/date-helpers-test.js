@@ -19,7 +19,6 @@ describe('Date Helpers', () => {
     });
   });
 
-
   describe('#sortByDate()', () => {
     let data = [{'name':'second', 'start': '2017-04-17T13:00:00'},
                 {'name': 'first', 'start': '2017-04-15T13:00:00'}];

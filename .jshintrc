@@ -26,6 +26,7 @@
     "setupRoutes": true,
     "requirejs": true,
     "getNextSixMonths": true,
+    "capitalize": true,
 
     "BaseController": true,
     "EventController": true,

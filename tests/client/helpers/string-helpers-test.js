@@ -17,6 +17,12 @@ describe('String Helpers', () => {
       assert.equal(10, randomString(10).length);
       assert.equal(9584, randomString(9584).length);
     });
+  });
 
+  describe('#capitalize()', () => {
+    it('Should capitalize the provided string', () => {
+      assert.equal('January', capitalize('january'));
+      assert.equal('I do not need change', capitalize('I do not need change'));
+    });
   });
 });
