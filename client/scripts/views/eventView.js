@@ -38,6 +38,14 @@ class EventView {
     `;
   }
 
+  showMonth(events, month, currentMonth) {
+    let html = `<h2>${getFullMonthName(month)}s Events</h2>`;
+    html += this.monthButtons(getNextFourMonths(), month);
+    html += '<hr />';
+    html += app.eventView.eventList(events);
+    return html;
+  }
+
   /**
   * Returns HTML for the index of events
   * @param {Array.<Event>} [events] An array of event objects
@@ -96,13 +104,17 @@ class EventView {
             </div>`;
   }
 
-  monthButtons(months){
-      let html =  `<div class="month-boxes">`;
+  monthButtons(months, currentMonth = null){
+      let html =  `<div class="month-boxes row">`;
 
       months.forEach(month => {
+        let current = false;
+        if (currentMonth && currentMonth.toLowerCase() === month.toLowerCase()){
+          current = true;
+        }
         html += `
-          <div class="month-box">
-            <a href="/events/month/${month.toLowerCase()}">${month}</a>
+          <div class="month-box column column-25 ${current ? 'current' : ''}">
+            <a class="button" href="/events/month/${month.toLowerCase()}">${month}</a>
           </div>
         `;
       });

@@ -13,8 +13,10 @@ class DashboardView {
   */
   index(data = []) {
     return `
-      <h1>This is the dashboard view</h1>
-      ${app.eventView.monthButtons(getNextSixMonths())}
+      <h1>Upcoming Events</h1>
+      <p>Filter by month</p>
+      ${app.eventView.monthButtons(getNextFourMonths())}
+      <hr />
     `;
   }
 }

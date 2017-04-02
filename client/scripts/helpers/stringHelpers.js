@@ -14,3 +14,11 @@ let randomString = (length = 32) => {
   }
   return result;
 };
+
+/**
+* Capitalizes the first letter of provided string
+* @return The capitalized string
+*/
+let capitalize = (str) => {
+    return str.charAt(0).toUpperCase() + str.substring(1);
+};
