@@ -42,13 +42,13 @@ describe('Date Helpers', () => {
     });
   });
 
-  describe('#getNextSixMonths()', () => {
-    let expected = ['Apr','May','Jun','Jul','Aug','Sep'];
-    let actual = getNextSixMonths(new Date('2017-04-01T13:00:00'));
+  describe('#getNextFourMonths()', () => {
+    let expected = ['Apr','May','Jun','Jul'];
+    let actual = getNextFourMonths(new Date('2017-04-01T13:00:00'));
 
-    it('Returns an array containing 6 three letter month names', () => {
+    it('Returns an array containing 4 three letter month names', () => {
       assert.deepEqual(expected, actual);
-      assert.equal(6, actual.length);
+      assert.equal(4, actual.length);
       assert.equal(3, actual[0].length);
     });
   });

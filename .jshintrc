@@ -25,9 +25,10 @@
     "caches": true,
     "setupRoutes": true,
     "requirejs": true,
-    "getNextSixMonths": true,
+    "getNextFourMonths": true,
     "capitalize": true,
     "getFullMonthName": true,
+    "getMonthNumberFromName": true,
 
     "BaseController": true,
     "EventController": true,

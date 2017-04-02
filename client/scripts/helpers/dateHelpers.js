@@ -39,7 +39,7 @@ let sortByDate = (a, b) => {
 * @param {Date} [today] date The date representing 'today' ( only needed for testing).
 * @return {String.Array} The array of truncated month names
 */
-let getNextSixMonths = (date = new Date()) => {
+let getNextFourMonths = (date = new Date()) => {
   const months = ['Jan','Feb','Mar','Apr','May','Jun',
                   'Jul','Aug','Sep','Oct','Nov','Dec'];
   let sortedMonths = [];
@@ -49,7 +49,7 @@ let getNextSixMonths = (date = new Date()) => {
   for(let i = 0; i < date.getMonth(); i++){
     sortedMonths.push(months[i]);
   }
-  sortedMonths.length = 6;
+  sortedMonths.length = 4;
   return sortedMonths;
 };
 
