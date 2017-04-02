@@ -27,6 +27,7 @@
     "requirejs": true,
     "getNextSixMonths": true,
     "capitalize": true,
+    "getFullMonthName": true,
 
     "BaseController": true,
     "EventController": true,

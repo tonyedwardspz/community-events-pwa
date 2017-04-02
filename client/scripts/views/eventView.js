@@ -38,6 +38,14 @@ class EventView {
     `;
   }
 
+  showMonth(events, month) {
+    let html = `<h2>${getFullMonthName(month)}s Events</h2>`;
+    html += this.monthButtons(getNextSixMonths());
+    html += '<hr />';
+    html += app.eventView.eventList(events);
+    return html;
+  }
+
   /**
   * Returns HTML for the index of events
   * @param {Array.<Event>} [events] An array of event objects

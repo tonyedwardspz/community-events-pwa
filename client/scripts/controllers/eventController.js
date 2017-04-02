@@ -31,7 +31,7 @@ class EventController extends BaseController {
     let monthNumber = getMonthNumberFromName(month);
     let events = EventModel.getEventsForMonth(monthNumber);
 
-    let html = app.eventView.eventList(events);
+    let html = app.eventView.showMonth(events, month);
 
     this.updateShell(html);
 

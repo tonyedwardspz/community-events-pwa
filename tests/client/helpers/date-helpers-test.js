@@ -62,4 +62,14 @@ describe('Date Helpers', () => {
       assert.equal(-1, getMonthNumberFromName('dgisdahdsahj'));
     });
   });
+
+  describe('#getFullMonthName()', () => {
+
+    it('Returns the full month name from the supplied 3 char name', () => {
+      assert.equal('January', getFullMonthName('jan'));
+      assert.equal('January', getFullMonthName('Jan'));
+      assert.equal('December', getFullMonthName('dec'));
+      assert.equal('No month string!', getFullMonthName('dgisdahdsahj'));
+    });
+  });
 });
