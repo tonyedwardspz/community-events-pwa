@@ -58,10 +58,11 @@ class EventView {
     let list = ``;
 
     events.forEach(event => {
+      let venue = Venue.findByID(event.venueID, app.venues);
       if (showImage){
-        list += this.eventListItem(event);
+        list += this.eventListItem(event, venue);
       } else {
-        list += this.eventListItemNoImage(event);
+        list += this.eventListItemNoImage(event, venue);
       }
     });
 
@@ -69,12 +70,12 @@ class EventView {
     return list;
   }
 
-  eventListItem(event){
+  eventListItem(event, venue){
     return `<div class="row">
               <div class="column column-75">
                 <h3><a href="/event/${event.id}">${event.title}</a></h3>
-                <p>${event.getDisplayDate()}</p>
-                <p>Location</p>
+                <p>${event.getDisplayDate()}<br />
+                Location: ${venue.getDisplayVenue(app.venues)}</p>
               </div>
               <div class="column">
                 <img src="http://placehold.it/350x150">
@@ -82,12 +83,12 @@ class EventView {
             </div>`;
   }
 
-  eventListItemNoImage(event){
+  eventListItemNoImage(event, venue){
     return `<div class="row">
               <div class="column column-75">
                 <h3><a href="/event/${event.id}">${event.title}</a></h3>
                 <p>${event.getDisplayDate()}<br />
-                   Location</p>
+                   Location: ${venue.getDisplayVenue(app.venues)}</p>
               </div>
               <div class="column">
                 <a href="/event/${event.id}" class="button">View Event</a>
