@@ -14,7 +14,9 @@ class DashboardView {
   index(data = []) {
     return `
       <h1>Upcoming Events</h1>
+      <p>Filter by month</p>
       ${app.eventView.monthButtons(getNextFourMonths())}
+      <hr />
     `;
   }
 }
