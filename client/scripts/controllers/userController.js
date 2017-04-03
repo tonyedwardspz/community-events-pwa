@@ -5,6 +5,14 @@ class UserController extends BaseController {
     super();
   }
 
+  login(){
+    console.log('Login clicked');
+
+    let html = app.userView.login();
+
+    this.updateShell(html);
+  }
+
   show() {
     console.info('[User] Show');
 
