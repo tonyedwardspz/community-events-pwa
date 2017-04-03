@@ -5,7 +5,7 @@ let request = require('request');
 
 /**
 * Sets up passport user authenication for buffer
-* @param {Passport} passport Pass the passport object into 'class'
+* @param {Passport} passport Pass the passport object into this 'class'
 */
 module.exports = function(passport) {
   passport.serializeUser(function(user, done) {
@@ -24,6 +24,7 @@ module.exports = function(passport) {
     callbackURL: process.env.TWITTER_REDIRECT_URI
   },
   function(token, tokenSecret, profile, cb) {
+    console.log('[Passport] Auth function hit. Profile: ', profile);
     User.findOrCreate({ twitterId: profile.id }, function (err, user) {
       return cb(err, user);
     });

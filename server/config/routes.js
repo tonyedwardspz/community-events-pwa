@@ -2,6 +2,7 @@
 
 let path = require('path');
 let data = require('../controllers/dataController');
+let users = require('../controllers/userController');
 
 
 /**
@@ -25,10 +26,24 @@ module.exports = function(app, passport) {
 
   //-------------- User / Authentication Routes --------------\\
 
-  // app.get('/user/auth', passport.authenticate('twitter'), users.auth);
+  app.get('/user/auth/twitter', passport.authenticate('twitter'), users.auth);
 
   app.get('/user/auth/twitter/callback',
     passport.authenticate('twitter', {
+      failWithError: true
+    }),
+    function(req, res) {
+      users.authSuccess(req, res);
+    },
+    function(err, req, res, next) {
+      users.authFailure(err, req, res, next);
+    }
+  );
+
+  app.get('/user/auth/google', passport.authenticate('google'), users.auth);
+
+  app.get('/user/auth/google/callback',
+    passport.authenticate('google', {
       failWithError: true
     }),
     function(req, res) {
@@ -55,27 +70,22 @@ module.exports = function(app, passport) {
    });
 
     app.get('/favicon-16x16.png', (req, res) => {
-      console.log('[ICO] route hit');
       res.sendFile(path.join(__dirname + '/../../public//favicon-16x16.png'));
     });
 
     app.get('/favicon.ico', (req, res) => {
-      console.log('[ICO] route hit');
       res.sendFile(path.join(__dirname + '/../../public//favicon-16x16.png'));
     });
 
     app.get('/*/scripts/require.js', function(req, res){
-      console.log('[Route] Require All: ' + req.path);
       res.sendFile(path.resolve(__dirname, '../../public/scripts/require.js'));
     });
 
     app.get('/*/scripts/app.js', function(req, res){
-      console.log('[Route] event / app All: ' + req.path);
       res.sendFile(path.resolve(__dirname, '../../public/scripts/app.js'));
     });
 
     app.get('/*/scripts/lib/page.js', function(req, res){
-      console.log('[Route] event / app All: ' + req.path);
       res.sendFile(path.resolve(__dirname, '../../public/scripts/lib/page.js'));
     });
 
