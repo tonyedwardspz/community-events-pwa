@@ -6,6 +6,12 @@ class UserView {
 
   }
 
+  login() {
+    return `<h2>This is the login view</h2>
+           <a href="/user/auth/twitter">Login with Twitter</a>
+           <a href="/user/auth/google">Login with Google</a>`;
+  }
+
   /**
   * Returns HTML for the show user screen
   * @param {User} user An user object
