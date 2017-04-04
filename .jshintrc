@@ -48,6 +48,8 @@
     "Venue": true,
     "processMeetupData": true,
     "getMonthNumberFromName": true,
+    "User": true,
+    "UserModel": true,
 
     "BaseModel": true,
 

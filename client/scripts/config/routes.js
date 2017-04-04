@@ -7,6 +7,11 @@ let setupRoutes = () => {
     page();
 
     // Dashboard
+    page('/', () => {
+      app.dashboardController.index();
+    });
+
+    // Dashboard
     page('/dashboard', () => {
       app.dashboardController.index();
     });
@@ -38,6 +43,10 @@ let setupRoutes = () => {
     // User
     page('/user', (context) => {
       app.userController.show();
+    });
+
+    page('/user/login', context => {
+      app.userController.login();
     });
 
     page('/user/:id/edit', (context) => {

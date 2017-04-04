@@ -12,7 +12,7 @@ if (!process.env.PRODUCTION) {
 require('./server/database/database');
 
 // Configure passport authentication
-// require('./server/config/passport')(passport);
+require('./server/config/passport')(passport);
 
 // Configure the express app
 var app = express();
@@ -24,5 +24,5 @@ require('./server/config/routes')(app, passport, __dirname);
 // Start the app server
 let port = process.env.PORT || 8080;
 app.listen(port, function() {
-  console.log('server listening on port ' + port);
+  console.log('[Server] listening on port ' + port);
 });

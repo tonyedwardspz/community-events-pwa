@@ -10,9 +10,9 @@ class Database {
   createConnection(){
     mongoose.connect(process.env.MONGODB_URI, function (err) {
       if (err) {
-        console.log ('ERROR connecting to DB: ' + err);
+        console.log ('[Database] Error connecting: ' + err);
       } else {
-        console.log ('Succeeded connected to DB');
+        console.log ('[Database] Succeeded connected');
       }
     });
 

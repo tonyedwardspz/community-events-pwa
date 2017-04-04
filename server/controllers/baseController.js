@@ -1,9 +1,7 @@
 'use strict';
 
 class BaseController {
-  constructor(msg) {
-    console.log(`[Controller] Base instantiated from ${msg}`);
-  }
+  constructor(msg) {}
 }
 
 module.exports = BaseController;
