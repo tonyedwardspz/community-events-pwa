@@ -40,7 +40,8 @@ module.exports = function(app, passport) {
     }
   );
 
-  app.get('/user/auth/google', passport.authenticate('google'), users.auth);
+  app.get('/user/auth/google',
+           passport.authenticate('google', { scope: ['profile'] }), users.auth);
 
   app.get('/user/auth/google/callback',
     passport.authenticate('google', {
