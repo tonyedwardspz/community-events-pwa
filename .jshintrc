@@ -29,6 +29,7 @@
     "capitalize": true,
     "getFullMonthName": true,
     "getMonthNumberFromName": true,
+    "splitString": true,
 
     "BaseController": true,
     "EventController": true,
