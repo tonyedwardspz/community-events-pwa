@@ -13,34 +13,40 @@
   </head>
   <body>
 
-    <header class="container">
-      <h1 class="title">Community Events PWA</h1>
-      <div class="menu-wrap">
-        <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="/user/login">Login</a></li>
-          <li><a href="/events/month/apr">Events by month</a></li>
-        </ul>
-      </div>
-    </header>
+    <ul class="navigation">
+      <li class="nav-item"><a href="/">Home</a></li>
+      <li class="nav-item"><a href="/user/login">Login</a></li>
+      <li class="nav-item"><a href="/events/month/apr">Events by month</a></li>
+    </ul>
 
-    <main class="main container">
+    <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+    <label for="nav-trigger"></label>
 
-    </main>
+    <div class="site-wrap">
 
-    <noscript>
-      <h2>Oh No!</h2>
-      <p>
-        It looks like your browser does not have JavaScript enabled. You'll
-        never know what you're missing out on!
-      </p>
-    </noscript>
+      <header class="container">
+        <h1 class="title">Gather-SW</h1>
+      </header>
 
-    <!--<div id="offline-ready" class="">
+      <main class="main container">
+
+      </main>
+
+      <noscript>
+        <h2>Oh No!</h2>
+        <p>
+          It looks like your browser does not have JavaScript enabled. You'll
+          never know what you're missing out on!
+        </p>
+      </noscript>
+
+    </div>
+
+    <!-- <div id="offline-ready" class="">
       <a href="#" id="dismiss">
         <p>Ready to work offline<span>Dismiss</span></p>
       </a>
-    </div>-->
+    </div> -->
 
     <script data-main="./scripts/app" src="./scripts/require.js" async></script>
 
