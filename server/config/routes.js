@@ -33,9 +33,11 @@ module.exports = function(app, passport) {
       failWithError: true
     }),
     function(req, res) {
+      console.log('[Twitter] Auth success route hit');
       users.authSuccess(req, res);
     },
     function(err, req, res, next) {
+      console.log('[Twitter] Auth failure route hit');
       users.authFailure(err, req, res, next);
     }
   );
