@@ -21,7 +21,12 @@ var app;
     userView: new UserView()
   };
 
+  // Setup the page.js client side routing
   setupRoutes();
 
+  // Make sure the menu behaves
+  setMenuListeners();
+
+  // Load up the content and direct as appropriate
   loadContent();
 })();
