@@ -25,6 +25,16 @@ class Cache extends BaseModel {
       data: String
     });
   }
+
+  getCachedData(){
+    this.mongooseModel.findOne({ id: process.env.CACHE_ID}, function(err, cache) {
+      if (err) {
+        return { 'error' : err }
+      } else {
+        return cache.data;
+      }
+    });
+  }
 }
 
 module.exports = new Cache();
