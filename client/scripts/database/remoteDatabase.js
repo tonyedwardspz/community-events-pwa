@@ -57,6 +57,7 @@ class Database {
     fetch(route, {
       method:'GET',
       headers: headers,
+      credentials: 'include'
     })
     .then(response => {
       if (response.status !== 200) {
