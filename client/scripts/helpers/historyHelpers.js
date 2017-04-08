@@ -1,6 +1,5 @@
 'use strict';
 
-
 /**
 * Attempts to update the view when called when page first loads, to manage
 * naughty users arriving via a full url (bookmark etc.). It splits
@@ -18,41 +17,36 @@ let loadContent = () => {
 
     // Load data here, then show appropriate page
     app.dataController.getData(() => {
+
+      // If user is loged in, get that data too
       if (readCookie('user_id')) {
         app.dataController.getUser(readCookie('user_id'), user => {
           console.log('user: ', user);
         });
       }
 
-
+      // redirect the user to the appropriate view, not that data has loaded
       if(newUrl === '/events'){
         app.eventController.index();
-      }
-      else if(newUrl.includes('/events/month')){
+      } else if(newUrl.includes('/events/month')){
         app.eventController.showMonth(url[url.length - 1]);
-      }
-      else if (newUrl.includes('/event')) {
+      } else if (newUrl.includes('/event')) {
         app.eventController.show(url[url.length -1]);
       }
 
-
       else if (newUrl === '/organisations') {
         app.organisationController.index();
-      }
-      else if(newUrl.includes('/organisation')) {
+      } else if(newUrl.includes('/organisation')) {
         app.organisationController.show(url[url.length - 1]);
       }
 
       else if (newUrl === '/user') {
         app.userController.show();
-      }
-      else if (newUrl === '/user/login') {
+      } else if (newUrl === '/user/login') {
         app.userController.login();
-      }
-      else if (newUrl === '/user/login/success') {
+      } else if (newUrl === '/user/login/success') {
         app.userController.loginSuccess();
       }
-
 
       else {
         app.dashboardController.index();
@@ -61,15 +55,4 @@ let loadContent = () => {
   } catch (error) {
     console.warn('There was an error loading content', error);
   }
-};
-
-let readCookie = name => {
-    let nameEQ = name + "=";
-    let ca = document.cookie.split(';');
-    for(let i=0;i < ca.length;i++) {
-        let c = ca[i];
-        while (c.charAt(0)==' ') c = c.substring(1,c.length);
-        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
-    }
-    return null;
 };
