@@ -7,10 +7,10 @@ let fetch = require('node-fetch');
 class Cache extends BaseModel {
   constructor() {
     super();
-    if (mongoose.models.organisers) {
-      this.mongooseModel = mongoose.models.cache;
+    if (mongoose.models.cache) {
+      this.mongooseModel = mongoose.models.caches;
     } else {
-      this.mongooseModel = mongoose.model('cache', this.mongooseSchema);
+      this.mongooseModel = mongoose.model('caches', this.mongooseSchema);
     }
   }
 
@@ -21,7 +21,7 @@ class Cache extends BaseModel {
   get mongooseSchema() {
     return new mongoose.Schema({
       id: String,
-      updated: Date,
+      date: Date,
       data: String
     });
   }

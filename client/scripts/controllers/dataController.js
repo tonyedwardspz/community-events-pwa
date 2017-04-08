@@ -14,6 +14,13 @@ class DataController extends BaseController {
     app.db.retrieve(`/getData`, data => {
       console.log('[DASH]: Fetch all data');
 
+      // If recieving the cache data, is should be parsed first
+      try {
+        data = JSON.parse(data);
+      } catch (err) {
+        console.log('[DATA] Does not need parsing');
+      }
+
       EventModel.processEventData(data.events);
       Organisation.processOrgData(data.organisations);
       Venue.processVenueData(data.venues);
