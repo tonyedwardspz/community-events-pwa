@@ -25,10 +25,10 @@ class DataController extends BaseController {
         cacheData = cache;
         // check to see if the cache is fresh
         if (dateHelpers.lastTwoHours(cache.date)){
-          console.log('[Cache] Is fresh', cache);
+          console.log('[Cache] Is fresh', cache.date);
           res.send(JSON.stringify(cache.data));
-          return;
         } else {
+          console.log('[Cache] Not fresh. Retrieving new data', cache.date);
           // Get new data
           let allData = {};
           let promises = [];
@@ -44,7 +44,7 @@ class DataController extends BaseController {
             let subgroups = arguments[0][1].subgroups;
             let urls = Organiser.extractURLS(allData.organisations);
 
-            // Fetch all the events for all organisations
+            // Fetch all the events from eventbrite for all organisations
             Promise.all(urls.map(url =>
               fetch(url).then(data => data.json())))
             .then(events => {
@@ -53,10 +53,15 @@ class DataController extends BaseController {
               allData.events = Evnt.processEventbriteData(data);
               return allData;
             })
+            // Fetch venues from eventbrite
             .then(data => Venue.venuesPromise(data.events))
+            // Process eventbrite venues
             .then(venues => Venue.processEventbriteVenueData(venues))
+            // Save venues to data structure
             .then(venues => allData.venues = venues)
+            // Get events from meetup
             .then(data => Organiser.meetupPromise(allData.organisations))
+            // Process Meetup data, matching subgroups to events & extracting venues
             .then(events => {
               let processed = Evnt.processMeetupData(events[0], subgroups);
               let venues = Venue.processMeetupVenueData(events[0]);
@@ -65,9 +70,10 @@ class DataController extends BaseController {
               subgroups.map(sub => allData.organisations.push(sub));
               return;
             })
+            // Send new data to client
             .then(() => res.send(JSON.stringify(allData)))
+            // Update the cache
             .then(() => {
-              // cache all data
               cacheData.data = JSON.stringify(allData);
               cacheData.date = new Date();
               cacheData.save( err => {
