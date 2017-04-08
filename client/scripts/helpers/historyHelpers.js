@@ -10,17 +10,47 @@
 let loadContent = () => {
   try {
     let url = window.location.href.split('/');
+    url.splice(0, 3);
+    let newUrl  = '';
+    url.map(u => newUrl += `/${u}`);
     console.log('Load content - url: ', url);
-    console.log(url[3]);
+    console.log('Load content - new url: ', newUrl);
 
-    if (url[3] === 'event'){
-      app.eventController.show(url[4]);
-    } else if (url[3] === 'events') {
-      app.eventController.index();
-    } else {
-      app.dashboardController.index();
-    }
+    // Load data here, then show appropriate page
+    app.dataController.getData(() => {
+      if(newUrl === '/events'){
+        app.eventController.index();
+      }
+      else if(newUrl.includes('/events/month')){
+        app.eventController.showMonth(url[url.length - 1]);
+      }
+      else if (newUrl.includes('/event')) {
+        app.eventController.show(url[url.length -1]);
+      }
 
+
+      else if (newUrl === '/organisations') {
+        app.organisationController.index();
+      }
+      else if(newUrl.includes('/organisation')) {
+        app.organisationController.show(url[url.length - 1]);
+      }
+
+      else if (newUrl === '/user') {
+        app.userController.show();
+      }
+      else if (newUrl === '/user/login') {
+        app.userController.login();
+      }
+      else if (newUrl === '/user/login/success') {
+        app.userController.loginSuccess();
+      }
+
+
+      else {
+        app.dashboardController.index();
+      }
+    });
   } catch (error) {
     console.warn('There was an error loading content', error);
   }

@@ -18,6 +18,8 @@ class DataController extends BaseController {
   getData(req, res) {
     console.log('[Data Controller] Getting all data');
 
+    console.log('[USER ID COOKIE]', req.cookies.user_id);
+
     // Check the cache for recent data
     let cacheData = {};
     CacheModel.findOne({ id: process.env.CACHE_ID}, function(err, cache) {
@@ -70,6 +72,7 @@ class DataController extends BaseController {
               subgroups.map(sub => allData.organisations.push(sub));
               return;
             })
+            // Get the user if required
             // Send new data to client
             .then(() => res.send(JSON.stringify(allData)))
             // Update the cache

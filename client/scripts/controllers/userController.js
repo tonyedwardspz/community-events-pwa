@@ -13,6 +13,10 @@ class UserController extends BaseController {
     this.updateShell(html);
   }
 
+  loginSuccess() {
+    this.updateShell('<h1>loginSuccess</h1>');
+  }
+
   show() {
     console.info('[User] Show');
 
