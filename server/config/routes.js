@@ -22,9 +22,11 @@ module.exports = function(app, passport) {
 
   //-------------- Data Routes --------------\\
 
-  app.get('/getData', ensureAuthenticated, data.getData);
+  app.get('/getData', data.getData);
 
   //-------------- User / Authentication Routes --------------\\
+
+  app.get('/user/:id', ensureAuthenticated, users.getUser)
 
   app.get('/user/auth/twitter', passport.authenticate('twitter'), users.auth);
 

@@ -18,6 +18,13 @@ let loadContent = () => {
 
     // Load data here, then show appropriate page
     app.dataController.getData(() => {
+      if (readCookie('user_id')) {
+        app.dataController.getUser(readCookie('user_id'), user => {
+          console.log('user: ', user);
+        });
+      }
+
+
       if(newUrl === '/events'){
         app.eventController.index();
       }
@@ -54,4 +61,15 @@ let loadContent = () => {
   } catch (error) {
     console.warn('There was an error loading content', error);
   }
+};
+
+let readCookie = name => {
+    let nameEQ = name + "=";
+    let ca = document.cookie.split(';');
+    for(let i=0;i < ca.length;i++) {
+        let c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1,c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+    }
+    return null;
 };

@@ -1,6 +1,7 @@
 'use strict';
 
 let BaseController = require('./baseController');
+let User = require('../models/user').getMongooseModel();
 
 class UserController extends BaseController {
   constructor() {
@@ -27,6 +28,16 @@ class UserController extends BaseController {
   authFailure(err, req, res, next) {
     console.log('[User] Auth failure: ' + err);
     res.redirect('/user/login');
+  }
+
+  getUser(req, res, next) {
+    User.findOne({ userID: req.params.id}, (err, user) => {
+      if (err) {
+        res.send(JSON.stringify({'error' : err}));
+      } else {
+        res.send(JSON.stringify(user));
+      }
+    });
   }
 
 }

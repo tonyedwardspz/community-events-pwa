@@ -4,6 +4,17 @@ class User extends BaseModel {
   constructor(userID, twitterID, googleID, email, firstName, lastName,
       recieveEmail, recievePush, accessToken, refreshToken, isAdmin) {
     super();
+    this.userID = userID;
+    this.twitterID = twitterID;
+    this.googleID = googleID;
+    this.email = email;
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.recieveEmail = recieveEmail;
+    this.recievePush = recievePush;
+    this.accessToken = accessToken;
+    this.refreshToken = refreshToken;
+    this.isAdmin = isAdmin;
   }
 
   static processUserData(data) {
