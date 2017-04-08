@@ -35,7 +35,7 @@ module.exports = function(passport) {
       } else if (!user) {
         console.log('No error, user dosnt exist');
         user = new UserModel({
-          id: strHelpers.randomString(20),
+          userID: strHelpers.randomString(20),
           twitterID: profile.id,
           googleID: null,
           email: null,
@@ -63,13 +63,13 @@ module.exports = function(passport) {
   },
   function(accessToken, refreshToken, profile, done) {
     console.log('[Passport] Auth function hit. Google Profile: ', profile);
-    UserModel.findOne({ twitterID: profile.id }, function (err, user) {
+    UserModel.findOne({ googleID: profile.id }, function (err, user) {
       if (err){
         return done(err, user);
       } else if (!user) {
         console.log('No error, user dosnt exist');
         user = new UserModel({
-          id: strHelpers.randomString(20),
+          userID: strHelpers.randomString(20),
           twitterID: null,
           googleID: profile.id,
           email: null,
@@ -84,6 +84,7 @@ module.exports = function(passport) {
       }
 
       user.save(function(err) {
+        console.log('[PASSPORT] USER save');
           if (err) {console.log(err);}
           return done(err, user);
       });

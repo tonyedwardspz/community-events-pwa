@@ -20,7 +20,7 @@ class User extends BaseModel {
   */
   get mongooseSchema() {
     return new mongoose.Schema({
-      id: String,
+      userID: String,
       twitterID: String,
       googleID: String,
       email: String,
