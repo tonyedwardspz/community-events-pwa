@@ -23,6 +23,11 @@ let loadContent = () => {
       if (readCookie('user_id')) {
         app.dataController.getUser(readCookie('user_id'), user => {
           console.log('user: ', user);
+          console.log('[Get user callback]', newUrl);
+
+          if (newUrl === '/user') {
+            app.userController.show();
+          }
         });
       }
 
@@ -47,7 +52,7 @@ let loadContent = () => {
       else if (newUrl === '/user/login') {
         app.userController.login();
       }
-      else if (newUrl === '/user/profile') {
+      else if (newUrl === '/user') {
         app.userController.show();
       }
 

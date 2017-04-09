@@ -8,17 +8,22 @@ class UserView {
 
   login() {
     return `<h2>This is the login view</h2>
-           <a href="/user/auth/twitter">Login with Twitter</a>
-           <a href="/user/auth/google">Login with Google</a>`;
+           <a href="/user/auth/twitter" class="button">Login with Twitter</a>
+           <a href="/user/auth/google" class="button">Login with Google</a>`;
   }
 
   /**
   * Returns HTML for the show user screen
   * @param {User} user An user object
+  * @param {Boolean} [updated = false] Has the user just been updated?
   * @return {String} The HTML string for display
   */
-  show(user) {
-    return `<h2>User Details</h2>
+  show(user, updated = false) {
+    let updatedText = `<p>Profile sucessfully updated</p>`;
+    let hasEmailText = `<p>Please update your email address<p>`;
+    return `<h2>Your Profile</h2>
+      ${updated ? updatedText : ''}
+      ${user.email === null ? hasEmailText : ''}
       <form name="show_user">
       <fieldset>
 
@@ -34,9 +39,8 @@ class UserView {
         <input name="email" id="email" require placeholder="you@companyname.com"
          value="${user.email ? user.email : ''}">
 
-        <input type="checkbox" id="recieveEmail">
-        <label class="label-inline" for="recieveEmail"
-          ${user.recieveEmail ? 'checked' : ''}>Recieve Emails?</label>
+        <input type="checkbox" id="recieveEmail" ${user.recieveEmail ? 'checked' : ''}>
+        <label class="label-inline" for="recieveEmail">Recieve Emails?</label>
 
         <p>Push notifications here</p>
 

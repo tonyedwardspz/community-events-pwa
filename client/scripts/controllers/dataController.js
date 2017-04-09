@@ -35,6 +35,7 @@ class DataController extends BaseController {
         let userMenu = document.getElementById('user-menu');
         userMenu.innerHTML = `<a href="/user" title="Use profile">Your Profile</a>`;
       });
+      cb();
     });
   }
 }

@@ -16,7 +16,13 @@ class UserController extends BaseController {
   show() {
     console.info('[User] Show');
 
-    let html = app.userView.show(app.user);
+    let html = '';
+
+    if (app.user){
+      html = app.userView.show(app.user);
+    } else {
+      html  = '<p>User data not present</p>'
+    }
 
     this.updateShell(html);
   }
@@ -29,6 +35,8 @@ class UserController extends BaseController {
 
     app.db.publish(`/user/${app.user.id}`, app.user, 'PUT');
 
-    this.updateShell('<h1>Save User</h1>');
+    let html = app.userView.show(app.user, true);
+
+    this.updateShell(html);
   }
 }

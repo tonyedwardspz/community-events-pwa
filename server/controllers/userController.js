@@ -41,8 +41,24 @@ class UserController extends BaseController {
     });
   }
 
-  update(){
-    console.log('[User Controller] Update hit');
+  update(req, res){
+    console.log('[User Controller] Update hit : ', req.params.id);
+    console.log('[User Controller] Update params : ', req.params);
+    console.log('[User Controller] Update body : ', req.body);
+
+    User.update({userID: req.body.userID}, { $set: {
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      email: req.body.email,
+      recieveEmail: req.body.recieveEmail
+    }}, (err, updated) => {
+      if (err){
+        console.log('Error updating user', err);
+      } else {
+        console.log(`[User] updated: ${updated}`);
+        res.send(JSON.stringify({ a: JSON.stringify(updated) }));
+      }
+    });
   }
 
 }
