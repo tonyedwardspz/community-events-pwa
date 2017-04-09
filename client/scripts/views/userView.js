@@ -18,7 +18,33 @@ class UserView {
   * @return {String} The HTML string for display
   */
   show(user) {
-    return `<h1>This is the user show view</h1>`;
+    return `<h2>User Details</h2>
+      <form name="show_user">
+      <fieldset>
+
+        <label for="firstName">First Name</label>
+        <input name="firstName" id="firstName" autofocus require
+         value="${user.firstName ? user.firstName : ''}">
+
+        <label for="lastName">Last Name</label>
+        <input name="lastName" id="lastName" require
+         value="${user.lastName ? user.lastName : ''}">
+
+        <label for="email">email</label>
+        <input name="email" id="email" require placeholder="you@companyname.com"
+         value="${user.email ? user.email : ''}">
+
+        <input type="checkbox" id="recieveEmail">
+        <label class="label-inline" for="recieveEmail"
+          ${user.recieveEmail ? 'checked' : ''}>Recieve Emails?</label>
+
+        <p>Push notifications here</p>
+
+        <input class="button-primary" type="submit" value="Update" id="save_user">
+
+      </fieldset>
+      </form>
+    `;
   }
 
   /**

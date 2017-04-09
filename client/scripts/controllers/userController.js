@@ -13,25 +13,21 @@ class UserController extends BaseController {
     this.updateShell(html);
   }
 
-  loginSuccess() {
-    this.updateShell('<h1>loginSuccess</h1>');
-  }
-
   show() {
     console.info('[User] Show');
 
-    this.updateShell(`<h1>Show User</h1>`);
+    let html = app.userView.show(app.user);
+
+    this.updateShell(html);
   }
 
-  edit() {
-    console.info('[User] Edit');
+  update() {
+    console.info('[User] Update');
 
-    this.updateShell('<h1>Edit User</h1>');
+    let formData = document.querySelector('form');
+    app.user.updateFromForm(formData);
 
-  }
-
-  save() {
-    console.info('[User] Save');
+    app.db.publish(`/user/${app.user.id}`, app.user, 'PUT');
 
     this.updateShell('<h1>Save User</h1>');
   }

@@ -7,6 +7,7 @@
 * @todo Improve this code in some way. It will get messy soon
 */
 let loadContent = () => {
+  console.log('[Load Content]');
   try {
     let url = window.location.href.split('/');
     url.splice(0, 3);
@@ -40,12 +41,14 @@ let loadContent = () => {
         app.organisationController.show(url[url.length - 1]);
       }
 
-      else if (newUrl === '/user') {
-        app.userController.show();
-      } else if (newUrl === '/user/login') {
+      // else if (newUrl === '/user') {
+      //   app.userController.show();
+      // }
+      else if (newUrl === '/user/login') {
         app.userController.login();
-      } else if (newUrl === '/user/login/success') {
-        app.userController.loginSuccess();
+      }
+      else if (newUrl === '/user/profile') {
+        app.userController.show();
       }
 
       else {

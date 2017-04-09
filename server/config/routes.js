@@ -26,7 +26,9 @@ module.exports = function(app, passport) {
 
   //-------------- User / Authentication Routes --------------\\
 
-  app.get('/user/:id', ensureAuthenticated, users.getUser)
+  app.get('/user/:id', ensureAuthenticated, users.getUser);
+
+  app.put('/user/:id', ensureAuthenticated, users.update);
 
   app.get('/user/auth/twitter', passport.authenticate('twitter'), users.auth);
 
@@ -36,7 +38,13 @@ module.exports = function(app, passport) {
     }),
     function(req, res) {
       console.log('[Twitter] Auth success route hit');
-      users.authSuccess(req, res);
+      // users.authSuccess(req, res);
+      res.cookie('user_auth', 'true');
+      res.cookie('user_id', req.user.userID);
+      res.cookie('user_name', req.user.firstName + ' ' + req.user.lastName);
+      res.cookie('auth_token', req.user.accessToken);
+      res.writeHead(302, {'Location': '/events'});
+      res.end();
     },
     function(err, req, res, next) {
       console.log('[Twitter] Auth failure route hit');
@@ -59,8 +67,10 @@ module.exports = function(app, passport) {
     }
   );
 
-  // app.put('/user/:id', ensureAuthenticated, users.update);
-
+  app.get('/user/profile', function(req, res){
+    console.log('[Route] Catch All: ' + req.path);
+    res.sendFile(path.resolve(__dirname, '../../public/index.html'));
+  });
 
    //-------------- Misc Routes --------------\\
 

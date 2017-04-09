@@ -27,6 +27,9 @@ var app;
   // Make sure the menu behaves
   setMenuListeners();
 
+  // listen for changes to the update user form
+  formListeners();
+
   // Load up the content and direct as appropriate
   loadContent();
 })();

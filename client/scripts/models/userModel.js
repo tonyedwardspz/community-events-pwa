@@ -17,7 +17,7 @@ class User extends BaseModel {
     this.isAdmin = isAdmin;
   }
 
-  static processUserData(data) {
+  static processUserData(data, cb) {
     app.user = new User(
       data.userID,
       data.twitterID,
@@ -31,5 +31,14 @@ class User extends BaseModel {
       data.refreshToken,
       data.isAdmin
     );
+
+    cb();
+  }
+
+  updateFromForm(form) {
+    this.firstName = form.firstName.value;
+    this.lastName = form.lastName.value;
+    this.email = form.email.value;
+    this.recieveEmail = form.recieveEmail.checked;
   }
 }

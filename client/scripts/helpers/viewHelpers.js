@@ -18,3 +18,12 @@ let twitterLink = (handle) => {
 let webLink = (url, title) => {
   return `<a href="${url}" target="_blank" title="${title} website">${url}</a>`;
 };
+
+let formListeners = () => {
+  app.shell.addEventListener('click', (e) => {
+    if(e.target.id === 'save_user') {
+      e.preventDefault();
+      app.userController.update();
+    }
+  });
+};

@@ -21,8 +21,9 @@ class UserController extends BaseController {
     res.cookie('user_id', req.user.userID);
     res.cookie('user_name', req.user.firstName + ' ' + req.user.lastName);
     res.cookie('auth_token', req.user.accessToken);
-    res.writeHead(302, {'Location': '/user/login/success'});
-    res.end();
+    res.writeHead(302, {'Location': '/'});
+    // res.redirect('/user/profile');
+    // res.end();
   }
 
   authFailure(err, req, res, next) {
@@ -38,6 +39,10 @@ class UserController extends BaseController {
         res.send(JSON.stringify(user));
       }
     });
+  }
+
+  update(){
+    console.log('[User Controller] Update hit');
   }
 
 }

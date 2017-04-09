@@ -31,7 +31,10 @@ class DataController extends BaseController {
 
   getUser(id, cb) {
     app.db.retrieve('/user/' + id, user => {
-      User.processUserData(user);
+      User.processUserData(user, () => {
+        let userMenu = document.getElementById('user-menu');
+        userMenu.innerHTML = `<a href="/user" title="Use profile">Your Profile</a>`;
+      });
     });
   }
 }
