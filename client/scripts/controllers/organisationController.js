@@ -5,6 +5,12 @@ class OrganisationController extends BaseController {
     super();
   }
 
+  index() {
+    console.info('[Organisation] Index');
+
+    this.updateShell('<h2>Organisations Index</h2>');
+  }
+
   show(id) {
     console.info('[Organisation] Show: ' + id);
 

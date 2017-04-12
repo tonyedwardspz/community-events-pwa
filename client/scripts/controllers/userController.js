@@ -16,19 +16,27 @@ class UserController extends BaseController {
   show() {
     console.info('[User] Show');
 
-    this.updateShell(`<h1>Show User</h1>`);
+    let html = '';
+
+    if (app.user){
+      html = app.userView.show(app.user);
+    } else {
+      html  = app.userView.login(`Please login to view your profile`);
+    }
+
+    this.updateShell(html);
   }
 
-  edit() {
-    console.info('[User] Edit');
+  update() {
+    console.info('[User] Update');
 
-    this.updateShell('<h1>Edit User</h1>');
+    let formData = document.querySelector('form');
+    app.user.updateFromForm(formData);
 
-  }
+    app.db.publish(`/user/${app.user.id}`, app.user, 'PUT');
 
-  save() {
-    console.info('[User] Save');
+    let html = app.userView.show(app.user, true);
 
-    this.updateShell('<h1>Save User</h1>');
+    this.updateShell(html);
   }
 }

@@ -21,7 +21,15 @@ var app;
     userView: new UserView()
   };
 
+  // Setup the page.js client side routing
   setupRoutes();
 
-  app.dashboardController.index();
+  // Make sure the menu behaves
+  setMenuListeners();
+
+  // listen for changes to the update user form
+  formListeners();
+
+  // Load up the content and direct as appropriate
+  loadContent();
 })();

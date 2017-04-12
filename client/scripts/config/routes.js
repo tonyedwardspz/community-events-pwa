@@ -49,13 +49,13 @@ let setupRoutes = () => {
       app.userController.login();
     });
 
-    page('/user/:id/edit', (context) => {
-      app.userController.edit(context.params.id);
+    page('/user/profile', (context) => {
+      app.userController.show();
     });
 
-    page('/user/:id/save', (context) => {
-      app.userController.update(context.params.id);
-    });
+    // page('/user/:id/save', (context) => {
+    //   app.userController.update(context.params.id);
+    // });
 
   });
 

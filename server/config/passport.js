@@ -1,8 +1,11 @@
 'use strict';
 
 let TwitterStrategy = require('passport-twitter').Strategy;
-var GoogleStrategy = require('passport-google-oauth20').Strategy;
+let GoogleStrategy = require('passport-google-oauth20').Strategy;
 let request = require('request');
+let User = require('../models/user');
+let UserModel = User.getMongooseModel();
+let strHelpers = require('../helpers/stringHelpers');
 
 /**
 * Sets up passport user authenication for buffer
@@ -24,10 +27,32 @@ module.exports = function(passport) {
     consumerSecret: process.env.TWITTER_CONSUMER_SECRET,
     callbackURL: process.env.TWITTER_REDIRECT_URI
   },
-  function(token, tokenSecret, profile, cb) {
+  function(token, tokenSecret, profile, done) {
     console.log('[Passport] Auth function hit. Twitter Profile: ', profile);
-    User.findOrCreate({ twitterId: profile.id }, function (err, user) {
-      return cb(err, user);
+    UserModel.findOne({ twitterID: profile.id }, function (err, user) {
+      if (err){
+        return done(err, user);
+      } else if (!user) {
+        console.log('No error, user dosnt exist');
+        user = new UserModel({
+          userID: strHelpers.randomString(20),
+          twitterID: profile.id,
+          googleID: null,
+          email: null,
+          firstName: strHelpers.splitString(profile.displayName)[0],
+          lastName: strHelpers.splitString(profile.displayName)[1],
+          recieveEmail: false,
+          recievePush: false,
+          accessToken: token,
+          refreshToken: tokenSecret,
+          isAdmin: false
+        });
+      }
+
+      user.save(function(err) {
+          if (err) {console.log(err);}
+          return done(err, user);
+      });
     });
   }));
 
@@ -36,10 +61,33 @@ module.exports = function(passport) {
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     callbackURL: process.env.GOOGLE_REDIRECT_URI
   },
-  function(accessToken, refreshToken, profile, cb) {
+  function(accessToken, refreshToken, profile, done) {
     console.log('[Passport] Auth function hit. Google Profile: ', profile);
-    User.findOrCreate({ googleId: profile.id }, function (err, user) {
-      return cb(err, user);
+    UserModel.findOne({ googleID: profile.id }, function (err, user) {
+      if (err){
+        return done(err, user);
+      } else if (!user) {
+        console.log('No error, user dosnt exist');
+        user = new UserModel({
+          userID: strHelpers.randomString(20),
+          twitterID: null,
+          googleID: profile.id,
+          email: null,
+          firstName: profile.name.givenName,
+          lastName: profile.name.familyName,
+          recieveEmail: false,
+          recievePush: false,
+          accessToken: accessToken,
+          refreshToken: refreshToken,
+          isAdmin: false
+        });
+      }
+
+      user.save(function(err) {
+        console.log('[PASSPORT] USER save');
+          if (err) {console.log(err);}
+          return done(err, user);
+      });
     });
   }
 ));

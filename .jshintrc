@@ -29,6 +29,9 @@
     "capitalize": true,
     "getFullMonthName": true,
     "getMonthNumberFromName": true,
+    "splitString": true,
+    "readCookie": true,
+    "setMenuListeners": true,
 
     "BaseController": true,
     "EventController": true,

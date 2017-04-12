@@ -13,18 +13,22 @@ let users = require('../controllers/userController');
 module.exports = function(app, passport) {
 
   function ensureAuthenticated(req, res, next) {
-    // if (req.isAuthenticated) {
+    if (req.isAuthenticated) {
       return next();
-    // }
-    // console.log('Not authenticated');
-    // res.redirect('/');
+    }
+    console.log('Not authenticated');
+    res.redirect('/');
   }
 
   //-------------- Data Routes --------------\\
 
-  app.get('/getData', ensureAuthenticated, data.getData);
+  app.get('/getData', data.getData);
 
   //-------------- User / Authentication Routes --------------\\
+
+  app.get('/user/:id', ensureAuthenticated, users.getUser);
+
+  app.put('/user/:id', ensureAuthenticated, users.update);
 
   app.get('/user/auth/twitter', passport.authenticate('twitter'), users.auth);
 
@@ -33,9 +37,11 @@ module.exports = function(app, passport) {
       failWithError: true
     }),
     function(req, res) {
+      console.log('[Twitter] Auth success route hit');
       users.authSuccess(req, res);
     },
     function(err, req, res, next) {
+      console.log('[Twitter] Auth failure route hit');
       users.authFailure(err, req, res, next);
     }
   );
@@ -54,9 +60,6 @@ module.exports = function(app, passport) {
       users.authFailure(err, req, res, next);
     }
   );
-
-  // app.put('/user/:id', ensureAuthenticated, users.update);
-
 
    //-------------- Misc Routes --------------\\
 

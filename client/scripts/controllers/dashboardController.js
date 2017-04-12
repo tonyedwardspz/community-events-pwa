@@ -9,14 +9,12 @@ class DashboardController extends BaseController {
   /** Fetches all data, displays the dashboard view */
   index() {
     console.info('[Dashboard]: index');
-    app.dataController.getData(() => {
 
-      let events = app.events.sort(sortByDate);
+    let events = app.events.sort(sortByDate);
 
-      let html = app.dashboardView.index();
-      html += app.eventView.eventList(events);
+    let html = app.dashboardView.index();
+    html += app.eventView.eventList(events);
 
-      this.updateShell(html);
-    });
+    this.updateShell(html);
   }
 }

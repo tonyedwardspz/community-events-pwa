@@ -18,3 +18,20 @@ let twitterLink = (handle) => {
 let webLink = (url, title) => {
   return `<a href="${url}" target="_blank" title="${title} website">${url}</a>`;
 };
+
+let formListeners = () => {
+  app.shell.addEventListener('click', (e) => {
+    if(e.target.id === 'save_user') {
+      e.preventDefault();
+      app.userController.update();
+    }
+
+    if (e.target.id === 'update-profile') {
+       console.log('update hit');
+      e.preventDefault();
+      let el = document.getElementById('popover');
+      el.parentNode.removeChild(el);
+      app.userController.show(app.user);
+    }
+  });
+};

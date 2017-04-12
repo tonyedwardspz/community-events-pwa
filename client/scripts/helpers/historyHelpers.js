@@ -1,6 +1,5 @@
 'use strict';
 
-
 /**
 * Attempts to update the view when called when page first loads, to manage
 * naughty users arriving via a full url (bookmark etc.). It splits
@@ -8,19 +7,59 @@
 * @todo Improve this code in some way. It will get messy soon
 */
 let loadContent = () => {
+  console.log('[Load Content]');
   try {
     let url = window.location.href.split('/');
+    url.splice(0, 3);
+    let newUrl  = '';
+    url.map(u => newUrl += `/${u}`);
     console.log('Load content - url: ', url);
-    console.log(url[3]);
+    console.log('Load content - new url: ', newUrl);
 
-    if (url[3] === 'event'){
-      app.eventController.show(url[4]);
-    } else if (url[3] === 'events') {
-      app.eventController.index();
-    } else {
-      app.dashboardController.index();
-    }
+    // Load data here, then show appropriate page
+    app.dataController.getData(() => {
 
+      // If user is loged in, get that data too
+      if (readCookie('user_id')) {
+        app.dataController.getUser(readCookie('user_id'), user => {
+          console.log('user: ', user);
+          console.log('[Get user callback]', newUrl);
+
+          if (newUrl === '/user') {
+            app.userController.show();
+          }
+        });
+      }
+
+      // redirect the user to the appropriate view, not that data has loaded
+      if(newUrl === '/events'){
+        app.eventController.index();
+      } else if(newUrl.includes('/events/month')){
+        app.eventController.showMonth(url[url.length - 1]);
+      } else if (newUrl.includes('/event')) {
+        app.eventController.show(url[url.length -1]);
+      }
+
+      else if (newUrl === '/organisations') {
+        app.organisationController.index();
+      } else if(newUrl.includes('/organisation')) {
+        app.organisationController.show(url[url.length - 1]);
+      }
+
+      // else if (newUrl === '/user') {
+      //   app.userController.show();
+      // }
+      else if (newUrl === '/user/login') {
+        app.userController.login();
+      }
+      else if (newUrl === '/user') {
+        app.userController.show();
+      }
+
+      else {
+        app.dashboardController.index();
+      }
+    });
   } catch (error) {
     console.warn('There was an error loading content', error);
   }

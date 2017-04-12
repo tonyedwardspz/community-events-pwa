@@ -40,6 +40,9 @@ class BaseModel {
               case 'subgroups':
                 resolve({ 'subgroups' : data});
                 break;
+              case 'caches':
+                resolve({ 'caches' : data});
+                break;
               default:
                 console.log('Promise default hit');
                 break;
