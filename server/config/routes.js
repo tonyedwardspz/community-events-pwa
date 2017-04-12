@@ -13,11 +13,11 @@ let users = require('../controllers/userController');
 module.exports = function(app, passport) {
 
   function ensureAuthenticated(req, res, next) {
-    // if (req.isAuthenticated) {
+    if (req.isAuthenticated) {
       return next();
-    // }
-    // console.log('Not authenticated');
-    // res.redirect('/');
+    }
+    console.log('Not authenticated');
+    res.redirect('/');
   }
 
   //-------------- Data Routes --------------\\
@@ -38,13 +38,7 @@ module.exports = function(app, passport) {
     }),
     function(req, res) {
       console.log('[Twitter] Auth success route hit');
-      // users.authSuccess(req, res);
-      res.cookie('user_auth', 'true');
-      res.cookie('user_id', req.user.userID);
-      res.cookie('user_name', req.user.firstName + ' ' + req.user.lastName);
-      res.cookie('auth_token', req.user.accessToken);
-      res.writeHead(302, {'Location': '/events'});
-      res.end();
+      users.authSuccess(req, res);
     },
     function(err, req, res, next) {
       console.log('[Twitter] Auth failure route hit');
@@ -66,11 +60,6 @@ module.exports = function(app, passport) {
       users.authFailure(err, req, res, next);
     }
   );
-
-  app.get('/user/profile', function(req, res){
-    console.log('[Route] Catch All: ' + req.path);
-    res.sendFile(path.resolve(__dirname, '../../public/index.html'));
-  });
 
    //-------------- Misc Routes --------------\\
 

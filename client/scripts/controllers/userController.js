@@ -21,7 +21,7 @@ class UserController extends BaseController {
     if (app.user){
       html = app.userView.show(app.user);
     } else {
-      html  = '<p>User data not present</p>'
+      html  = '<p>User data not present</p>';
     }
 
     this.updateShell(html);

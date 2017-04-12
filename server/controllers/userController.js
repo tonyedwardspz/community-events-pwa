@@ -22,8 +22,7 @@ class UserController extends BaseController {
     res.cookie('user_name', req.user.firstName + ' ' + req.user.lastName);
     res.cookie('auth_token', req.user.accessToken);
     res.writeHead(302, {'Location': '/'});
-    // res.redirect('/user/profile');
-    // res.end();
+    res.end();
   }
 
   authFailure(err, req, res, next) {
