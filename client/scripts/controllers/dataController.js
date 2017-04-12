@@ -34,6 +34,11 @@ class DataController extends BaseController {
       User.processUserData(user, () => {
         let userMenu = document.getElementById('user-menu');
         userMenu.innerHTML = `<a href="/user" title="Use profile">Your Profile</a>`;
+
+        if (app.user && (app.user.email.length === 0 || app.user.email === null)){
+          let body = document.getElementsByTagName('body')[0];
+          app.shell.innerHTML = app.userView.emailPopover();
+        }
       });
       cb();
     });

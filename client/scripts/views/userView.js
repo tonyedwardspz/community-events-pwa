@@ -6,8 +6,10 @@ class UserView {
 
   }
 
-  login() {
-    return `<h2>This is the login view</h2>
+  login(msg = '') {
+    let message = `<p>${msg}</p>`
+    return `<h2>Login</h2>
+           ${msg.length > 0 ? message : ''}
            <a href="/user/auth/twitter" class="button">Login with Twitter</a>
            <a href="/user/auth/google" class="button">Login with Google</a>`;
   }
@@ -23,7 +25,7 @@ class UserView {
     let hasEmailText = `<p>Please update your email address<p>`;
     return `<h2>Your Profile</h2>
       ${updated ? updatedText : ''}
-      ${user.email === null ? hasEmailText : ''}
+      ${user.email === null || user.email.length === 0 ? hasEmailText : ''}
       <form name="show_user">
       <fieldset>
 
@@ -58,5 +60,19 @@ class UserView {
   */
   edit(user){
     return `<h1>This is the edit user view</h1>`;
+  }
+
+  /**
+  * The popover presented to the user if they have no email.
+  * @return {String} The HTML string for display
+  */
+  emailPopover() {
+    return `<div class="popover" id="popover">
+            <p>We dont seem to have an email address asociated to your acount.
+            Please provide one so that we can link your social profiles</p>
+            <p>
+              <a href="/user" title="Update user profile" id="update-profile">Update Profile</a>
+            </p>
+            </div>`;
   }
 }

@@ -25,5 +25,13 @@ let formListeners = () => {
       e.preventDefault();
       app.userController.update();
     }
+
+    if (e.target.id === 'update-profile') {
+       console.log('update hit');
+      e.preventDefault();
+      let el = document.getElementById('popover');
+      el.parentNode.removeChild(el);
+      app.userController.show(app.user);
+    }
   });
 };

@@ -132,3 +132,22 @@ label[for="nav-trigger"] {
   left: 200px;
   box-shadow: 0 0 5px 5px rgba(0,0,0,0.5);
 }
+
+
+.popover {
+  height: 40em;
+  width: 40em;
+  background-color: #fff;
+  margin: auto;
+  z-index: 100;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  padding: 20%;
+
+  @media screen and (max-width: $mobile-breakpoint) {
+    height: 90vh;
+    width: 100vw;
+    }
+}
