@@ -67,7 +67,6 @@ class Database {
       }
 
       response.json().then(data => {
-        console.log(`[DB:Remote] Response : `, data);
         cb(data);
         return;
       });

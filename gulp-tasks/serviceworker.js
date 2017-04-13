@@ -11,8 +11,8 @@ let gutil = require('gulp-util');
 
 let env = gutil.env.env === 'PRODUCTION' ? true : false;
 
-gulp.task('service-worker:watch', function() {
-  gulp.watch('./client/serviceworker.js', ['service-worker']);
+gulp.task('serviceworker:watch', function() {
+  gulp.watch('./client/serviceworker.js', ['serviceworker']);
 });
 
 gulp.task('generate-serviceworker', function(){
