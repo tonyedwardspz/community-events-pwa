@@ -12,6 +12,7 @@ gulp.task('default', function(cb) {
     'clean',
     allTasks,
     'styles',
+    'serviceworker',
     cb);
 });
 
@@ -20,8 +21,8 @@ gulp.task('dev', function(cb) {
     'clean',
     allTasks,
     'styles',
+    'serviceworker',
     'watch',
     'nodemon',
-    // 'serve',
     cb);
 });
