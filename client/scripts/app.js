@@ -32,4 +32,7 @@ var app;
 
   // Load up the content and direct as appropriate
   loadContent();
+
+  // Register service workers
+  setupServiceWorker();
 })();
