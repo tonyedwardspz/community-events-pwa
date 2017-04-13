@@ -2,6 +2,8 @@ $mobile-breakpoint: 40rem;
 $tablet-breakpoint: 80rem;
 $desktop-breakpoint: 120rem;
 
+$text-color: #606c76;
+
 // Google fonts
 
 // latin
@@ -38,6 +40,28 @@ body {
 .pull-right::after {
   clear: both;
 }
+
+
+
+.title {
+  text-align: right;
+  margin-top: 3px;
+
+  a:link,
+  a:visited,
+  a:hover,
+  a:active {
+    color: $text-color;
+  }
+}
+
+.logo {
+  max-height: 34px;
+  margin-top: 9px;
+}
+
+
+
 
 .month-boxes.row{
   flex-direction: row;
