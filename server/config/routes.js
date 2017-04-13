@@ -67,18 +67,18 @@ module.exports = function(app, passport) {
      res.sendFile(path.join(__dirname + '/../../public/manifest.json'));
    });
 
-   app.get('/service-worker.js', (req, res) => {
+   app.get('/serviceworker.js', (req, res) => {
      console.log('[SW] route hit');
      res.setHeader('content-type', 'text/javascript');
-     res.sendFile(path.join(__dirname + '/../../public/service-worker.js'));
+     res.sendFile(path.join(__dirname + '/../../public/serviceworker.js'));
    });
 
     app.get('/favicon-16x16.png', (req, res) => {
-      res.sendFile(path.join(__dirname + '/../../public//favicon-16x16.png'));
+      res.sendFile(path.join(__dirname + '/../../public/images/icons/favicon-16x16.png'));
     });
 
     app.get('/favicon.ico', (req, res) => {
-      res.sendFile(path.join(__dirname + '/../../public//favicon-16x16.png'));
+      res.sendFile(path.join(__dirname + '/../../public/images/icons/favicon-16x16.png'));
     });
 
     app.get('/*/scripts/require.js', function(req, res){
