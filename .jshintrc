@@ -32,6 +32,8 @@
     "splitString": true,
     "readCookie": true,
     "setMenuListeners": true,
+    "setupServiceWorker": true,
+    "formListeners": true,
 
     "BaseController": true,
     "EventController": true,
