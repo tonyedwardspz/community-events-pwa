@@ -18,7 +18,7 @@ class EventView extends BaseView {
     return `
       <div class="row">
       <div class="column column-75">
-      <h1>${evnt.title}</h1>
+      <h2>${evnt.title}</h2>
       <p>${evnt.getDisplayDate()}<br />
          Location: ${venue.getDisplayVenue()}</p>
       </div>
@@ -68,7 +68,8 @@ class EventView extends BaseView {
     events.forEach(event => {
       let venue = Venue.findByID(event.venueID, app.venues);
       if (showImage){
-        list += this.eventListItem(event, venue);
+        let org = Organisation.findByID(event.organiserID, app.organisations);
+        list += this.eventListItem(event, venue, org);
       } else {
         list += this.eventListItemNoImage(event, venue);
       }
@@ -78,17 +79,19 @@ class EventView extends BaseView {
     return list;
   }
 
-  eventListItem(event, venue){
-    return `<div class="row">
+  eventListItem(event, venue, org){
+    return `<div class="row event-list-item">
               <div class="column column-75">
                 <h3><a href="/event/${event.id}">${event.title}</a></h3>
                 <p>${event.getDisplayDate()}<br />
                 Location: ${venue.getDisplayVenue(app.venues)}</p>
               </div>
               <div class="column">
-                <img src="http://placehold.it/350x150">
+                <img src="${org.logoURL}" alt="${org.name} logo"
+                class="org-logo pull-right">
               </div>
-            </div>`;
+            </div>
+            <div class="row divider"></div>`;
   }
 
   eventListItemNoImage(event, venue){

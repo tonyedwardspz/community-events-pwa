@@ -35,6 +35,8 @@ let loadContent = () => {
         app.eventController.index();
       } else if(newUrl.includes('/events/month')){
         app.eventController.showMonth(url[url.length - 1]);
+      } else if(newUrl.includes('/events/tracked')) {
+        app.eventController.tracked();
       } else if (newUrl.includes('/event')) {
         app.eventController.show(url[url.length -1]);
       }

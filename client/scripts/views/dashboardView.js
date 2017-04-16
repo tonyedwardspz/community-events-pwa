@@ -13,9 +13,8 @@ class DashboardView extends BaseView {
   */
   index(data = []) {
     return `
-      <h1>Upcoming Events</h1>
-      <p>Filter by month</p>
-      ${app.eventView.monthButtons(getNextFourMonths())}
+      <h2>Your Dashboard</h2>
+      <a href="/events/month" class="button">Filter by month</a>
       <hr />
     `;
   }

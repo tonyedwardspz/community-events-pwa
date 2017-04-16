@@ -42,7 +42,16 @@ class EventController extends BaseController {
   index() {
     console.log('[Event] Index');
 
+    console.log('[Event] ', app.events);
+
     let html = app.eventView.index(app.events.sort(sortByDate));
     this.updateShell(html);
+  }
+
+  tracked() {
+    console.log('[Event] Tracked');
+
+    // let html = app.eventView.index(app.events.sort(sortByDate));
+    this.updateShell('<h2>Tracked Events</h2>');
   }
 }
