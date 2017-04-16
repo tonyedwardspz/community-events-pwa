@@ -102,7 +102,7 @@ class EventView extends BaseView {
                    Location: ${venue.getDisplayVenue(app.venues)}</p>
               </div>
               <div class="column">
-                <a href="/event/${event.id}" class="button">View Event</a>
+                <a href="/event/${event.id}" class="button pull-right">View Event</a>
               </div>
             </div>`;
   }

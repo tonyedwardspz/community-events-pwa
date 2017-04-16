@@ -10,13 +10,14 @@ class DashboardController extends BaseController {
   index() {
     console.info('[Dashboard]: index');
 
-    let events = app.events.sort(sortByDate);
-    if (events.length > 5){
-      events.length = 5;
+    let evnts = app.events.slice();
+    evnts.sort(sortByDate);
+    if (evnts.length > 7){
+      evnts.length = 7;
     }
 
     let html = app.dashboardView.index();
-    html += app.eventView.eventList(events);
+    html += app.eventView.eventList(evnts);
 
     this.updateShell(html);
   }
