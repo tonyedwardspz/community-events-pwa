@@ -33,7 +33,7 @@ class DataController extends BaseController {
     app.db.retrieve('/user/' + id, user => {
       User.processUserData(user, () => {
         let userMenu = document.getElementById('user-menu');
-        userMenu.innerHTML = `<a href="/user" title="Use profile">Your Profile</a>`;
+        userMenu.innerHTML = app.userView.loggedIn();
 
         if (app.user && (app.user.email.length === 0 || app.user.email === null)){
           let body = document.getElementsByTagName('body')[0];
