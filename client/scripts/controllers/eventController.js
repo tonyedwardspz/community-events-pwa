@@ -40,7 +40,7 @@ class EventController extends BaseController {
   index() {
     console.log('[Event] Index');
 
-    let html = app.eventView.index();
+    let html = app.eventView.index(app.events.sort(sortByDate));
     this.updateShell(html);
   }
 }

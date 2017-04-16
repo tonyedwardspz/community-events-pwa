@@ -53,8 +53,8 @@ class EventView extends BaseView {
   */
   index(events = []) {
     return `
-      <h1>This is the event index view</h1>
-      <a href="/dashboard">Dashboard</a>
+      <h2>All upcoming events</h2>
+      ${this.eventList(events)}
     `;
   }
 
