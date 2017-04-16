@@ -24,10 +24,16 @@ let formListeners = () => {
     if(e.target.id === 'save_user') {
       e.preventDefault();
       app.userController.update();
-    }
-
-    if (e.target.id === 'update-profile') {
-       console.log('update hit');
+    } else if (e.target.id ==='edit-profile') {
+      console.log('edit-profile');
+      e.preventDefault();
+      let els = document.querySelectorAll('input');
+      els.forEach(elm => {
+        elm.disabled = false;
+      });
+      document.getElementById('edit-profile').classList += ' disabled';
+    } else if (e.target.id === 'update-profile') {
+      console.log('update hit');
       e.preventDefault();
       let el = document.getElementById('popover');
       el.parentNode.removeChild(el);

@@ -2,7 +2,7 @@
 
 class User extends BaseModel {
   constructor(userID, twitterID, googleID, email, firstName, lastName,
-      recieveEmail, recievePush, accessToken, refreshToken, isAdmin) {
+      recieveEmail, recievePush, accessToken, refreshToken, profilePhoto) {
     super();
     this.userID = userID;
     this.twitterID = twitterID;
@@ -14,7 +14,7 @@ class User extends BaseModel {
     this.recievePush = recievePush;
     this.accessToken = accessToken;
     this.refreshToken = refreshToken;
-    this.isAdmin = isAdmin;
+    this.profilePhoto = profilePhoto;
   }
 
   static processUserData(data, cb) {
@@ -29,7 +29,7 @@ class User extends BaseModel {
       data.recievePush,
       data.accessToken,
       data.refreshToken,
-      data.isAdmin
+      data.profilePhoto
     );
 
     cb();
@@ -40,5 +40,6 @@ class User extends BaseModel {
     this.lastName = form.lastName.value;
     this.email = form.email.value;
     this.recieveEmail = form.recieveEmail.checked;
+    this.recievePush = form.recievePush.checked;
   }
 }

@@ -28,9 +28,11 @@ class EventController extends BaseController {
   showMonth(month) {
     console.info(`[Event] Show months events: `, month);
 
-    let monthNumber = getMonthNumberFromName(month);
-    let events = EventModel.getEventsForMonth(monthNumber);
+    if(month.includes('month')) {
+      month = getMonthNameFromNumber(new Date().getMonth());
+    }
 
+    let events = EventModel.getEventsForMonth(getMonthNumberFromName(month));
     let html = app.eventView.showMonth(events, month);
 
     this.updateShell(html);
@@ -40,7 +42,16 @@ class EventController extends BaseController {
   index() {
     console.log('[Event] Index');
 
-    let html = app.eventView.index();
+    console.log('[Event] ', app.events);
+
+    let html = app.eventView.index(app.events.sort(sortByDate));
     this.updateShell(html);
+  }
+
+  tracked() {
+    console.log('[Event] Tracked');
+
+    // let html = app.eventView.index(app.events.sort(sortByDate));
+    this.updateShell('<h2>Tracked Events</h2>');
   }
 }

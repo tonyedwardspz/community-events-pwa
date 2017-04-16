@@ -17,24 +17,30 @@ class EventView extends BaseView {
   show(evnt, org, orgEvents, venue) {
     return `
       <div class="row">
-      <div class="column column-75">
-      <h1>${evnt.title}</h1>
-      <p>${evnt.getDisplayDate()}<br />
-         Location: ${venue.getDisplayVenue()}</p>
+        <div class="column column-75">
+          <h2>${evnt.title}</h2>
+          <p>Date: ${evnt.getDisplayDate()}<br />
+             Location: ${venue.getDisplayVenue()}</p>
+          <p><a href="${evnt.ticketURL}" class="button"
+                title="Book your place">Book your place</a>
+          </p>
+        </div>
+        <div class="column">
+          <img src="${org.logoURL}" alt="${org.name} logo" class="event-org-logo">
+        </div>
       </div>
-      <div class="column">
-        <img src="${org.logoURL}">
-      </div>
-      </div>
-      <hr>
+
+      <div class="row divider"></div>
       ${evnt.description}
-      <hr>
+
+      <div class="row divider"></div>
       <img src="/public/images/map-placeholder.jpg">
-      <hr>
-      <h2>Upcoming <a href="/organisation/${org.id}">${org.name}</a> events</h2>
+
+      <div class="row divider"></div>
+      <h2><a href="/organisation/${org.id}">${org.name}</a> events</h2>
       ${app.organisationView.upcoming(org, orgEvents, false)}
       <a href="/organisation/${org.id}" class="button pull-right">
-      View all events</a>
+      View organisation events</a>
     `;
   }
 
@@ -53,8 +59,8 @@ class EventView extends BaseView {
   */
   index(events = []) {
     return `
-      <h1>This is the event index view</h1>
-      <a href="/dashboard">Dashboard</a>
+      <h2>All upcoming events</h2>
+      ${this.eventList(events)}
     `;
   }
 
@@ -68,7 +74,8 @@ class EventView extends BaseView {
     events.forEach(event => {
       let venue = Venue.findByID(event.venueID, app.venues);
       if (showImage){
-        list += this.eventListItem(event, venue);
+        let org = Organisation.findByID(event.organiserID, app.organisations);
+        list += this.eventListItem(event, venue, org);
       } else {
         list += this.eventListItemNoImage(event, venue);
       }
@@ -78,17 +85,19 @@ class EventView extends BaseView {
     return list;
   }
 
-  eventListItem(event, venue){
-    return `<div class="row">
+  eventListItem(event, venue, org){
+    return `<div class="row event-list-item">
               <div class="column column-75">
                 <h3><a href="/event/${event.id}">${event.title}</a></h3>
                 <p>${event.getDisplayDate()}<br />
                 Location: ${venue.getDisplayVenue(app.venues)}</p>
               </div>
               <div class="column">
-                <img src="http://placehold.it/350x150">
+                <img src="${org.logoURL}" alt="${org.name} logo"
+                class="org-logo pull-right">
               </div>
-            </div>`;
+            </div>
+            <div class="row divider"></div>`;
   }
 
   eventListItemNoImage(event, venue){
@@ -99,9 +108,10 @@ class EventView extends BaseView {
                    Location: ${venue.getDisplayVenue(app.venues)}</p>
               </div>
               <div class="column">
-                <a href="/event/${event.id}" class="button">View Event</a>
+                <a href="/event/${event.id}" class="button pull-right">View Event</a>
               </div>
-            </div>`;
+            </div>
+            <div class="row divider"></div>`;
   }
 
   monthButtons(months, currentMonth = null){

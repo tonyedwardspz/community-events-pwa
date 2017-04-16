@@ -65,6 +65,15 @@ module.exports = function(app, passport) {
     res.sendFile(path.resolve(__dirname, '../../public/index.html'));
   });
 
+  app.get('/logout', function(req, res) {
+    req.logout();
+    res.cookie('user_auth', 'false');
+    res.cookie('user_id', null);
+    res.cookie('user_name', null);
+    res.cookie('auth_token', null);
+    res.redirect('/');
+  });
+
    //-------------- Misc Routes --------------\\
 
    app.get('/manifest.json', function(req, res){

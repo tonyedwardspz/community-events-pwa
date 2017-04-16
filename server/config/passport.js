@@ -30,6 +30,7 @@ module.exports = function(passport) {
   function(token, tokenSecret, profile, done) {
     console.log('[Passport] Auth function hit. Twitter Profile: ', profile);
     UserModel.findOne({ twitterID: profile.id }, function (err, user) {
+      // console.log(profile);
       if (err){
         return done(err, user);
       } else if (!user) {
@@ -45,12 +46,14 @@ module.exports = function(passport) {
           recievePush: false,
           accessToken: token,
           refreshToken: tokenSecret,
-          isAdmin: false
+          profilePhoto: profile.profile_image_url_https.replace('_normal', '')
         });
       }
 
       user.save(function(err) {
-          if (err) {console.log(err);}
+          if (err) {
+            console.log(err);
+          }
           return done(err, user);
       });
     });

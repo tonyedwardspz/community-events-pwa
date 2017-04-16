@@ -20,7 +20,7 @@ let loadContent = () => {
     app.dataController.getData(() => {
 
       // If user is loged in, get that data too
-      if (readCookie('user_id')) {
+      if (readCookie('user_id') && !readCookie('user_id').includes('null')) {
         app.dataController.getUser(readCookie('user_id'), user => {
           console.log('[Get user callback]', newUrl);
 
@@ -35,6 +35,8 @@ let loadContent = () => {
         app.eventController.index();
       } else if(newUrl.includes('/events/month')){
         app.eventController.showMonth(url[url.length - 1]);
+      } else if(newUrl.includes('/events/tracked')) {
+        app.eventController.tracked();
       } else if (newUrl.includes('/event')) {
         app.eventController.show(url[url.length -1]);
       }
