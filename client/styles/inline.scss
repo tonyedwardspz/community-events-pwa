@@ -3,6 +3,8 @@ $tablet-breakpoint: 80rem;
 $desktop-breakpoint: 120rem;
 
 $text-color: #606c76;
+$main-color: #9b4dca;
+$hover-color: #606c76;
 
 // Google fonts
 
@@ -41,10 +43,49 @@ body {
   clear: both;
 }
 
-.button-disabled{
+.button-disabled {
   background-color: grey;
   border: .1rem solid #000;
 }
+
+.nav-item .button-nav {
+  transition: color .2s;
+  display: block;
+  width: 10em;
+
+  background-color: $main-color;
+  border: .1rem solid $main-color;
+  background: $main-color;
+  border-radius: .4rem;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 1.1rem;
+  font-weight: 700;
+  height: 3.8rem;
+  letter-spacing: .1rem;
+  line-height: 3.8rem;
+  padding: 0 3rem;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.nav-item a.button-nav:hover {
+  background-color: #606c76;
+  border-color: #606c76;
+  color: #fff;
+  outline: 0;
+}
+
+#user-menu {
+  display: flex;
+  justify-content: center;
+  padding-top: 2em;
+}
+
+
 
 .title {
   text-align: right;

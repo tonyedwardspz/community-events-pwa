@@ -26,9 +26,24 @@
   <body>
 
     <ul class="navigation" id="nav-container">
-      <li class="nav-item"><a href="/">Home</a></li>
-      <li class="nav-item" id="user-menu"><a href="/user/login">Login</a></li>
-      <li class="nav-item"><a href="/events/month/apr">Events by month</a></li>
+      <li class="nav-item" id="user-menu">
+        <a href="/user/login" class="button-nav" title="Login">Login</a>
+      </li>
+      <li class="nav-item">
+        <a href="/" title="Homepage">Home</a>
+      </li>
+      <li class="nav-item">
+        <a href="/events/tracked" title="Your Tracked Events">Your Events</a>
+      </li>
+      <li class="nav-item">
+        <a href="/events" title="All Events">All Events</a>
+      </li>
+      <li class="nav-item">
+        <a href="/events/month" title="Events by month">Events by month</a>
+      </li>
+      <li class="nav-item">
+        <a href="/organisers" title="Organiser">View Organisers</a>
+      </li>
     </ul>
 
     <input type="checkbox" id="nav-trigger" class="nav-trigger" />
