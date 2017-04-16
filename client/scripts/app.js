@@ -8,6 +8,7 @@ var app;
 
   app = {
     user: null,
+    online: true,
     shell: document.querySelector('main'),
     db: new Database(),
     dataController: new DataController(),
@@ -35,4 +36,6 @@ var app;
 
   // Register service workers
   setupServiceWorker();
+
+  offlineListener();
 })();

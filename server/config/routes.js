@@ -61,6 +61,10 @@ module.exports = function(app, passport) {
     }
   );
 
+  app.get('/user/login', function(req, res){
+    res.sendFile(path.resolve(__dirname, '../../public/index.html'));
+  });
+
    //-------------- Misc Routes --------------\\
 
    app.get('/manifest.json', function(req, res){

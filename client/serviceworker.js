@@ -23,7 +23,9 @@ const cacheFiles = [
   '/events/month/sep',
   '/events/month/oct',
   '/events/month/nov',
-  '/events/month/dec'
+  '/events/month/dec',
+  '/user',
+  '/user/login'
 ];
 
 // Open the cache and store static files

@@ -1,17 +1,22 @@
 'use strict';
 
 /** Class representing a organisation's views */
-class UserView {
+class UserView extends BaseView {
   constructor(){
-
+    super();
   }
 
   login(msg = '') {
-    let message = `<p>${msg}</p>`
+    let message = `<p>${msg}</p>`;
+    let offlineText = this.offlineMessage('login to the app');
     return `<h2>Login</h2>
-           ${msg.length > 0 ? message : ''}
-           <a href="/user/auth/twitter" class="button">Login with Twitter</a>
-           <a href="/user/auth/google" class="button">Login with Google</a>`;
+            ${app.online ? '' : offlineText}
+            ${msg.length > 0 ? message : ''}
+            <a href="/user/auth/twitter" class="button ${app.online ? '' : 'button-disabled'}"
+              ${app.online ? '' : 'onclick="return false;"'}>
+              Login with Twitter</a>
+            <a href="/user/auth/google" class="button ${app.online ? '' : 'button-disabled'}"
+              ${app.online ? '' : 'onclick="return false;"'}>Login with Google</a>`;
   }
 
   /**
@@ -23,9 +28,11 @@ class UserView {
   show(user, updated = false) {
     let updatedText = `<p>Profile sucessfully updated</p>`;
     let hasEmailText = `<p>Please update your email address<p>`;
+    let offlineText = this.offlineMessage('update your profile');
     return `<h2>Your Profile</h2>
       ${updated ? updatedText : ''}
       ${user.email === null || user.email.length === 0 ? hasEmailText : ''}
+      ${app.online ? '' : offlineText}
       <form name="show_user">
       <fieldset>
 
@@ -46,7 +53,8 @@ class UserView {
 
         <p>Push notifications here</p>
 
-        <input class="button-primary" type="submit" value="Update" id="save_user">
+        <input class="button-primary" type="submit" value="Update" id="save_user"
+                ${app.online ? '' : 'disabled'}>
 
       </fieldset>
       </form>

@@ -1,9 +1,9 @@
 'use strict';
 
 /** Class representing a organisation's views */
-class OrganisationView {
+class OrganisationView extends BaseView {
   constructor(){
-
+    super();
   }
 
   /**

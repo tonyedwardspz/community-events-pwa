@@ -41,7 +41,10 @@ body {
   clear: both;
 }
 
-
+.button-disabled{
+  background-color: grey;
+  border: .1rem solid #000;
+}
 
 .title {
   text-align: right;
