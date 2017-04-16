@@ -20,7 +20,7 @@ let loadContent = () => {
     app.dataController.getData(() => {
 
       // If user is loged in, get that data too
-      if (readCookie('user_id')) {
+      if (readCookie('user_id') && !readCookie('user_id').includes('null')) {
         app.dataController.getUser(readCookie('user_id'), user => {
           console.log('[Get user callback]', newUrl);
 

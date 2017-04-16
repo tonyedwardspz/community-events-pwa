@@ -83,4 +83,16 @@ class UserView extends BaseView {
             </p>
             </div>`;
   }
+
+  loggedIn(){
+    return `<div class="menu-profile-photo">
+              <a href="/user" title="User profile">
+                <img src="http://placehold.it/100x100" alt="Profile Photo">
+              </a>
+            </div>
+            <div class="menu-profile-links">
+              <a href="/user" title="User profile">Your Profile</a> |
+              <a href="/logout" title="User profile">Logout</a>
+            </div>`;
+  }
 }
