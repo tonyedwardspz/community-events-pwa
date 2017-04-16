@@ -49,7 +49,8 @@ class UserController extends BaseController {
       firstName: req.body.firstName,
       lastName: req.body.lastName,
       email: req.body.email,
-      recieveEmail: req.body.recieveEmail
+      recieveEmail: req.body.recieveEmail,
+      recievePush: req.body.recievePush
     }}, (err, updated) => {
       if (err){
         console.log('Error updating user', err);

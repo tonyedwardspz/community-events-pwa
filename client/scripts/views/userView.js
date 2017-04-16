@@ -26,40 +26,65 @@ class UserView extends BaseView {
   * @return {String} The HTML string for display
   */
   show(user, updated = false) {
-    let updatedText = `<p>Profile sucessfully updated</p>`;
-    let hasEmailText = `<p>Please update your email address<p>`;
+    let updatedText = `<p>Profile sucessfully updated.</p>`;
+    let hasEmailText = `<p>Please update your email address.<p>`;
     let offlineText = this.offlineMessage('update your profile');
     return `<h2>Your Profile</h2>
-      ${updated ? updatedText : ''}
       ${user.email === null || user.email.length === 0 ? hasEmailText : ''}
       ${app.online ? '' : offlineText}
-      <img src="${app.user.profilePhoto}" alt="Profile Photo"
-        class="profile-photo pull-right">
-      <form name="show_user">
-      <fieldset>
 
-        <label for="firstName">First Name</label>
-        <input name="firstName" id="firstName" autofocus require
-         value="${user.firstName ? user.firstName : ''}">
+      <div class="row">
+        <div class="column profile-photo-container center">
+          <img src="${app.user.profilePhoto}" alt="Profile Photo"
+            class="profile-photo">
+        </div>
 
-        <label for="lastName">Last Name</label>
-        <input name="lastName" id="lastName" require
-         value="${user.lastName ? user.lastName : ''}">
+        <div class="column">
+        <p>
+          <a href="" id="edit-profile" class="button">Edit Profile</a>
+        </p>
+        ${updated ? updatedText : ''}
+        <form name="show_user">
+        <fieldset>
 
-        <label for="email">email</label>
-        <input name="email" id="email" require placeholder="you@companyname.com"
-         value="${user.email ? user.email : ''}">
+          <label for="firstName">First Name</label>
+          <input type="text" name="firstName" id="firstName" autofocus require
+            value="${user.firstName ? user.firstName : ''}" class="colum-50" disabled>
 
-        <input type="checkbox" id="recieveEmail" ${user.recieveEmail ? 'checked' : ''}>
-        <label class="label-inline" for="recieveEmail">Recieve Emails?</label>
+          <label for="lastName">Last Name</label>
+          <input type="text" name="lastName" id="lastName" require
+            value="${user.lastName ? user.lastName : ''}" disabled>
 
-        <p>Push notifications here</p>
+          <label for="email">Email</label>
+          <input type="email" name="email" id="email" require
+            placeholder="you@companyname.com"
+            value="${user.email ? user.email : ''}" disabled>
 
-        <input class="button-primary" type="submit" value="Update" id="save_user"
-                ${app.online ? '' : 'disabled'}>
+          <div>
 
-      </fieldset>
-      </form>
+          <input type="checkbox" id="recieveEmail"
+            ${user.recieveEmail ? 'checked' : ''} disabled>
+          <label class="label-inline" for="recieveEmail">Recieve Emails?</label>
+
+          </div>
+
+          <div>
+
+          <input type="checkbox" id="recievePush"
+            ${user.recievePush ? 'checked' : ''} disabled>
+          <label class="label-inline" for="recievePush">Recieve Push Notifications?</label>
+
+          </div>
+
+          <input class="button-primary pull-right" type="submit" value="Update" id="save_user"
+                  ${app.online ? '' : 'disabled'} disabled>
+
+        </fieldset>
+        </form>
+        </div>
+      </div>
+
+
     `;
   }
 

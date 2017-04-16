@@ -40,5 +40,6 @@ class User extends BaseModel {
     this.lastName = form.lastName.value;
     this.email = form.email.value;
     this.recieveEmail = form.recieveEmail.checked;
+    this.recievePush = form.recievePush.checked;
   }
 }

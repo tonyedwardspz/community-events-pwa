@@ -17,24 +17,30 @@ class EventView extends BaseView {
   show(evnt, org, orgEvents, venue) {
     return `
       <div class="row">
-      <div class="column column-75">
-      <h2>${evnt.title}</h2>
-      <p>${evnt.getDisplayDate()}<br />
-         Location: ${venue.getDisplayVenue()}</p>
+        <div class="column column-75">
+          <h2>${evnt.title}</h2>
+          <p>Date: ${evnt.getDisplayDate()}<br />
+             Location: ${venue.getDisplayVenue()}</p>
+          <p><a href="${evnt.ticketURL}" class="button"
+                title="Book your place">Book your place</a>
+          </p>
+        </div>
+        <div class="column">
+          <img src="${org.logoURL}" alt="${org.name} logo" class="event-org-logo">
+        </div>
       </div>
-      <div class="column">
-        <img src="${org.logoURL}">
-      </div>
-      </div>
-      <hr>
+
+      <div class="row divider"></div>
       ${evnt.description}
-      <hr>
+
+      <div class="row divider"></div>
       <img src="/public/images/map-placeholder.jpg">
-      <hr>
-      <h2>Upcoming <a href="/organisation/${org.id}">${org.name}</a> events</h2>
+
+      <div class="row divider"></div>
+      <h2><a href="/organisation/${org.id}">${org.name}</a> events</h2>
       ${app.organisationView.upcoming(org, orgEvents, false)}
       <a href="/organisation/${org.id}" class="button pull-right">
-      View all events</a>
+      View organisation events</a>
     `;
   }
 
@@ -104,7 +110,8 @@ class EventView extends BaseView {
               <div class="column">
                 <a href="/event/${event.id}" class="button pull-right">View Event</a>
               </div>
-            </div>`;
+            </div>
+            <div class="row divider"></div>`;
   }
 
   monthButtons(months, currentMonth = null){
