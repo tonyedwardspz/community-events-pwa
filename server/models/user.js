@@ -30,7 +30,7 @@ class User extends BaseModel {
       recievePush: Boolean,
       accessToken: String,
       refreshToken: String,
-      isAdmin: Boolean
+      profilePhoto: String
     });
   }
 }
