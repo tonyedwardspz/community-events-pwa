@@ -97,8 +97,15 @@ body {
   .menu-profile-photo img{
     height: 100px;
     width: 100px;
-    clip-path: polygon(50% 0%, 83% 12%, 100% 43%, 94% 78%, 68% 100%, 32% 100%, 6% 78%, 0% 43%, 17% 12%);
   }
+}
+
+.profile-photo {
+  clip-path: polygon(50% 0%, 83% 12%, 100% 43%, 94% 78%, 68% 100%, 32% 100%, 6% 78%, 0% 43%, 17% 12%);
+  height: 200px;
+  max-height: 200px;
+  max-width: 200px;
+  width: 200px;
 }
 
 
@@ -116,8 +123,8 @@ body {
 }
 
 .logo {
-  max-height: 34px;
   margin-top: 9px;
+  max-height: 34px;
 }
 
 

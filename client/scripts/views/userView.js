@@ -33,6 +33,8 @@ class UserView extends BaseView {
       ${updated ? updatedText : ''}
       ${user.email === null || user.email.length === 0 ? hasEmailText : ''}
       ${app.online ? '' : offlineText}
+      <img src="${app.user.profilePhoto}" alt="Profile Photo"
+        class="profile-photo pull-right">
       <form name="show_user">
       <fieldset>
 
@@ -87,11 +89,12 @@ class UserView extends BaseView {
   loggedIn(){
     return `<div class="menu-profile-photo">
               <a href="/user" title="User profile">
-                <img src="${app.user.profilePhoto}" alt="Profile Photo">
+                <img src="${app.user.profilePhoto}" alt="Profile Photo"
+                 class="profile-photo">
               </a>
             </div>
             <div class="menu-profile-links">
-              <a href="/user" title="User profile">Your Profile</a> 
+              <a href="/user" title="User profile">Your Profile</a>
               <a href="/logout" title="User profile">Logout</a>
             </div>`;
   }
