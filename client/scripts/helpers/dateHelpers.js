@@ -80,6 +80,7 @@ let getFullMonthName = (shortMonth) => {
                   'Jul','Aug','Sep','Oct','Nov','Dec'];
   const longMonths = ['January', 'February', 'March', 'April', 'May', 'June',
               'July', 'August', 'September', 'October', 'November', 'December'];
+  console.log('[getFullMonth()] ', shortMonth);
 
   for(let i = 0; i < months.length; i++) {
     if (shortMonth.toLowerCase() === months[i].toLowerCase()){
@@ -87,4 +88,15 @@ let getFullMonthName = (shortMonth) => {
     }
   }
   return 'No month string!';
+};
+
+/**
+* Returns the 3 char month name from the month number
+* @param {String} num The month number
+* @return {String} The three char month name
+*/
+let getMonthNameFromNumber = (num) =>{
+  const months = ['Jan','Feb','Mar','Apr','May','Jun',
+                  'Jul','Aug','Sep','Oct','Nov','Dec'];
+  return months[num];
 };

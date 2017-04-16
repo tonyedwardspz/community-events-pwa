@@ -35,6 +35,7 @@
     "setupServiceWorker": true,
     "formListeners": true,
     "offlineListener": true,
+    "getMonthNameFromNumber": true,
 
     "BaseController": true,
     "EventController": true,
