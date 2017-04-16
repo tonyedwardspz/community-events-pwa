@@ -38,8 +38,11 @@ class Organiser extends BaseModel {
     let urls = [];
 
     orgs.forEach( org => {
-      if (org.apiURL !== 'null'){
-        urls.push(`${org.apiURL}&token=${process.env.EVENTBRITE_TOKEN}`);
+      if (org.apiURL !== 'null' || org.apiURL !== null || !org.apiURL.includes('null')){
+        let url = `${org.apiURL}&token=${process.env.EVENTBRITE_TOKEN}`;
+        if (! url.includes('null')){
+          urls.push(url);
+        }
       }
     });
     return urls;
