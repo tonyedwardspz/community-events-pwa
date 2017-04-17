@@ -8,7 +8,9 @@ class OrganisationController extends BaseController {
   index() {
     console.info('[Organisation] Index');
 
-    this.updateShell('<h2>Organisations Index</h2>');
+    let html = app.organisationView.index();
+
+    this.updateShell(html);
   }
 
   show(id) {
