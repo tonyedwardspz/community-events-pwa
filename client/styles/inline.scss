@@ -107,7 +107,7 @@ a.disabled {
   .menu-profile-links {
     text-align: center;
     width: 50%;
-    margin-top: 2em;
+    margin-top: 1em;
   }
 
   .menu-profile-photo img{
@@ -132,6 +132,14 @@ a.disabled {
     float: right;
     height: auto;
     width: 100%;
+  }
+}
+
+.event-list-profile-photo {
+  margin-top: -8em;
+
+  @media screen and (min-width: $mobile-breakpoint) {
+    margin-top: 0;
   }
 }
 
@@ -212,6 +220,7 @@ a.disabled {
   z-index: 0;
   list-style: none;
   background: #111;
+  font-size: 0.8em;
 }
 
 .nav-item {

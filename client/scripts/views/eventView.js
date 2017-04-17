@@ -92,7 +92,7 @@ class EventView extends BaseView {
                 <p>${event.getDisplayDate()}<br />
                 Location: ${venue.getDisplayVenue(app.venues)}</p>
               </div>
-              <div class="column">
+              <div class="column event-list-profile-photo">
                 <img src="${org.logoURL}" alt="${org.name} logo"
                 class="org-logo pull-right">
               </div>
