@@ -48,6 +48,7 @@ let setupRoutes = () => {
       app.organisationController.show(context.params.id);
     });
 
+
     // User
     page('/user', (context) => {
       app.userController.show();
@@ -61,10 +62,13 @@ let setupRoutes = () => {
       app.userController.show();
     });
 
-    // page('/user/:id/save', (context) => {
-    //   app.userController.update(context.params.id);
-    // });
+    page('/user/track-event/:id', (context) => {
+      app.userController.trackEvent(context.params.id);
+    });
+
+    page('/user/untrack-event/:id', (context) => {
+      app.userController.untrackEvent(context.params.id);
+    });
 
   });
-
 };

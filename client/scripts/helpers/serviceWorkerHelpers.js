@@ -28,14 +28,11 @@ let registerServiceWorker = () => {
 * Updates the online status of the application
 */
 let offlineListener = () => {
-  console.log('[STATUS] Setting offline listener');
-  window.addEventListener('load', () => {
-    function updateOnlineStatus(event) {
-      app.online =  navigator.onLine;
-      console.log('[STATUS] Online: ', app.online);
-    }
-    updateOnlineStatus();
-    window.addEventListener('online',  updateOnlineStatus);
-    window.addEventListener('offline', updateOnlineStatus);
-  });
+  function updateOnlineStatus(event) {
+    app.online =  navigator.onLine;
+    console.log('[STATUS] Online: ', app.online);
+  }
+  updateOnlineStatus();
+  window.addEventListener('online',  updateOnlineStatus);
+  window.addEventListener('offline', updateOnlineStatus);
 };

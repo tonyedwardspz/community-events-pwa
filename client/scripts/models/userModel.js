@@ -2,7 +2,7 @@
 
 class User extends BaseModel {
   constructor(userID, twitterID, googleID, email, firstName, lastName,
-      recieveEmail, recievePush, accessToken, refreshToken, profilePhoto) {
+      recieveEmail, recievePush, accessToken, refreshToken, profilePhoto, trackedEvents) {
     super();
     this.userID = userID;
     this.twitterID = twitterID;
@@ -15,6 +15,8 @@ class User extends BaseModel {
     this.accessToken = accessToken;
     this.refreshToken = refreshToken;
     this.profilePhoto = profilePhoto;
+
+    this.trackedEvents = trackedEvents;
   }
 
   static processUserData(data, cb) {
@@ -29,7 +31,8 @@ class User extends BaseModel {
       data.recievePush,
       data.accessToken,
       data.refreshToken,
-      data.profilePhoto
+      data.profilePhoto,
+      data.trackedEvents
     );
 
     cb();
@@ -41,5 +44,29 @@ class User extends BaseModel {
     this.email = form.email.value;
     this.recieveEmail = form.recieveEmail.checked;
     this.recievePush = form.recievePush.checked;
+  }
+
+  trackEvent(eventID) {
+    try {
+      if (!this.trackedEvents.includes(eventID)) {
+        this.trackedEvents.push(eventID);
+        return true;
+      }
+    } catch (e) {
+      console.log('[User Model] Error tracking event', e);
+    }
+    return false;
+  }
+
+  removeTrackedEvent(eventID) {
+    try {
+      if (this.trackedEvents.includes(eventID)) {
+        this.trackedEvents.splice(this.trackedEvents.indexOf(eventID), 1);
+        return true;
+      }
+    } catch (e) {
+      console.log('[User Model] Error untracking event', e);
+    }
+    return false;
   }
 }

@@ -19,12 +19,23 @@ let webLink = (url, title) => {
   return `<a href="${url}" target="_blank" title="${title} website">${url}</a>`;
 };
 
+/**
+* Inserts a new node into the dom after the reference node
+* @param {HMTL} newNode The new node to be inserted
+* @param {HMTL} referenceNode The point of reference in the dom
+*/
+let insertAfter = (newNode, referenceNode) => {
+  referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
+};
+
 let formListeners = () => {
   app.shell.addEventListener('click', (e) => {
     if(e.target.id === 'save_user') {
       e.preventDefault();
       app.userController.update();
-    } else if (e.target.id ==='edit-profile') {
+    }
+
+    else if (e.target.id ==='edit-profile') {
       console.log('edit-profile');
       e.preventDefault();
       let els = document.querySelectorAll('input');
@@ -32,12 +43,19 @@ let formListeners = () => {
         elm.disabled = false;
       });
       document.getElementById('edit-profile').classList += ' disabled';
-    } else if (e.target.id === 'update-profile') {
+    }
+
+    else if (e.target.id === 'update-profile') {
       console.log('update hit');
       e.preventDefault();
       let el = document.getElementById('popover');
       el.parentNode.removeChild(el);
       app.userController.show(app.user);
+    }
+
+    else if (e.target.id === 'show-map') {
+      e.preventDefault();
+      app.eventController.showMapEmbed(e.target.getAttribute('data-id'));
     }
   });
 };

@@ -30,7 +30,8 @@ class User extends BaseModel {
       recievePush: Boolean,
       accessToken: String,
       refreshToken: String,
-      profilePhoto: String
+      profilePhoto: String,
+      trackedEvents: Array
     });
   }
 }

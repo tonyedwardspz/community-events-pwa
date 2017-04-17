@@ -11,7 +11,7 @@ class EventController extends BaseController {
     let thisEvent = EventModel.findByID(id, app.events);
     let thisOrg = Organisation.findByID(thisEvent.organiserID, app.organisations);
     let thisVenue = Venue.findByID(thisEvent.venueID, app.venues);
-    console.log(thisVenue);
+    let isTracked = thisEvent.isTracked();
 
     // Fetch and sort the organisations upcoming events
     let orgEvents = Organisation.getOrgEvents(thisEvent.organiserID, app.events);
@@ -20,7 +20,8 @@ class EventController extends BaseController {
       orgEvents.length = 4;
     }
 
-    let html = app.eventView.show(thisEvent, thisOrg, orgEvents, thisVenue);
+    let html = app.eventView.show(thisEvent, thisOrg, orgEvents, thisVenue,
+                                  isTracked);
 
     this.updateShell(html);
   }
@@ -36,13 +37,10 @@ class EventController extends BaseController {
     let html = app.eventView.showMonth(events, month);
 
     this.updateShell(html);
-
   }
 
   index() {
     console.log('[Event] Index');
-
-    console.log('[Event] ', app.events);
 
     let html = app.eventView.index(app.events.sort(sortByDate));
     this.updateShell(html);
@@ -51,7 +49,32 @@ class EventController extends BaseController {
   tracked() {
     console.log('[Event] Tracked');
 
-    // let html = app.eventView.index(app.events.sort(sortByDate));
-    this.updateShell('<h2>Tracked Events</h2>');
+    let html = '<p>No tracked events</p>';
+
+    if (app.user){
+      let events = EventModel.getEventsByIds(app.user.trackedEvents, app.events);
+      html = app.eventView.tracked(events);
+      html += app.eventView.eventList(events);
+    }
+
+    this.updateShell(html);
+  }
+
+  showMapEmbed(id) {
+    console.log('[Event] Tracked');
+
+    if (app.online) {
+      let evnt = EventModel.findByID(id, app.events);
+      let mapEmbed = app.eventView.mapEmbed();
+      let html = document.createElement('div');
+      html.innerHTML = mapEmbed;
+      document.getElementById('show-map').replaceWith(html);
+    } else {
+      let ref = document.getElementById('show-map');
+      let html = document.createElement('p');
+      html.innerHTML = 'You must be online to view map';
+      insertAfter(html, ref);
+    }
+
   }
 }

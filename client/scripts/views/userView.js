@@ -89,15 +89,6 @@ class UserView extends BaseView {
   }
 
   /**
-  * Returns HTML for the edit user screen
-  * @param {User} user An user object
-  * @return {String} The HTML string for display
-  */
-  edit(user){
-    return `<h1>This is the edit user view</h1>`;
-  }
-
-  /**
   * The popover presented to the user if they have no email.
   * @return {String} The HTML string for display
   */

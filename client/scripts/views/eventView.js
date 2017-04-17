@@ -14,19 +14,25 @@ class EventView extends BaseView {
   * @param {Venue} venue The events venue
   * @return {String} The HTML string for display
   */
-  show(evnt, org, orgEvents, venue) {
+  show(evnt, org, orgEvents, venue, tracked = false) {
     return `
       <div class="row">
         <div class="column column-75">
           <h2>${evnt.title}</h2>
           <p>Date: ${evnt.getDisplayDate()}<br />
              Location: ${venue.getDisplayVenue()}</p>
-          <p><a href="${evnt.ticketURL}" class="button"
-                title="Book your place">Book your place</a>
+          <p>
+            <a href="${evnt.ticketURL}" class="button"
+              title="Book your place">Book your place</a>
+            <a href="/user/${tracked ? 'un': ''}track-event/${evnt.id}"
+              class="button ${tracked ? 'tracked': ''}" title="Track this event"
+              id="track-event">${tracked ? 'Untrack Event': 'Track Event'}</a>
           </p>
         </div>
         <div class="column">
+          <a href="/organisation/${org.id}" title="View organiser">
           <img src="${org.logoURL}" alt="${org.name} logo" class="event-org-logo">
+          </a>
         </div>
       </div>
 
@@ -34,7 +40,7 @@ class EventView extends BaseView {
       ${evnt.description}
 
       <div class="row divider"></div>
-      <img src="/public/images/map-placeholder.jpg">
+      <a href="" id="show-map" data-id="${venue.id}" class="button">Show map</a>
 
       <div class="row divider"></div>
       <h2><a href="/organisation/${org.id}">${org.name}</a> events</h2>
@@ -49,6 +55,19 @@ class EventView extends BaseView {
     html += this.monthButtons(getNextFourMonths(), month);
     html += '<hr />';
     html += app.eventView.eventList(events);
+    return html;
+  }
+
+  /**
+  * Returns HTML for top of the tracked events page
+  * @param {Array.<Event>} [events] An array of event objects
+  * @return {String} The HTML string for display
+  */
+  tracked(events) {
+    let html = `<h2>Tracked Events</h2>
+      <p>Here's the ${events.length} upcoming event${events.length > 1 ? 's' : ''}
+        you're tracking.</p>`;
+
     return html;
   }
 
@@ -69,10 +88,11 @@ class EventView extends BaseView {
       return 'No upcoming events';
     }
 
-    let list = ``;
+    let list = `<div class="list-wrap">`;
 
     events.forEach(event => {
       let venue = Venue.findByID(event.venueID, app.venues);
+
       if (showImage){
         let org = Organisation.findByID(event.organiserID, app.organisations);
         list += this.eventListItem(event, venue, org);
@@ -81,15 +101,17 @@ class EventView extends BaseView {
       }
     });
 
-
-    return list;
+    return list+= '</div>';
   }
 
   eventListItem(event, venue, org){
+    const trackedBullet = '<span class="is-tracked">Tracked</span>';
     return `<div class="row event-list-item">
               <div class="column column-75">
-                <h3><a href="/event/${event.id}">${event.title}</a></h3>
-                <p>${event.getDisplayDate()}<br />
+                <h3><a href="/event/${event.id}">${event.title}</a>
+                ${event.isTracked() ? trackedBullet : ''}</h3>
+
+                <p>Date: ${event.getDisplayDate()}<br />
                 Location: ${venue.getDisplayVenue(app.venues)}</p>
               </div>
               <div class="column event-list-profile-photo">
@@ -101,9 +123,11 @@ class EventView extends BaseView {
   }
 
   eventListItemNoImage(event, venue){
-    return `<div class="row">
+    const trackedBullet = '<span class="is-tracked">Tracked</span>';
+    return `<div class="row event-list-item">
               <div class="column column-75">
-                <h3><a href="/event/${event.id}">${event.title}</a></h3>
+                <h3><a href="/event/${event.id}">${event.title}</a>
+                ${event.isTracked() ? trackedBullet : ''}</h3>
                 <p>${event.getDisplayDate()}<br />
                    Location: ${venue.getDisplayVenue(app.venues)}</p>
               </div>
@@ -132,5 +156,11 @@ class EventView extends BaseView {
       html += `</div>`;
 
       return html;
+  }
+
+  mapEmbed(lat, long) {
+    return `<iframe frameborder="0" allowfullscreen class="map-embed"
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3047.426779637843!2d-${long}!3d${lat}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTDCsDIyJzA5LjQiTiA0wrAwOCcxOC44Ilc!5e0!3m2!1sen!2suk!4v1492448183454">
+     </iframe>`;
   }
 }

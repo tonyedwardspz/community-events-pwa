@@ -15,4 +15,16 @@ class BaseModel {
     });
     return item;
   }
+
+  static getEventsByIds(ids, objects) {
+    let matched = [];
+    ids.forEach(id => {
+      objects.forEach(evnt => {
+        if (evnt.id === id) {
+          matched.push(evnt);
+        }
+      });
+    });
+    return matched;
+  }
 }
