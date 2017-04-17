@@ -50,7 +50,9 @@ a.disabled {
 a.button.tracked {
   background-color: $alt-main-color;
 }
-
+.main {
+  min-height: 100vh;
+}
 
 .container {
   max-width: 800px;
@@ -197,7 +199,7 @@ a.button.tracked {
 .divider {
   border: 0;
   border-top: .1rem solid #f4f5f6;
-  margin: 0.5rem auto;
+  margin: .5rem auto;
   width: 50vw;
 }
 
@@ -241,7 +243,7 @@ a.button.tracked {
   z-index: 0;
   list-style: none;
   background: #111;
-  font-size: 0.8em;
+  font-size: .8em;
 }
 
 .nav-item {
@@ -257,7 +259,7 @@ a.button.tracked {
   color: #fff;
   font-size: 1.2em;
   text-decoration: none;
-  transition: color 0.2s, background 0.5s;
+  transition: color .2s, background .5s;
 }
 
 .nav-item a:hover {
@@ -336,10 +338,40 @@ label[for="nav-trigger"] {
   }
 
   .item {
-    padding: 0.6em;
+    padding: .6em;
 
     @media screen and (min-width: $mobile-breakpoint) {
-      padding: 0.9em;
+      padding: .9em;
     }
   }
+}
+
+
+// Footer
+footer {
+  border-top: .1rem solid #f4f5f6;
+  margin-top: .5rem;
+  background-color: $text-color;
+  padding: .5em 0;
+
+  p {
+    padding: .3em 0;
+    margin-bottom: 0;
+    color: white;
+    width: 50%;
+  }
+
+  a:link,
+  a:visited,
+  a:active {
+    color: white;
+  }
+}
+
+
+// Map
+.map-embed {
+  width: 100%;
+  height: 300px;
+  border: 0;
 }

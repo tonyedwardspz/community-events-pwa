@@ -30,7 +30,9 @@ class EventView extends BaseView {
           </p>
         </div>
         <div class="column">
+          <a href="/organisation/${org.id}" title="View organiser">
           <img src="${org.logoURL}" alt="${org.name} logo" class="event-org-logo">
+          </a>
         </div>
       </div>
 
@@ -38,7 +40,7 @@ class EventView extends BaseView {
       ${evnt.description}
 
       <div class="row divider"></div>
-      <img src="/public/images/map-placeholder.jpg">
+      <a href="" id="show-map" data-id="${venue.id}" class="button">Show map</a>
 
       <div class="row divider"></div>
       <h2><a href="/organisation/${org.id}">${org.name}</a> events</h2>
@@ -56,6 +58,11 @@ class EventView extends BaseView {
     return html;
   }
 
+  /**
+  * Returns HTML for top of the tracked events page
+  * @param {Array.<Event>} [events] An array of event objects
+  * @return {String} The HTML string for display
+  */
   tracked(events) {
     let html = `<h2>Tracked Events</h2>
       <p>Here's the ${events.length} upcoming event${events.length > 1 ? 's' : ''}
@@ -149,5 +156,11 @@ class EventView extends BaseView {
       html += `</div>`;
 
       return html;
+  }
+
+  mapEmbed(lat, long) {
+    return `<iframe frameborder="0" allowfullscreen class="map-embed"
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3047.426779637843!2d-${long}!3d${lat}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTDCsDIyJzA5LjQiTiA0wrAwOCcxOC44Ilc!5e0!3m2!1sen!2suk!4v1492448183454">
+     </iframe>`;
   }
 }

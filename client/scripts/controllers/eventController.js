@@ -59,4 +59,13 @@ class EventController extends BaseController {
 
     this.updateShell(html);
   }
+
+  showMapEmbed(id) {
+    console.log('[Event] Tracked');
+    let evnt = EventModel.findByID(id, app.events);
+    let mapEmbed = app.eventView.mapEmbed();
+    var html = document.createElement('div');
+    html.innerHTML = mapEmbed;
+    document.getElementById('show-map').replaceWith(html);
+  }
 }
