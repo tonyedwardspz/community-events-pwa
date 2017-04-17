@@ -64,6 +64,7 @@ class UserController extends BaseController {
 
     if (app.user.removeTrackedEvent(id)) {
       app.db.publish(`/user/${app.user.id}`, app.user, 'PUT');
+      console.log('[User] Event untracked: ', app.user.trackedEvents);
     }
   }
 }

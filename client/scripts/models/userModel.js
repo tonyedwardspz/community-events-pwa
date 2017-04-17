@@ -47,21 +47,25 @@ class User extends BaseModel {
   }
 
   trackEvent(eventID) {
-    if (!this.trackedEvents.includes(eventID)){
-      console.log('New tracked event: ', eventID);
-      this.trackedEvents.push(eventID);
-      return true;
+    try {
+      if (!this.trackedEvents.includes(eventID)) {
+        this.trackedEvents.push(eventID);
+        return true;
+      }
+    } catch (e) {
+      console.log('[User Model] Error tracking event', e);
     }
-    console.log('Tracked event exists: ', eventID);
     return false;
   }
 
   removeTrackedEvent(eventID) {
-    if (this.trackedEvents.includes(eventID)) {
-      console.log('Tracked events: ', this.trackedEvents);
-      this.trackedEvents.splice(this.trackedEvents.indexOf(eventID), 1);
-      console.log('Tracked events: ', this.trackedEvents);
-      return true;
+    try {
+      if (this.trackedEvents.includes(eventID)) {
+        this.trackedEvents.splice(this.trackedEvents.indexOf(eventID), 1);
+        return true;
+      }
+    } catch (e) {
+      console.log('[User Model] Error untracking event', e);
     }
     return false;
   }
