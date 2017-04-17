@@ -81,10 +81,11 @@ class EventView extends BaseView {
       return 'No upcoming events';
     }
 
-    let list = ``;
+    let list = `<div class="list-wrap">`;
 
     events.forEach(event => {
       let venue = Venue.findByID(event.venueID, app.venues);
+
       if (showImage){
         let org = Organisation.findByID(event.organiserID, app.organisations);
         list += this.eventListItem(event, venue, org);
@@ -93,15 +94,17 @@ class EventView extends BaseView {
       }
     });
 
-
-    return list;
+    return list+= '</div>';
   }
 
   eventListItem(event, venue, org){
+    const trackedBullet = '<span class="is-tracked">Tracked</span>';
     return `<div class="row event-list-item">
               <div class="column column-75">
-                <h3><a href="/event/${event.id}">${event.title}</a></h3>
-                <p>${event.getDisplayDate()}<br />
+                <h3><a href="/event/${event.id}">${event.title}</a>
+                ${event.isTracked() ? trackedBullet : ''}</h3>
+
+                <p>Date: ${event.getDisplayDate()}<br />
                 Location: ${venue.getDisplayVenue(app.venues)}</p>
               </div>
               <div class="column event-list-profile-photo">
@@ -113,9 +116,11 @@ class EventView extends BaseView {
   }
 
   eventListItemNoImage(event, venue){
-    return `<div class="row">
+    const trackedBullet = '<span class="is-tracked">Tracked</span>';
+    return `<div class="row event-list-item">
               <div class="column column-75">
-                <h3><a href="/event/${event.id}">${event.title}</a></h3>
+                <h3><a href="/event/${event.id}">${event.title}</a>
+                ${event.isTracked() ? trackedBullet : ''}</h3>
                 <p>${event.getDisplayDate()}<br />
                    Location: ${venue.getDisplayVenue(app.venues)}</p>
               </div>

@@ -182,11 +182,16 @@ a.button.tracked {
   width: 100px;
 }
 
-
+.list-wrap div:first-of-type {
+  padding-top: 0;
+}
 
 .event-list-item {
   padding-top: 1.5em;
-  padding-bottom: 1.5em;
+
+  @media screen and (max-width: $mobile-breakpoint) {
+    padding-bottom: 1.5em;
+  }
 }
 
 .divider {
@@ -197,9 +202,20 @@ a.button.tracked {
 }
 
 
+.is-tracked {
+  font-size: .4em;
+  text-transform: uppercase;
+  margin-left: 1em;
+  border-radius: 5px;
+  background: $main-color;
+  color: white;
+  padding: .3em .6em;
+  letter-spacing: .1em;
+}
 
 
-.month-boxes.row{
+
+.month-boxes.row {
   flex-direction: row;
 }
 
