@@ -19,6 +19,15 @@ class EventModel extends BaseModel {
     return convertDateToLocale(this.start);
   }
 
+  isTracked() {
+    try {
+      return app.user.trackedEvents.includes(this.id);
+    } catch (e) {
+      console.log('[Event] Failed to get tracked status');
+      return false;
+    }
+  }
+
   static processEventData(data){
     let events = [];
     data.forEach(evt => {

@@ -66,5 +66,9 @@ let setupRoutes = () => {
       app.userController.trackEvent(context.params.id);
     });
 
+    page('/user/untrack-event/:id', (context) => {
+      app.userController.untrackEvent(context.params.id);
+    });
+
   });
 };

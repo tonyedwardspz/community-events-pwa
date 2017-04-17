@@ -56,7 +56,13 @@ class User extends BaseModel {
     return false;
   }
 
-  removeTrackedEvent() {
-
+  removeTrackedEvent(eventID) {
+    if (this.trackedEvents.includes(eventID)) {
+      console.log('Tracked events: ', this.trackedEvents);
+      this.trackedEvents.splice(this.trackedEvents.indexOf(eventID), 1);
+      console.log('Tracked events: ', this.trackedEvents);
+      return true;
+    }
+    return false;
   }
 }

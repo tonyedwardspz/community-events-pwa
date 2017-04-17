@@ -11,6 +11,7 @@ class EventController extends BaseController {
     let thisEvent = EventModel.findByID(id, app.events);
     let thisOrg = Organisation.findByID(thisEvent.organiserID, app.organisations);
     let thisVenue = Venue.findByID(thisEvent.venueID, app.venues);
+    let isTracked = thisEvent.isTracked();
 
     // Fetch and sort the organisations upcoming events
     let orgEvents = Organisation.getOrgEvents(thisEvent.organiserID, app.events);
@@ -19,7 +20,8 @@ class EventController extends BaseController {
       orgEvents.length = 4;
     }
 
-    let html = app.eventView.show(thisEvent, thisOrg, orgEvents, thisVenue);
+    let html = app.eventView.show(thisEvent, thisOrg, orgEvents, thisVenue,
+                                  isTracked);
 
     this.updateShell(html);
   }

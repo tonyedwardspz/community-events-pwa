@@ -14,7 +14,7 @@ class EventView extends BaseView {
   * @param {Venue} venue The events venue
   * @return {String} The HTML string for display
   */
-  show(evnt, org, orgEvents, venue) {
+  show(evnt, org, orgEvents, venue, tracked = false) {
     return `
       <div class="row">
         <div class="column column-75">
@@ -24,8 +24,9 @@ class EventView extends BaseView {
           <p>
             <a href="${evnt.ticketURL}" class="button"
               title="Book your place">Book your place</a>
-            <a href="/user/track-event/${evnt.id}" class="button"
-              title="Track this event">Track Event</a>
+            <a href="/user/${tracked ? 'un': ''}track-event/${evnt.id}"
+              class="button ${tracked ? 'tracked': ''}" title="Track this event"
+              id="track-event">${tracked ? 'Untrack Event': 'Track Event'}</a>
           </p>
         </div>
         <div class="column">

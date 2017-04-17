@@ -4,6 +4,7 @@ $desktop-breakpoint: 120rem;
 
 $text-color: #606c76;
 $main-color: #9b4dca;
+$alt-main-color: pink;
 $hover-color: #606c76;
 
 // Google fonts
@@ -44,6 +45,10 @@ input[type=email] {
 
 a.disabled {
   background-color: lightgrey;
+}
+
+a.button.tracked {
+  background-color: $alt-main-color;
 }
 
 
@@ -203,7 +208,7 @@ a.disabled {
 
   &.current {
     a {
-      background-color: pink;
+      background-color: $alt-main-color;
     }
   }
 }
