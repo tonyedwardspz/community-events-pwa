@@ -50,7 +50,7 @@ class EventController extends BaseController {
     let html = '<p>No tracked events</p>';
 
     if (app.user){
-      let events = EventModel.getEventsByIds(app.user.trackedEvents);
+      let events = EventModel.getEventsByIds(app.user.trackedEvents, app.events);
       html = app.eventView.tracked(events);
       html += app.eventView.eventList(events);
     }
