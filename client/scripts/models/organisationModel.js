@@ -40,7 +40,5 @@ class Organisation extends BaseModel {
       }
     });
     return orgEvents;
-
-
   }
 }

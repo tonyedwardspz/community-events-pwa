@@ -33,6 +33,24 @@ class OrganisationView extends BaseView {
             `;
   }
 
+  index(orgs = app.organisations) {
+    let html = `<h2>Organisers</h2>
+                <p>Showing all ${orgs.length} organisers</p>
+                <a href="https://tonyedwardspz.typeform.com/to/jwEbTA" title="Suggest new organiser"
+                target="_blank" class="button">Add organiser</a>
+                <div class="org-grid">`;
+
+    orgs.forEach(org => {
+      html += `<div class="item">
+                <a href="/organisation/${org.id}" title="${org.name} page">
+                  <img src="${org.logoURL}" alt="${org.name}">
+                </a>
+               </div>`;
+    });
+
+    return html += `</div>`;
+  }
+
   /**
   * Returns HTML for the list of upcoming organisation events
   * @param {Organisation} organisatiom An organisation to be displayed
