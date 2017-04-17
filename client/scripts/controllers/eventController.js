@@ -62,10 +62,19 @@ class EventController extends BaseController {
 
   showMapEmbed(id) {
     console.log('[Event] Tracked');
-    let evnt = EventModel.findByID(id, app.events);
-    let mapEmbed = app.eventView.mapEmbed();
-    var html = document.createElement('div');
-    html.innerHTML = mapEmbed;
-    document.getElementById('show-map').replaceWith(html);
+
+    if (app.online) {
+      let evnt = EventModel.findByID(id, app.events);
+      let mapEmbed = app.eventView.mapEmbed();
+      let html = document.createElement('div');
+      html.innerHTML = mapEmbed;
+      document.getElementById('show-map').replaceWith(html);
+    } else {
+      let ref = document.getElementById('show-map');
+      let html = document.createElement('p');
+      html.innerHTML = 'You must be online to view map';
+      insertAfter(html, ref);
+    }
+
   }
 }

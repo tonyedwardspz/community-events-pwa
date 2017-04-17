@@ -19,6 +19,15 @@ let webLink = (url, title) => {
   return `<a href="${url}" target="_blank" title="${title} website">${url}</a>`;
 };
 
+/**
+* Inserts a new node into the dom after the reference node
+* @param {HMTL} newNode The new node to be inserted
+* @param {HMTL} referenceNode The point of reference in the dom
+*/
+let insertAfter = (newNode, referenceNode) => {
+  referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
+};
+
 let formListeners = () => {
   app.shell.addEventListener('click', (e) => {
     if(e.target.id === 'save_user') {

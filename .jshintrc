@@ -36,6 +36,7 @@
     "formListeners": true,
     "offlineListener": true,
     "getMonthNameFromNumber": true,
+    "insertAfter": true,
 
     "BaseController": true,
     "EventController": true,

@@ -11,6 +11,6 @@ class BaseView {
   }
 
   static footer() {
-    return `<footer><p>This is the footer</p></footer>`
+    return `<footer><p>This is the footer</p></footer>`;
   }
 }
