@@ -11,7 +11,6 @@ class EventController extends BaseController {
     let thisEvent = EventModel.findByID(id, app.events);
     let thisOrg = Organisation.findByID(thisEvent.organiserID, app.organisations);
     let thisVenue = Venue.findByID(thisEvent.venueID, app.venues);
-    console.log(thisVenue);
 
     // Fetch and sort the organisations upcoming events
     let orgEvents = Organisation.getOrgEvents(thisEvent.organiserID, app.events);
@@ -36,13 +35,10 @@ class EventController extends BaseController {
     let html = app.eventView.showMonth(events, month);
 
     this.updateShell(html);
-
   }
 
   index() {
     console.log('[Event] Index');
-
-    console.log('[Event] ', app.events);
 
     let html = app.eventView.index(app.events.sort(sortByDate));
     this.updateShell(html);
@@ -51,7 +47,10 @@ class EventController extends BaseController {
   tracked() {
     console.log('[Event] Tracked');
 
-    // let html = app.eventView.index(app.events.sort(sortByDate));
-    this.updateShell('<h2>Tracked Events</h2>');
+    let events = app.events;
+    let html = app.eventView.tracked(events);
+    html += app.eventView.eventList(events);
+
+    this.updateShell(html);
   }
 }

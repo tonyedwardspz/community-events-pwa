@@ -21,8 +21,11 @@ class EventView extends BaseView {
           <h2>${evnt.title}</h2>
           <p>Date: ${evnt.getDisplayDate()}<br />
              Location: ${venue.getDisplayVenue()}</p>
-          <p><a href="${evnt.ticketURL}" class="button"
-                title="Book your place">Book your place</a>
+          <p>
+            <a href="${evnt.ticketURL}" class="button"
+              title="Book your place">Book your place</a>
+            <a href="/user/track-event/${evnt.id}" class="button"
+              title="Track this event">Track Event</a>
           </p>
         </div>
         <div class="column">
@@ -49,6 +52,14 @@ class EventView extends BaseView {
     html += this.monthButtons(getNextFourMonths(), month);
     html += '<hr />';
     html += app.eventView.eventList(events);
+    return html;
+  }
+
+  tracked(events) {
+    let html = `<h2>Tracked Events</h2>
+      <p>Here's the ${events.length} upcoming event${events.length > 1 ? 's' : ''}
+        you're tracking.</p>`;
+
     return html;
   }
 

@@ -39,4 +39,14 @@ class UserController extends BaseController {
 
     this.updateShell(html);
   }
+
+  trackEvent(id) {
+    console.info('[User] Track event: ', id);
+
+    if (app.user.trackEvent(id)) {
+      app.db.publish(`/user/${app.user.id}`, app.user, 'PUT');
+      console.log('[User] Event tracked: ', app.user.trackedEvents);
+    }
+
+  }
 }
