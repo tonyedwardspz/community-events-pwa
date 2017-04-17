@@ -47,9 +47,13 @@ class EventController extends BaseController {
   tracked() {
     console.log('[Event] Tracked');
 
-    let events = app.events;
-    let html = app.eventView.tracked(events);
-    html += app.eventView.eventList(events);
+    let html = '<p>No tracked events</p>';
+
+    if (app.user){
+      let events = EventModel.getEventsByIds(app.user.trackedEvents);
+      html = app.eventView.tracked(events);
+      html += app.eventView.eventList(events);
+    }
 
     this.updateShell(html);
   }

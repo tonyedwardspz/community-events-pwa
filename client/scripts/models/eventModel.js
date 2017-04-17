@@ -53,4 +53,16 @@ class EventModel extends BaseModel {
     console.log(`[Events] Get events for month ${month}: `, events);
     return events;
   }
+
+  static getEventsByIds(ids) {
+    let matched = [];
+    ids.forEach(id => {
+      app.events.forEach(evnt => {
+        if (evnt.id === id) {
+          matched.push(evnt);
+        }
+      });
+    });
+    return matched;
+  }
 }
