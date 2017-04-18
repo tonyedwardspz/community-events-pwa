@@ -37,6 +37,8 @@
     "offlineListener": true,
     "getMonthNameFromNumber": true,
     "insertAfter": true,
+    "_arguments": true,
+    "menuStyleListener": true,
 
     "BaseController": true,
     "EventController": true,

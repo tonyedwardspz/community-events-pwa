@@ -28,6 +28,9 @@ let insertAfter = (newNode, referenceNode) => {
   referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
 };
 
+/**
+* Sets up listeners for various forms.
+*/
 let formListeners = () => {
   app.shell.addEventListener('click', (e) => {
     if(e.target.id === 'save_user') {
@@ -59,3 +62,34 @@ let formListeners = () => {
     }
   });
 };
+
+/**
+* Sets up positioning or menu on load and resize.
+*/
+let menuStyleListener = () => {
+  const positionMenu = () => {
+    let padding = window.getComputedStyle(app.header, null).getPropertyValue('padding-left').replace('px', '');
+    app.menu.style.left = parseInt(padding) + parseInt(app.header.offsetLeft) + 'px';
+  };
+  positionMenu();
+  window.addEventListener('resize', debounce(() => {
+    positionMenu();
+  }, 16), false);
+};
+
+/**
+* Debounce method for preventing multiple sequential calls, used with listeners
+* @param {Callback} fn The url to be processed
+* @param {String} wait the event / org name for the title attribute
+*/
+function debounce(fn, wait) {
+	let timeout;
+	return () => {
+		let ctx = this;
+    let args = arguments;
+		clearTimeout(timeout);
+		timeout = setTimeout(function() {
+		    fn.apply(ctx, args);
+		}, wait || 100);
+	};
+}

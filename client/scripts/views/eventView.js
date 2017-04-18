@@ -169,7 +169,6 @@ class EventView extends BaseView {
 
   // 106 chars before end
   tweetButton(evnt, org) {
-    console.log('TWEET - handle: ', org.twitterHandle);
     let base = '<a class="button" target="_blank" href="http://twitter.com/home?status=MESSAGE">Tweet this</a>';
     let msg = `Check out this event by ${org.twitterHandle ? '@' + org.twitterHandle : org.name} - ${evnt.title} `;
     if (msg.length >=106) {
@@ -178,9 +177,6 @@ class EventView extends BaseView {
     }
     msg += `https://community-events-pwa.herokuapp.com/event/${evnt.id} #GatherSW`;
     msg = encodeURIComponent(msg);
-    let url = base.replace('MESSAGE', msg);
-
-
-    return url;
+    return base.replace('MESSAGE', msg);
   }
 }
