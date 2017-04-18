@@ -48,9 +48,12 @@ class OrganisationView extends BaseView {
         } else { isTracked = false; }
       }
       html += `<div class="item ${isTracked ? 'tracked' : 'untracked'}">
+                <p>${org.name}</p>
                 <a href="/organisation/${org.id}" title="${org.name} page">
                   <img src="${org.logoURL}" alt="${org.name}">
                 </a>
+                <a href="#" data-id="${org.id}" data-action="track-org"
+                  class="button">${isTracked?'un':''}follow</a>
                </div>`;
     });
 

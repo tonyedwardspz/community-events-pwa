@@ -70,6 +70,11 @@ let formListeners = () => {
       e.preventDefault();
       app.userController.untrackEvent(e.target.getAttribute('data-id'));
     }
+
+    else if (e.target.getAttribute('data-action') === 'track-org') {
+      e.preventDefault();
+      console.log('TRACK ORG: ', e.target.getAttribute('data-id'));
+    }
   });
 };
 
