@@ -1,28 +1,54 @@
 'use strict';
 
 let setMenuListeners = () => {
-  app.menuCheckBox = document.getElementById('nav-trigger');
-
-  // listen for a click on a checkbox item
+  // listen for a click on a menu item
   document.querySelectorAll('.nav-item').forEach(item => {
     item.addEventListener('click', e => {
       closeMenu();
+      positionMenu();
     });
   });
 
   // if menu main content is clicked
-  document.getElementById('site-wrap').addEventListener('click', e => {
+  app.wrap.addEventListener('click', e => {
     closeMenu();
+    positionMenu();
   });
 
   // if page is scrolling
-  document.getElementById('site-wrap').onscroll = e => {
-    closeMenu();
+  app.wrap.onscroll = e => {
+    debounce(closeMenu(), 200);
   };
 };
 
+
+/**
+* Closes the menu by delelecting the checkbox
+*/
 let closeMenu = () => {
   if (app.menuCheckBox.checked){
     app.menuCheckBox.checked = false;
   }
+};
+
+/**
+* Positions the menu if closed, leaves to default if open
+*/
+function positionMenu() {
+  if (app.menuCheckBox.checked) {
+    app.menu.removeAttribute('style');
+  } else {
+    let padding = window.getComputedStyle(app.header).getPropertyValue('padding-left').replace('px', '');
+    app.menu.style.left = parseInt(padding) + parseInt(app.header.offsetLeft) + 'px';
+  }
+}
+
+/**
+* Sets up positioning or menu on load and resize.
+*/
+let menuStyleListener = () => {
+  positionMenu();
+  window.addEventListener('resize', debounce(() => {
+    positionMenu();
+  }, 16), false);
 };
