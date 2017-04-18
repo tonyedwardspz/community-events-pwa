@@ -42,17 +42,16 @@ class OrganisationView extends BaseView {
       let isTracked = true;
 
       if (app.user !== null){
-        console.log('in iff');
         if (app.user.trackedOrgs.includes(org.id)) {
           isTracked = true;
         } else { isTracked = false; }
       }
-      html += `<div class="item ${isTracked ? 'tracked' : 'untracked'}">
+      html += `<div class="item ${isTracked ? 'tracked' : 'untracked'}" id="org-item-${org.id}">
                 <p>${org.name}</p>
                 <a href="/organisation/${org.id}" title="${org.name} page">
                   <img src="${org.logoURL}" alt="${org.name}">
                 </a>
-                <a href="#" data-id="${org.id}" data-action="track-org"
+                <a href="#" id="org-follow-${org.id}" data-id="${org.id}" data-action="track-org"
                   class="button">${isTracked?'un':''}follow</a>
                </div>`;
     });

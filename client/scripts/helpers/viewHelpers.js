@@ -73,7 +73,7 @@ let formListeners = () => {
 
     else if (e.target.getAttribute('data-action') === 'track-org') {
       e.preventDefault();
-      console.log('TRACK ORG: ', e.target.getAttribute('data-id'));
+      app.organisationController.follow(e.target.getAttribute('data-id'));
     }
   });
 };

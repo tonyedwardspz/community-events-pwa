@@ -71,4 +71,12 @@ class User extends BaseModel {
     }
     return false;
   }
+
+  followOrg() {
+
+  }
+
+  unfollowOrg() {
+    
+  }
 }
