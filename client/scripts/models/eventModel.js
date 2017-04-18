@@ -28,6 +28,10 @@ class EventModel extends BaseModel {
     }
   }
 
+  hasVenue() {
+    return this.venueID ? true : false;
+  }
+
   static processEventData(data){
     let events = [];
     data.forEach(evt => {

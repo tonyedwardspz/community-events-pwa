@@ -64,10 +64,16 @@ class EventController extends BaseController {
 
     if (app.online) {
       let evnt = EventModel.findByID(id, app.events);
-      let mapEmbed = app.eventView.mapEmbed();
       let html = document.createElement('div');
-      html.innerHTML = mapEmbed;
+      if (evnt.hasVenue()) {
+        let venue = Venue.findByID(evnt.venueID, app.venues);
+        let mapEmbed = app.eventView.mapEmbed(venue.lat, venue.long);
+        html.innerHTML = mapEmbed;
+      } else {
+        html.innerHTML = 'This event has no venue!';
+      }
       document.getElementById('show-map').replaceWith(html);
+
     } else {
       let ref = document.getElementById('show-map');
       let html = document.createElement('p');
