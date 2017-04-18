@@ -26,8 +26,8 @@ class DataController extends BaseController {
       if (cache) {
         cacheData = cache;
         // check to see if the cache is fresh
-        // if (dateHelpers.lastTwoHours(cache.date)){
-        if (1 ===2){
+        if (dateHelpers.lastTwoHours(cache.date)){
+        // if (1 ===2){
           console.log('[Cache] Is fresh', cache.date);
           res.send(JSON.stringify(cache.data));
         } else {
