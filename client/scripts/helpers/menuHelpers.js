@@ -2,12 +2,14 @@
 
 let setMenuListeners = () => {
   // listen for a click on a menu item
-  document.querySelectorAll('.nav-item').forEach(item => {
+  let navitems = document.querySelectorAll('.nav-item');
+  console.log(navitems);
+  for (var item of navitems) {
     item.addEventListener('click', e => {
       closeMenu();
       positionMenu();
     });
-  });
+  }
 
   // if menu main content is clicked
   app.wrap.addEventListener('click', e => {
