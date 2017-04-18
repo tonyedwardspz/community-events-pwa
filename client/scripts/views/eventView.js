@@ -18,7 +18,7 @@ class EventView extends BaseView {
     let hasVenue = evnt.venueID ? true : false;
     return `
       <div class="row">
-        <div class="column column-75">
+        <div class="column column-75 full-width">
           <h2>${evnt.title}</h2>
           <p>Date: ${evnt.getDisplayDate()}<br />
              Location: ${hasVenue ? venue.getDisplayVenue() : 'TBC'}</p>
@@ -128,7 +128,7 @@ class EventView extends BaseView {
     let hasVenue = event.venueID ? true : false;
     const trackedBullet = '<span class="is-tracked">Tracked</span>';
     return `<div class="row event-list-item">
-              <div class="column column-75">
+              <div class="column column-75 full-width">
                 <h3><a href="/event/${event.id}">${event.title}</a>
                 ${event.isTracked() ? trackedBullet : ''}</h3>
                 <p>${event.getDisplayDate()}<br />
