@@ -19,6 +19,7 @@ let env = gutil.env.env === 'PRODUCTION' ? true : false;
 
 gulp.task('scripts:es6', function() {
   return gulp.src(['./node_modules/babel-polyfill/dist/polyfill.min.js',
+                   './node_modules/whatwg-fetch/fetch.js',
                    './client/scripts/*/*.js',
                    './client/scripts/app.js'])
     .pipe(concat('app.js'))
