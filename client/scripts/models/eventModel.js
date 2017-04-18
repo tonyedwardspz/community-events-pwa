@@ -15,6 +15,27 @@ class EventModel extends BaseModel {
     this.source = source;
   }
 
+  get description(){
+    let clean = this._description;
+    clean = clean.replace('<H1>', '<p><strong>');
+    clean = clean.replace('</H1>', '</strong></p>');
+    clean = clean.replace('<H2>', '<p><strong>');
+    clean = clean.replace('</H2>', '</strong></p>');
+    clean = clean.replace('<H3>', '<p><strong>');
+    clean = clean.replace('</H3>', '</strong></p>');
+    clean = clean.replace('<h1>', '<p><strong>');
+    clean = clean.replace('</h1>', '</strong></p>');
+    clean = clean.replace('<h2>', '<p><strong>');
+    clean = clean.replace('</h2>', '</strong></p>');
+    clean = clean.replace('<h3>', '<p><strong>');
+    clean = clean.replace('</h3>', '</strong></p>');
+    return clean;
+  }
+
+  set description(desc) {
+    this._description = desc;
+  }
+
   getDisplayDate(){
     return convertDateToLocale(this.start);
   }
