@@ -39,7 +39,15 @@ class OrganisationView extends BaseView {
                 <div class="org-grid">`;
 
     orgs.forEach(org => {
-      html += `<div class="item">
+      let isTracked = true;
+
+      if (app.user !== null){
+        console.log('in iff');
+        if (app.user.trackedOrgs.includes(org.id)) {
+          isTracked = true;
+        } else { isTracked = false; }
+      }
+      html += `<div class="item ${isTracked ? 'tracked' : 'untracked'}">
                 <a href="/organisation/${org.id}" title="${org.name} page">
                   <img src="${org.logoURL}" alt="${org.name}">
                 </a>

@@ -8,6 +8,13 @@ class OrganisationController extends BaseController {
   index() {
     console.info('[Organisation] Index');
 
+    let orgs = app.organisations;
+    orgs.sort(function(a, b){
+      if(a.name < b.name) {return -1;}
+      if(a.name > b.name) {return 1;}
+      return 0;
+    });
+
     let html = app.organisationView.index();
 
     this.updateShell(html);

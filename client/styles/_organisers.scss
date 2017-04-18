@@ -9,6 +9,14 @@
   .item {
     padding: .6em;
 
+    &.tracked {
+      filter: none;
+    }
+
+    &.untracked {
+      filter: grayscale(100%);
+    }
+
     @media screen and (min-width: $mobile-breakpoint) {
       padding: .9em;
     }
