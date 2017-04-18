@@ -105,6 +105,7 @@ class EventView extends BaseView {
   }
 
   eventListItem(event, venue, org){
+    let hasVenue = event.venueID ? true : false;
     const trackedBullet = '<span class="is-tracked">Tracked</span>';
     return `<div class="row event-list-item">
               <div class="column column-75">
@@ -112,7 +113,7 @@ class EventView extends BaseView {
                 ${event.isTracked() ? trackedBullet : ''}</h3>
 
                 <p>Date: ${event.getDisplayDate()}<br />
-                Location: ${venue.getDisplayVenue(app.venues)}</p>
+                Location: ${hasVenue ? venue.getDisplayVenue() : 'TBC'}</p>
               </div>
               <div class="column event-list-profile-photo">
                 <img src="${org.logoURL}" alt="${org.name} logo"
@@ -129,7 +130,7 @@ class EventView extends BaseView {
                 <h3><a href="/event/${event.id}">${event.title}</a>
                 ${event.isTracked() ? trackedBullet : ''}</h3>
                 <p>${event.getDisplayDate()}<br />
-                   Location: ${venue.getDisplayVenue(app.venues)}</p>
+                   Location: ${venue.getDisplayVenue()}</p>
               </div>
               <div class="column">
                 <a href="/event/${event.id}" class="button pull-right">View Event</a>

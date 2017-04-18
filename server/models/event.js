@@ -29,17 +29,22 @@ class Evnt extends BaseModel {
   processMeetupData(events, subgroups) {
     let processed = [];
     events.forEach(evt => {
-      processed.push({
-        'id': evt.id,
-        'title': evt.name,
-        'description': evt.description,
-        'organiserID': evt.group.urlname,
-        'venueID': evt.venue.id,
-        'start': this.convertEpochDate(evt.time, evt.utc_offset),
-        'end': this.getEndDate(evt.time, evt.utc_offset, evt.duration),
-        'ticketURL': evt.link,
-        'source': 'meetup',
-      });
+      console.log('processing: ', evt.name);
+      try {
+        processed.push({
+          'id': evt.id,
+          'title': evt.name,
+          'description': evt.description,
+          'organiserID': evt.group.urlname,
+          'venueID': evt.venue ? evt.venue.id : null,
+          'start': this.convertEpochDate(evt.time, evt.utc_offset),
+          'end': this.getEndDate(evt.time, evt.utc_offset, evt.duration),
+          'ticketURL': evt.link,
+          'source': 'meetup',
+        });
+      } catch (e) {
+        console.log('Error processing meetup event: ', e);
+      }
     });
 
 

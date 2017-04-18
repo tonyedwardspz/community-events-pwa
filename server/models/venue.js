@@ -63,6 +63,11 @@ class Venue extends BaseModel {
     let processed = [];
 
     data.forEach(evt => {
+      if (!evt.venue){
+        console.log('no venue: ', evt.name);
+        return;
+      }
+
       let ven = evt.venue;
       let venue = {};
 

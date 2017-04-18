@@ -59,7 +59,9 @@ class Organiser extends BaseModel {
       let eventURLS = this.getMeetupURLS(urls);
 
       Promise.all(eventURLS.map( url =>
-        fetch(url).then(data => data.json())))
+        fetch(url)
+        .then(data => data.json())))
+        .catch(err => console.log('Error fetching events: ', err))
       .then(events => {
         resolve(events);
       })
@@ -81,7 +83,8 @@ class Organiser extends BaseModel {
     const stub = 'https://api.meetup.com/';
 
     orgs.forEach(org => {
-      if (org.apiURL === 'null'){
+      // is this a meetup URL?
+      if (org.apiURL === 'null' || org.apiURL === null){
         urls.push(
           `${stub}${org.id}/events?key=${process.env.MEETUP_TOKEN}&sign=true`);
       }

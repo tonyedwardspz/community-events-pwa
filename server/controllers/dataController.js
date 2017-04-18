@@ -26,7 +26,8 @@ class DataController extends BaseController {
       if (cache) {
         cacheData = cache;
         // check to see if the cache is fresh
-        if (dateHelpers.lastTwoHours(cache.date)){
+        // if (dateHelpers.lastTwoHours(cache.date)){
+        if (1 ===2){
           console.log('[Cache] Is fresh', cache.date);
           res.send(JSON.stringify(cache.data));
         } else {
@@ -65,14 +66,17 @@ class DataController extends BaseController {
             .then(data => Organiser.meetupPromise(allData.organisations))
             // Process Meetup data, matching subgroups to events & extracting venues
             .then(events => {
-              let processed = Evnt.processMeetupData(events[0], subgroups);
-              let venues = Venue.processMeetupVenueData(events[0]);
+              let allEvents = [];
+              events.forEach(arr => {
+                arr.map(e => allEvents.push(e));
+              });
+              let processed = Evnt.processMeetupData(allEvents, subgroups);
+              let venues = Venue.processMeetupVenueData(allEvents);
               processed.map(proc => allData.events.push(proc));
               venues.map(ven => allData.venues.push(ven));
               subgroups.map(sub => allData.organisations.push(sub));
               return;
             })
-            // Get the user if required
             // Send new data to client
             .then(() => res.send(JSON.stringify(allData)))
             // Update the cache
