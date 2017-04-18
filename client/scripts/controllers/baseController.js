@@ -18,5 +18,6 @@ class BaseController {
   updateShell(html) {
     this.clearDom();
     app.shell.innerHTML = html;
+    app.wrap.scrollTop = 0;
   }
 }
