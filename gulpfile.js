@@ -26,3 +26,15 @@ gulp.task('dev', function(cb) {
     'nodemon',
     cb);
 });
+
+gulp.task('debug', function(cb) {
+  return runSequence(
+    'clean',
+    allTasks,
+    'styles',
+    'serviceworker',
+    'watch',
+    'nodemon',
+    'serve',
+    cb);
+});
