@@ -1,0 +1,79 @@
+.event-org-logo {
+  height: 10em;
+  width: 10em;
+
+  @media screen and (min-width: $mobile-breakpoint) {
+    float: right;
+    height: auto;
+    width: 100%;
+  }
+}
+
+.event-list-profile-photo {
+  margin-top: -8em;
+
+  @media screen and (min-width: $mobile-breakpoint) {
+    margin-top: 0;
+  }
+}
+
+.title {
+  text-align: right;
+  margin-top: 3px;
+
+  a:link,
+  a:visited,
+  a:hover,
+  a:active {
+    color: $text-color;
+  }
+}
+
+.logo {
+  margin-top: 9px;
+  max-height: 34px;
+}
+
+.list-wrap div:first-of-type {
+  padding-top: 0;
+}
+
+.event-list-item {
+  padding-top: 1.5em;
+
+  @media screen and (max-width: $mobile-breakpoint) {
+    padding-bottom: 1.5em;
+  }
+}
+
+.is-tracked {
+  font-size: .4em;
+  text-transform: uppercase;
+  margin-left: 1em;
+  border-radius: 5px;
+  background: $main-color;
+  color: white;
+  padding: .3em .6em;
+  letter-spacing: .1em;
+}
+
+// Map
+.map-embed {
+  width: 100%;
+  height: 300px;
+  border: 0;
+}
+
+.month-boxes.row {
+  flex-direction: row;
+}
+
+.month-box {
+  text-align: center;
+
+  &.current {
+    a {
+      background-color: $alt-main-color;
+    }
+  }
+}

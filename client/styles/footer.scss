@@ -1,0 +1,19 @@
+footer {
+  border-top: .1rem solid #f4f5f6;
+  margin-top: .5rem;
+  background-color: $text-color;
+  padding: .5em 0;
+
+  p {
+    padding: .3em 0;
+    margin-bottom: 0;
+    color: white;
+    width: 50%;
+  }
+
+  a:link,
+  a:visited,
+  a:active {
+    color: white;
+  }
+}

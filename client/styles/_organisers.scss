@@ -1,0 +1,23 @@
+.org-grid {
+  display: grid;
+  grid-template-columns: 33.3% 33.3% 33.3%;
+
+  @media screen and (min-width: $mobile-breakpoint) {
+    grid-template-columns: 20% 20% 20% 20% 20%;
+  }
+
+  .item {
+    padding: .6em;
+
+    @media screen and (min-width: $mobile-breakpoint) {
+      padding: .9em;
+    }
+  }
+}
+
+.org-logo {
+  height: 100px;
+  max-height: 100px;
+  max-width: 100px;
+  width: 100px;
+}
