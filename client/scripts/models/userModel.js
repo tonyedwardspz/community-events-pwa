@@ -2,7 +2,8 @@
 
 class User extends BaseModel {
   constructor(userID, twitterID, googleID, email, firstName, lastName,
-      recieveEmail, recievePush, accessToken, refreshToken, profilePhoto, trackedEvents) {
+      recieveEmail, recievePush, accessToken, refreshToken, profilePhoto,
+      trackedEvents, trackedOrgs) {
     super();
     this.userID = userID;
     this.twitterID = twitterID;
@@ -15,8 +16,8 @@ class User extends BaseModel {
     this.accessToken = accessToken;
     this.refreshToken = refreshToken;
     this.profilePhoto = profilePhoto;
-
     this.trackedEvents = trackedEvents;
+    this.trackedOrgs = trackedOrgs;
   }
 
   static processUserData(data, cb) {
@@ -32,7 +33,8 @@ class User extends BaseModel {
       data.accessToken,
       data.refreshToken,
       data.profilePhoto,
-      data.trackedEvents
+      data.trackedEvents,
+      data.trackedOrgs
     );
 
     cb();
