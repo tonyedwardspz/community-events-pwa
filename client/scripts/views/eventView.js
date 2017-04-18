@@ -18,16 +18,15 @@ class EventView extends BaseView {
     let hasVenue = evnt.venueID ? true : false;
     return `
       <div class="row">
-        <div class="column column-75">
+        <div class="column column-75 full-width">
           <h2>${evnt.title}</h2>
           <p>Date: ${evnt.getDisplayDate()}<br />
              Location: ${hasVenue ? venue.getDisplayVenue() : 'TBC'}</p>
           <p>
             <a href="${evnt.ticketURL}" class="button"
               title="Book your place">Book your place</a>
-            <a href="/user/${tracked ? 'un': ''}track-event/${evnt.id}"
-              class="button ${tracked ? 'tracked': ''}" title="Track this event"
-              id="track-event">${tracked ? 'Untrack Event': 'Track Event'}</a>
+            <a href="#" title="Track this event" data-id="${evnt.id}" class="button"
+              id="${tracked ? 'un': ''}track-event">${tracked ? 'Untrack Event': 'Track Event'}</a>
             ${this.tweetButton(evnt, org)}
           </p>
         </div>
@@ -45,7 +44,7 @@ class EventView extends BaseView {
       <a href="" id="show-map" data-id="${evnt.id}" class="button">Show map</a>
 
       <div class="row divider"></div>
-      <h2><a href="/organisation/${org.id}">${org.name}</a> events</h2>
+      <h2>Upcoming <a href="/organisation/${org.id}">${org.name}</a> events</h2>
       ${app.organisationView.upcoming(org, orgEvents, false)}
       <a href="/organisation/${org.id}" class="button pull-right">
       View organisation events</a>
@@ -129,7 +128,7 @@ class EventView extends BaseView {
     let hasVenue = event.venueID ? true : false;
     const trackedBullet = '<span class="is-tracked">Tracked</span>';
     return `<div class="row event-list-item">
-              <div class="column column-75">
+              <div class="column column-75 full-width">
                 <h3><a href="/event/${event.id}">${event.title}</a>
                 ${event.isTracked() ? trackedBullet : ''}</h3>
                 <p>${event.getDisplayDate()}<br />
@@ -169,7 +168,6 @@ class EventView extends BaseView {
 
   // 106 chars before end
   tweetButton(evnt, org) {
-    console.log('TWEET - handle: ', org.twitterHandle);
     let base = '<a class="button" target="_blank" href="http://twitter.com/home?status=MESSAGE">Tweet this</a>';
     let msg = `Check out this event by ${org.twitterHandle ? '@' + org.twitterHandle : org.name} - ${evnt.title} `;
     if (msg.length >=106) {
@@ -178,9 +176,6 @@ class EventView extends BaseView {
     }
     msg += `https://community-events-pwa.herokuapp.com/event/${evnt.id} #GatherSW`;
     msg = encodeURIComponent(msg);
-    let url = base.replace('MESSAGE', msg);
-
-
-    return url;
+    return base.replace('MESSAGE', msg);
   }
 }

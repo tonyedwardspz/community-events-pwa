@@ -22,9 +22,7 @@ class OrganisationView extends BaseView {
                    ${twitter}</p>
               </div>
               <div class="column">
-                <img src="${org.logoURL}">
-              </div>
-              <div class="column">
+                <img src="${org.logoURL}" alt="${org.name} logo" class="event-org-logo">
               </div>
             </div>
             <hr>

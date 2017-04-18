@@ -10,6 +10,11 @@ var app;
     user: null,
     online: true,
     shell: document.querySelector('main'),
+    menuCheckbox: document.getElementById('nav-trigger-label'),
+    menu: document.getElementById('nav-trigger-label'),
+    header: document.getElementsByTagName('header')[0],
+    wrap: document.getElementById('site-wrap'),
+    menuCheckBox: document.getElementById('nav-trigger'),
     db: new Database(),
     dataController: new DataController(),
     dashboardController: new DashboardController(),
@@ -35,7 +40,12 @@ var app;
   loadContent();
 
   // Register service workers
-  setupServiceWorker();
+  // setupServiceWorker();
 
+  // Listen for changes in online status
   offlineListener();
+
+  // Style the menu on load & screen resize
+  menuStyleListener();
+
 })();

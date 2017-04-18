@@ -28,6 +28,9 @@ let insertAfter = (newNode, referenceNode) => {
   referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
 };
 
+/**
+* Sets up listeners for various forms.
+*/
 let formListeners = () => {
   app.shell.addEventListener('click', (e) => {
     if(e.target.id === 'save_user') {
@@ -57,5 +60,32 @@ let formListeners = () => {
       e.preventDefault();
       app.eventController.showMapEmbed(e.target.getAttribute('data-id'));
     }
+
+    else if (e.target.id === 'track-event') {
+      e.preventDefault();
+      app.userController.trackEvent(e.target.getAttribute('data-id'));
+    }
+
+    else if (e.target.id === 'untrack-event') {
+      e.preventDefault();
+      app.userController.untrackEvent(e.target.getAttribute('data-id'));
+    }
   });
 };
+
+/**
+* Debounce method for preventing multiple sequential calls, used with listeners
+* @param {Callback} fn The url to be processed
+* @param {String} wait the event / org name for the title attribute
+*/
+function debounce(fn, wait) {
+	let timeout;
+	return () => {
+		let ctx = this;
+    let args = arguments;
+		clearTimeout(timeout);
+		timeout = setTimeout(function() {
+		    fn.apply(ctx, args);
+		}, wait || 100);
+	};
+}

@@ -46,7 +46,7 @@ class UserController extends BaseController {
     let el = document.getElementById('track-event');
     el.classList.add('tracked');
     el.innerHTML = 'Untrack event';
-    el.setAttribute('href', `/user/untrack-event/${id}`);
+    el.id = 'untrack-event';
 
     if (app.user.trackEvent(id)) {
       app.db.publish(`/user/${app.user.id}`, app.user, 'PUT');
@@ -57,10 +57,10 @@ class UserController extends BaseController {
   untrackEvent(id) {
     console.info('[User] Untrack event: ', id);
 
-    let el = document.getElementById('track-event');
+    let el = document.getElementById('untrack-event');
     el.classList.remove('tracked');
     el.innerHTML = 'Track event';
-    el.setAttribute('href', `/user/track-event/${id}`);
+    el.id = 'track-event';
 
     if (app.user.removeTrackedEvent(id)) {
       app.db.publish(`/user/${app.user.id}`, app.user, 'PUT');

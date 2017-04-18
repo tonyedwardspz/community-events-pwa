@@ -71,3 +71,10 @@ a.button.tracked {
   margin: .5rem auto;
   width: 50vw;
 }
+
+.row .column.full-width {
+  @media screen and (max-width: $mobile-breakpoint) {
+    max-width: 100%;
+    flex: 0 0 100%;
+  }
+}

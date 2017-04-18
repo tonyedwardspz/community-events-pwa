@@ -52,6 +52,7 @@ class EventController extends BaseController {
 
     if (app.user){
       let events = EventModel.getEventsByIds(app.user.trackedEvents, app.events);
+      events.sort(sortByDate);
       html = app.eventView.tracked(events);
       html += app.eventView.eventList(events);
     }
