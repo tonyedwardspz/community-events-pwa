@@ -60,6 +60,16 @@ let formListeners = () => {
       e.preventDefault();
       app.eventController.showMapEmbed(e.target.getAttribute('data-id'));
     }
+
+    else if (e.target.id === 'track-event') {
+      e.preventDefault();
+      app.userController.trackEvent(e.target.getAttribute('data-id'));
+    }
+
+    else if (e.target.id === 'untrack-event') {
+      e.preventDefault();
+      app.userController.untrackEvent(e.target.getAttribute('data-id'));
+    }
   });
 };
 

@@ -25,9 +25,8 @@ class EventView extends BaseView {
           <p>
             <a href="${evnt.ticketURL}" class="button"
               title="Book your place">Book your place</a>
-            <a href="/user/${tracked ? 'un': ''}track-event/${evnt.id}"
-              class="button ${tracked ? 'tracked': ''}" title="Track this event"
-              id="track-event">${tracked ? 'Untrack Event': 'Track Event'}</a>
+            <a href="#" title="Track this event" data-id="${evnt.id}" class="button"
+              id="${tracked ? 'un': ''}track-event">${tracked ? 'Untrack Event': 'Track Event'}</a>
             ${this.tweetButton(evnt, org)}
           </p>
         </div>

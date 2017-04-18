@@ -40,7 +40,7 @@ var app;
   loadContent();
 
   // Register service workers
-  setupServiceWorker();
+  // setupServiceWorker();
 
   // Listen for changes in online status
   offlineListener();
