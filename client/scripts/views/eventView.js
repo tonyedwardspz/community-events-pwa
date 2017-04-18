@@ -28,6 +28,7 @@ class EventView extends BaseView {
             <a href="/user/${tracked ? 'un': ''}track-event/${evnt.id}"
               class="button ${tracked ? 'tracked': ''}" title="Track this event"
               id="track-event">${tracked ? 'Untrack Event': 'Track Event'}</a>
+            ${this.tweetButton(evnt, org)}
           </p>
         </div>
         <div class="column">
@@ -164,5 +165,22 @@ class EventView extends BaseView {
   mapEmbed(lat, long) {
     return `<iframe frameborder="0" allowfullscreen class="map-embed"
     src="https://maps.google.com/maps?q=${lat},${long}&hl=es;z=14&amp;output=embed"></iframe>`;
+  }
+
+  // 106 chars before end
+  tweetButton(evnt, org) {
+    console.log('TWEET - handle: ', org.twitterHandle);
+    let base = '<a class="button" target="_blank" href="http://twitter.com/home?status=MESSAGE">Tweet this</a>';
+    let msg = `Check out this event by ${org.twitterHandle ? '@' + org.twitterHandle : org.name} - ${evnt.title} `;
+    if (msg.length >=106) {
+      msg = msg.slice(0, 102);
+      msg += '...';
+    }
+    msg += `https://community-events-pwa.herokuapp.com/event/${evnt.id} #GatherSW`;
+    msg = encodeURIComponent(msg);
+    let url = base.replace('MESSAGE', msg);
+
+
+    return url;
   }
 }
