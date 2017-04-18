@@ -15,7 +15,7 @@ gulp.task('styles:watch', function() {
 });
 
 gulp.task('styles:sass', function() {
-  return gulp.src(['./node_modules/milligram/dist/milligram.css', './client/styles/*.scss'])
+  return gulp.src(['./node_modules/milligram/dist/milligram.css', './client/styles/inline.scss'])
     .pipe(concat('inline.scss'))
     .pipe(sass().on('error', sass.logError))
     .pipe(autoprefixer([

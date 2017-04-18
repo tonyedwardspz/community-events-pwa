@@ -1,0 +1,29 @@
+.profile-photo {
+  clip-path: polygon(50% 0%, 83% 12%, 100% 43%, 94% 78%, 68% 100%, 32% 100%, 6% 78%, 0% 43%, 17% 12%);
+  height: 200px;
+  max-height: 200px;
+  max-width: 200px;
+  width: 200px;
+}
+
+.profile-photo-container {
+  padding-bottom: 1em;
+}
+
+.popover {
+  height: 40em;
+  width: 40em;
+  background-color: #fff;
+  margin: auto;
+  z-index: 100;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  padding: 20%;
+
+  @media screen and (max-width: $mobile-breakpoint) {
+    height: 90vh;
+    width: 100vw;
+  }
+}

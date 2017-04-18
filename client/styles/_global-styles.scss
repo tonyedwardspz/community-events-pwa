@@ -1,0 +1,73 @@
+//---------- Google fonts ----------\\
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Roboto Light'), local('Roboto-Light'), local('sans-serif-light'), url(https://fonts.gstatic.com/s/roboto/v15/Hgo13k-tfSpn0qi1SFdUfZBw1xU1rKptJj_0jans920.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Roboto Bold'), local('Roboto-Bold'), local('sans-serif'), url(https://fonts.gstatic.com/s/roboto/v15/d-6IYplOFocCacKzxwXSOJBw1xU1rKptJj_0jans920.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}
+
+//---------- Global Styles ----------\\
+body {
+  margin: 0;
+  overflow-x: hidden;
+  color: #606c76;
+  font-family: 'Roboto', -apple-system,".SFNSText-Regular","San Francisco",Oxygen,Ubuntu,Roboto,"Segoe UI","Helvetica Neue","Lucida Grande", sans-serif;
+}
+
+input[type=text],
+input[type=email] {
+  font-size: initial;
+
+  &:disabled {
+    background-color: lightgrey;
+  }
+}
+
+a.disabled {
+  background-color: lightgrey;
+}
+
+a.button.tracked {
+  background-color: $alt-main-color;
+}
+
+.main {
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 800px;
+}
+
+.pull-right {
+  float: right;
+}
+
+.pull-right::after {
+  clear: both;
+}
+
+.button-disabled {
+  background-color: grey;
+  border: .1rem solid #000;
+}
+
+.center {
+  text-align: center;
+}
+
+.divider {
+  border: 0;
+  border-top: .1rem solid #f4f5f6;
+  margin: .5rem auto;
+  width: 50vw;
+}
