@@ -15,12 +15,13 @@ class EventView extends BaseView {
   * @return {String} The HTML string for display
   */
   show(evnt, org, orgEvents, venue, tracked = false) {
+    let hasVenue = evnt.venueID ? true : false;
     return `
       <div class="row">
         <div class="column column-75">
           <h2>${evnt.title}</h2>
           <p>Date: ${evnt.getDisplayDate()}<br />
-             Location: ${venue.getDisplayVenue()}</p>
+             Location: ${hasVenue ? venue.getDisplayVenue() : 'TBC'}</p>
           <p>
             <a href="${evnt.ticketURL}" class="button"
               title="Book your place">Book your place</a>
@@ -40,7 +41,7 @@ class EventView extends BaseView {
       ${evnt.description}
 
       <div class="row divider"></div>
-      <a href="" id="show-map" data-id="${venue.id}" class="button">Show map</a>
+      <a href="" id="show-map" data-id="${evnt.id}" class="button">Show map</a>
 
       <div class="row divider"></div>
       <h2><a href="/organisation/${org.id}">${org.name}</a> events</h2>
@@ -162,7 +163,6 @@ class EventView extends BaseView {
 
   mapEmbed(lat, long) {
     return `<iframe frameborder="0" allowfullscreen class="map-embed"
-      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3047.426779637843!2d-${long}!3d${lat}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTDCsDIyJzA5LjQiTiA0wrAwOCcxOC44Ilc!5e0!3m2!1sen!2suk!4v1492448183454">
-     </iframe>`;
+    src="https://maps.google.com/maps?q=${lat},${long}&hl=es;z=14&amp;output=embed"></iframe>`;
   }
 }
