@@ -32,18 +32,33 @@ class OrganisationView extends BaseView {
   }
 
   index(orgs = app.organisations) {
+    let noUserTxt = `<p><a href="/user/login">Login</a> to filter organisations.</p>`;
     let html = `<h2>Organisers</h2>
+                ${app.user ? '' : noUserTxt}
                 <p>Showing all ${orgs.length} organisers</p>
                 <a href="https://tonyedwardspz.typeform.com/to/jwEbTA" title="Suggest new organiser"
                 target="_blank" class="button">Add organiser</a>
                 <div class="org-grid">`;
 
     orgs.forEach(org => {
-      html += `<div class="item">
+      let isTracked = true;
+
+      if (app.user !== null){
+        if (app.user.trackedOrgs.includes(org.id)) {
+          isTracked = true;
+        } else { isTracked = false; }
+      }
+      html += `<div class="item ${isTracked ? 'tracked' : 'untracked'}" id="org-item-${org.id}">
+                <p>${org.name}</p>
                 <a href="/organisation/${org.id}" title="${org.name} page">
                   <img src="${org.logoURL}" alt="${org.name}">
-                </a>
-               </div>`;
+                </a>`;
+
+                if (app.user) {
+                  html += `<a href="#" id="org-follow-${org.id}" data-id="${org.id}" data-action="track-org"
+                    class="button">${isTracked?'un':''}follow</a>`;
+                }
+                html +=`</div>`;
     });
 
     return html += `</div>`;

@@ -51,13 +51,14 @@ class UserController extends BaseController {
       email: req.body.email,
       recieveEmail: req.body.recieveEmail,
       recievePush: req.body.recievePush,
-      trackedEvents: req.body.trackedEvents
+      trackedEvents: req.body.trackedEvents,
+      trackedOrgs: req.body.trackedOrgs
     }}, (err, updated) => {
       if (err){
         console.log('Error updating user', err);
       } else {
         console.log(`[User] updated: ${updated}`);
-        res.send(updated);
+        res.send(JSON.stringify(updated));
       }
     });
   }

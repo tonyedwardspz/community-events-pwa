@@ -8,9 +8,33 @@
 
   .item {
     padding: .6em;
+    text-align: center;
+
+    &.tracked img {
+      filter: none;
+    }
+
+    &.untracked img {
+      filter: grayscale(100%);
+    }
 
     @media screen and (min-width: $mobile-breakpoint) {
       padding: .9em;
+    }
+
+    .button {
+      padding: 0 2rem;
+    }
+
+    p {
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      text-align: left;
+      min-height: 3.3em;
+
+      @media screen and (max-width: $mobile-breakpoint) {
+        font-size: 0.9em;
+      }
     }
   }
 }

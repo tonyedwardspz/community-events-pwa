@@ -10,8 +10,7 @@ class DashboardController extends BaseController {
   index() {
     console.info('[Dashboard]: index');
 
-    let evnts = app.events.slice();
-    evnts.sort(sortByDate);
+    let evnts = EventModel.getTrackedEvents();
     if (evnts.length > 7){
       evnts.length = 7;
     }

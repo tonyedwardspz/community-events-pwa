@@ -14,6 +14,13 @@ class User extends BaseModel {
     }
   }
 
+  defaulTrackedOrgs() {
+    return ['6377821409', '11761620027', 'techexeter', '8225401568',
+      'Cornwall-Digital', 'Digital-Exeter', 'AgileSouthWest', 'Plymouth-Web',
+      'hVwi8wFm8qwexGwr7891n34x913', 'niux6i76QBI6Ppi7yxpisuHa8wy',
+      'CIAHQy0aMziIvOFikGeyg2lZeAC5KxcS', 'JFNoAXzlQ4Is2kHpUouCSLbOEGksUDyh'];
+  }
+
   /**
   * Returns the mongoose schema for the user model
   * @return {Mongoose.schema} The schema for the user model
@@ -31,7 +38,8 @@ class User extends BaseModel {
       accessToken: String,
       refreshToken: String,
       profilePhoto: String,
-      trackedEvents: Array
+      trackedEvents: Array,
+      trackedOrgs: Array
     });
   }
 }

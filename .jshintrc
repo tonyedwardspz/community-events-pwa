@@ -40,6 +40,7 @@
     "_arguments": true,
     "menuStyleListener": true,
     "debounce": true,
+    "switchClass": true,
 
     "BaseController": true,
     "EventController": true,

@@ -2,7 +2,8 @@
 
 class User extends BaseModel {
   constructor(userID, twitterID, googleID, email, firstName, lastName,
-      recieveEmail, recievePush, accessToken, refreshToken, profilePhoto, trackedEvents) {
+      recieveEmail, recievePush, accessToken, refreshToken, profilePhoto,
+      trackedEvents, trackedOrgs) {
     super();
     this.userID = userID;
     this.twitterID = twitterID;
@@ -15,8 +16,8 @@ class User extends BaseModel {
     this.accessToken = accessToken;
     this.refreshToken = refreshToken;
     this.profilePhoto = profilePhoto;
-
     this.trackedEvents = trackedEvents;
+    this.trackedOrgs = trackedOrgs;
   }
 
   static processUserData(data, cb) {
@@ -32,10 +33,22 @@ class User extends BaseModel {
       data.accessToken,
       data.refreshToken,
       data.profilePhoto,
-      data.trackedEvents
+      data.trackedEvents,
+      data.trackedOrgs
     );
 
     cb();
+  }
+
+  static getTrackedOrgs() {
+    if (app.user && app.user.trackedOrgs) {
+      return app.user.trackedOrgs;
+    } else {
+      return ['6377821409', '11761620027', 'techexeter', '8225401568',
+        'Cornwall-Digital', 'Digital-Exeter', 'AgileSouthWest', 'Plymouth-Web',
+        'hVwi8wFm8qwexGwr7891n34x913', 'niux6i76QBI6Ppi7yxpisuHa8wy',
+        'CIAHQy0aMziIvOFikGeyg2lZeAC5KxcS', 'JFNoAXzlQ4Is2kHpUouCSLbOEGksUDyh'];
+    }
   }
 
   updateFromForm(form) {
@@ -68,5 +81,16 @@ class User extends BaseModel {
       console.log('[User Model] Error untracking event', e);
     }
     return false;
+  }
+
+  followOrg(id) {
+    this.trackedOrgs.push(id);
+  }
+
+  unfollowOrg(id) {
+    let index = this.trackedOrgs.indexOf(id);
+    if (index > -1) {
+      this.trackedOrgs.splice(index, 1);
+    }
   }
 }

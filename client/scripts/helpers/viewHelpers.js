@@ -70,6 +70,11 @@ let formListeners = () => {
       e.preventDefault();
       app.userController.untrackEvent(e.target.getAttribute('data-id'));
     }
+
+    else if (e.target.getAttribute('data-action') === 'track-org') {
+      e.preventDefault();
+      app.organisationController.follow(e.target.getAttribute('data-id'));
+    }
   });
 };
 
@@ -89,3 +94,8 @@ function debounce(fn, wait) {
 		}, wait || 100);
 	};
 }
+
+let switchClass = (el, old, nw) => {
+  el.classList.add(nw);
+  el.classList.remove(old);
+};

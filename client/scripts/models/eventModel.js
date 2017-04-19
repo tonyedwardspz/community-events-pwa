@@ -36,6 +36,22 @@ class EventModel extends BaseModel {
     this._description = desc;
   }
 
+  static getTrackedEvents() {
+    let events = [];
+    app.events.forEach(e => {
+      if (app.user){
+        if (User.getTrackedOrgs().includes(e.organiserID)){
+          events.push(e);
+        }
+      } else {
+        events.push(e);
+      }
+
+    });
+    events.sort(sortByDate);
+    return events;
+  }
+
   getDisplayDate(){
     return convertDateToLocale(this.start);
   }

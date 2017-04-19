@@ -46,7 +46,9 @@ module.exports = function(passport) {
           recievePush: false,
           accessToken: token,
           refreshToken: tokenSecret,
-          profilePhoto: profile.profile_image_url_https.replace('_normal', '')
+          profilePhoto: profile.profile_image_url_https.replace('_normal', ''),
+          trackedEvents: [],
+          trackedOrgs: User.defaulTrackedOrgs()
         });
       }
 
