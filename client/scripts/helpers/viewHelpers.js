@@ -94,3 +94,8 @@ function debounce(fn, wait) {
 		}, wait || 100);
 	};
 }
+
+let switchClass = (el, old, nw) => {
+  el.classList.add(nw);
+  el.classList.remove(old);
+};

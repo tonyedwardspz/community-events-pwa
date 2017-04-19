@@ -34,31 +34,17 @@ class OrganisationController extends BaseController {
   follow(id) {
     console.log('[Organisation] Follow', id);
 
-    // if user dosnt follow, follow the org
-    // else unfollow the org
+    // if user follows, unfollow the org else follow it
     let el = document.getElementById('org-follow-' + id);
     let container = document.getElementById('org-item-' + id);
     if (app.user.trackedOrgs.includes(id)) {
-
-      console.log('[Organisation] Unfollowing org: ', id);
-      let index = app.user.trackedOrgs.indexOf(id);
-      if (index > -1) {
-        app.user.trackedOrgs.splice(index, 1);
-      }
-      console.log(app.user.trackedOrgs);
-
+      app.user.unfollowOrg(id);
+      switchClass(container, 'tracked', 'untracked');
       el.innerHTML = 'follow';
-      container.classList.remove('tracked');
-      container.classList.add('untracked');
-
     } else {
-      console.log('[Organisation] Following org: ', id);
-      app.user.trackedOrgs.push(id);
-      console.log(app.user.trackedOrgs);
-
+      app.user.followOrg(id);
+      switchClass(container, 'untracked', 'tracked');
       el.innerHTML = 'unfollow';
-      container.classList.add('tracked');
-      container.classList.remove('untracked');
     }
     app.db.publish(`/user/${app.user.id}`, app.user, 'PUT');
   }

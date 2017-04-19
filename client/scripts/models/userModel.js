@@ -72,11 +72,14 @@ class User extends BaseModel {
     return false;
   }
 
-  followOrg() {
-
+  followOrg(id) {
+    this.trackedOrgs.push(id);
   }
 
-  unfollowOrg() {
-    
+  unfollowOrg(id) {
+    let index = this.trackedOrgs.indexOf(id);
+    if (index > -1) {
+      this.trackedOrgs.splice(index, 1);
+    }
   }
 }
