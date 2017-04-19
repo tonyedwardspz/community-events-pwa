@@ -39,11 +39,13 @@ class OrganisationController extends BaseController {
     let el = document.getElementById('org-follow-' + id);
     let container = document.getElementById('org-item-' + id);
     if (app.user.trackedOrgs.includes(id)) {
+
       console.log('[Organisation] Unfollowing org: ', id);
       let index = app.user.trackedOrgs.indexOf(id);
       if (index > -1) {
         app.user.trackedOrgs.splice(index, 1);
       }
+      console.log(app.user.trackedOrgs);
 
       el.innerHTML = 'follow';
       container.classList.remove('tracked');
@@ -52,6 +54,7 @@ class OrganisationController extends BaseController {
     } else {
       console.log('[Organisation] Following org: ', id);
       app.user.trackedOrgs.push(id);
+      console.log(app.user.trackedOrgs);
 
       el.innerHTML = 'unfollow';
       container.classList.add('tracked');
