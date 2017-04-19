@@ -15,7 +15,7 @@ class User extends BaseModel {
   }
 
   defaulTrackedOrgs() {
-    return ['6377821409', '11761620027', 'techexeter',
+    return ['6377821409', '11761620027', 'techexeter', '8225401568',
       'Cornwall-Digital', 'Digital-Exeter', 'AgileSouthWest', 'Plymouth-Web',
       'hVwi8wFm8qwexGwr7891n34x913', 'niux6i76QBI6Ppi7yxpisuHa8wy',
       'CIAHQy0aMziIvOFikGeyg2lZeAC5KxcS', 'JFNoAXzlQ4Is2kHpUouCSLbOEGksUDyh'];
