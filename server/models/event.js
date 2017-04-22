@@ -30,20 +30,24 @@ class Evnt extends BaseModel {
     let processed = [];
     events.forEach(evt => {
       console.log('processing: ', evt.name);
-      try {
-        processed.push({
-          'id': evt.id,
-          'title': evt.name,
-          'description': evt.description,
-          'organiserID': evt.group.urlname,
-          'venueID': evt.venue ? evt.venue.id : null,
-          'start': this.convertEpochDate(evt.time, evt.utc_offset),
-          'end': this.getEndDate(evt.time, evt.utc_offset, evt.duration),
-          'ticketURL': evt.link,
-          'source': 'meetup',
-        });
-      } catch (e) {
-        console.log('Error processing meetup event: ', e);
+      if (evt.name.toLowerCase() !== 'tbc' && evt.name.toLowerCase() !== 'tbd') {
+        try {
+          processed.push({
+            'id': evt.id,
+            'title': evt.name,
+            'description': evt.description,
+            'organiserID': evt.group.urlname,
+            'venueID': evt.venue ? evt.venue.id : null,
+            'start': this.convertEpochDate(evt.time, evt.utc_offset),
+            'end': this.getEndDate(evt.time, evt.utc_offset, evt.duration),
+            'ticketURL': evt.link,
+            'source': 'meetup',
+          });
+        } catch (e) {
+          console.log('Error processing meetup event: ', e);
+        }
+      } else {
+        console.log('processing skipped for: ', evt.name);
       }
     });
 
