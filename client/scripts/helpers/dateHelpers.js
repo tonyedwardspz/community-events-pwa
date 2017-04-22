@@ -80,7 +80,6 @@ let getFullMonthName = (shortMonth) => {
                   'Jul','Aug','Sep','Oct','Nov','Dec'];
   const longMonths = ['January', 'February', 'March', 'April', 'May', 'June',
               'July', 'August', 'September', 'October', 'November', 'December'];
-  console.log('[getFullMonth()] ', shortMonth);
 
   for(let i = 0; i < months.length; i++) {
     if (shortMonth.toLowerCase() === months[i].toLowerCase()){

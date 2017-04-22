@@ -100,7 +100,6 @@ class EventModel extends BaseModel {
         events.push(event);
       }
     });
-    console.log(`[Events] Get events for month ${month}: `, events);
     return events;
   }
 }

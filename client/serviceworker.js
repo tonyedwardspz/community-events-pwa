@@ -5,6 +5,9 @@
 const cacheName = `gsw-${version}-static`;
 const cacheFiles = [
   '/scripts/app.js',
+  '/scripts/require.js',
+  '/scripts/lib/page.js',
+
   '/index.html',
   '/manifest.json',
   '/images/icons/favicon.ico',
@@ -12,6 +15,8 @@ const cacheFiles = [
   '/images/icons/favicon-194x194.png',
   '/images/icons/favicon-32x32.png',
   '/',
+
+  '/events/month',
   '/events/month/jan',
   '/events/month/feb',
   '/events/month/mar',
@@ -36,6 +41,7 @@ function updateStaticCache() {
 
 // Save an item into the cache
 function stashInCache(cacheName, request, response) {
+  console.log('[SW] Stashing in cache');
   caches.open(cacheName).then( cache => cache.put(request, response));
 }
 
@@ -101,19 +107,25 @@ self.addEventListener('fetch', event => {
     return;
   }
 
-  // Try the network first, fall back to the cache for the majority of calls,
-  // finally redirect to base url to allow app.js to send user to the dashboard
+  // Ignore requests for data:// (inline svg in CSS)
+  if (url.protocol.includes('data')) {
+    return;
+  }
+
+  // Try the network first, fall back to the cache for the majority of calls or
+  // return the index file and let the app 'reboot'.
     event.respondWith(
       fetch(request).then( response => {
+        console.log('[SW] Getting from network');
         // NETWORK - Stash a copy of this response in the pages cache
         let copy = response.clone();
         stashInCache(cacheName, request, copy);
         return response;
       })
       .catch( () => {
+        console.log('[SW] Getting from cache');
         // CACHE - Check cache or fallback to base
-        return caches.match(request)
-          .then( response => response || caches.match('/') );
+        return caches.match(request) || caches.match('/index.html');
       })
     );
     return;
