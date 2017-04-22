@@ -43,17 +43,21 @@ class Venue extends BaseModel {
     let results = [];
 
     allData.forEach(data => {
-      let venue = {};
-      venue.id = data.id;
-      venue.name = data.name;
-      venue.address = data.address.localized_address_display;
-      venue.postcode = data.address.postal_code ? data.address.postal_code :
-                       this.extractPostcode(venue.address)[0];
-      venue.lat = data.latitude;
-      venue.long = data.longitude;
-      venue.geographic = data.address.localized_area_display;
+      try {
+        let venue = {};
+        venue.id = data.id;
+        venue.name = data.name;
+        venue.address = data.address.localized_address_display;
+        venue.postcode = data.address.postal_code ? data.address.postal_code :
+                         this.extractPostcode(venue.address)[0];
+        venue.lat = data.latitude;
+        venue.long = data.longitude;
+        venue.geographic = data.address.localized_area_display;
 
-      results.push(venue);
+        results.push(venue);
+      } catch (err) {
+        console.log('[Evenbrite Venue] Error processing venue: ', err);
+      }
     });
 
     return results;
