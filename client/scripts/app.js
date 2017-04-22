@@ -27,6 +27,9 @@ var app;
     userView: new UserView()
   };
 
+  // Style the menu on load & screen resize
+  menuStyleListener();
+
   // Setup the page.js client side routing
   setupRoutes();
 
@@ -44,8 +47,5 @@ var app;
 
   // Listen for changes in online status
   offlineListener();
-
-  // Style the menu on load & screen resize
-  menuStyleListener();
 
 })();
