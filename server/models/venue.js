@@ -47,7 +47,7 @@ class Venue extends BaseModel {
       venue.id = data.id;
       venue.name = data.name;
       venue.address = data.address.localized_address_display;
-      venue.postcode = data.address.postcode ? data.address.postcode :
+      venue.postcode = data.address.postal_code ? data.address.postal_code :
                        this.extractPostcode(venue.address)[0];
       venue.lat = data.latitude;
       venue.long = data.longitude;
@@ -100,7 +100,12 @@ class Venue extends BaseModel {
 
   extractPostcode(address) {
     let postcode_regex = /[A-Z]{1,2}[0-9][0-9A-Z]?\s?[0-9][A-Z]{2}/gi;
-    return address.match(postcode_regex);
+    let pc = address.match(postcode_regex);
+    if (pc) {
+      return pc;
+    } else {
+      return address;
+    }
   }
 }
 

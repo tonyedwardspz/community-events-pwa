@@ -58,12 +58,12 @@ class DataController extends BaseController {
             })
             // Fetch venues from eventbrite
             .then(data => Venue.venuesPromise(data.events))
-            // Process eventbrite venues
-            .then(venues => Venue.processEventbriteVenueData(venues))
-            // Save venues to data structure
-            .then(venues => allData.venues = venues)
+            // Process eventbrite venues and save venues to data structure
+            .then(venues =>
+              allData.venues = Venue.processEventbriteVenueData(venues)
+            )
             // Get events from meetup
-            .then(data => Organiser.meetupPromise(allData.organisations))
+            .then(() => Organiser.meetupPromise(allData.organisations))
             // Process Meetup data, matching subgroups to events & extracting venues
             .then(events => {
               let allEvents = [];
