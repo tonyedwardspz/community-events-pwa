@@ -35,7 +35,7 @@ class OrganisationView extends BaseView {
     let noUserTxt = `<p><a href="/user/login">Login</a> to filter organisations.</p>`;
     let html = `<h2>Organisers</h2>
                 ${app.user ? '' : noUserTxt}
-                <p>Showing all ${orgs.length} organisers</p>
+                <p>Showing all ${orgs.length} organisers.</p>
                 <a href="https://tonyedwardspz.typeform.com/to/jwEbTA" title="Suggest new organiser"
                 target="_blank" class="button">Add organiser</a>
                 <div class="org-grid">`;
@@ -56,7 +56,7 @@ class OrganisationView extends BaseView {
 
                 if (app.user) {
                   html += `<a href="#" id="org-follow-${org.id}" data-id="${org.id}" data-action="track-org"
-                    class="button">${isTracked?'un':''}follow</a>`;
+                    class="button ${isTracked?'danger':'success'}">${isTracked?'un':''}follow</a>`;
                 }
                 html +=`</div>`;
     });

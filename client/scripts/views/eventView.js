@@ -52,7 +52,8 @@ class EventView extends BaseView {
   }
 
   showMonth(events, month, currentMonth) {
-    let html = `<h2>${getFullMonthName(month)}s Events</h2>`;
+    let html = `<h2>${getFullMonthName(month)}'s Events</h2>`;
+    html += `<p>Showing ${capitalize(getFullMonthName(month))}'s events for all organisations.<p>`;
     html += this.monthButtons(getNextFourMonths(), month);
     html += '<hr />';
     html += app.eventView.eventList(events);
@@ -65,11 +66,14 @@ class EventView extends BaseView {
   * @return {String} The HTML string for display
   */
   tracked(events) {
-    let html = `<h2>Tracked Events</h2>
-      <p>Here's the ${events.length} upcoming event${events.length > 1 ? 's' : ''}
+    let html = `<h2>Tracked Events</h2>`;
+    if (events.length === 0) {
+      return html += `<p>Your not currently tracking any events. <a href="/events">Find an event</a> you
+               like, track it... and it'll apear here.<p>`;
+    } else {
+      return html += `<p>Here's the ${events.length} upcoming event${events.length > 1 ? 's' : ''}
         you're tracking.</p>`;
-
-    return html;
+    }
   }
 
   /**
@@ -78,8 +82,19 @@ class EventView extends BaseView {
   * @return {String} The HTML string for display
   */
   index(events = []) {
+    let descText = '';
+    if (app.user !== null){
+      descText = `<p>Showing all upcoming events for your
+                  <a href="/organisations" title="Tracked organisers">tracked
+                  organisations</a>.</p>`;
+    } else {
+      descText = `<p>Showing all upcoming events for all <a href="/organisations" title="Tracked organisers">
+      organisations</a>.</p>`;
+    }
     return `
-      <h2>All upcoming events</h2>
+      <h2>Upcoming events</h2>
+      ${descText}
+      <hr />
       ${this.eventList(events)}
     `;
   }
@@ -151,7 +166,8 @@ class EventView extends BaseView {
         }
         html += `
           <div class="month-box column column-25 ${current ? 'current' : ''}">
-            <a class="button" href="/events/month/${month.toLowerCase()}">${month}</a>
+            <a class="button ${current ? 'success' : ''}"
+            href="/events/month/${month.toLowerCase()}">${month}</a>
           </div>
         `;
       });
