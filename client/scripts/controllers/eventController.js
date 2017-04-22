@@ -50,7 +50,9 @@ class EventController extends BaseController {
   tracked() {
     console.log('[Event] Tracked');
 
-    let html = '<p>No tracked events</p>';
+    let html = `<p>No tracked events.
+                <a href="/user/login" title="login">Login</a>
+                to begin tracking events you're interested in.</p>`;
 
     if (app.user){
       let events = EventModel.getEventsByIds(app.user.trackedEvents, app.events);
