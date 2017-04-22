@@ -20,15 +20,18 @@ let loadContent = () => {
     app.dataController.getData(() => {
 
       // If user is loged in, get that data too
-      if (readCookie('user_id') && !readCookie('user_id').includes('null')) {
-        app.dataController.getUser(readCookie('user_id'), user => {
-          console.log('[Get user callback]', newUrl);
+      if (!app.user) {
+        if (readCookie('user_id') && !readCookie('user_id').includes('null')) {
+          app.dataController.getUser(readCookie('user_id'), user => {
+            console.log('[Get user callback]', newUrl);
 
-          if (newUrl === '/user') {
-            app.userController.show();
-          }
-        });
+            if (newUrl === '/user') {
+              app.userController.show();
+            }
+          });
+        }
       }
+
 
       // redirect the user to the appropriate view, not that data has loaded
       if(newUrl === '/events'){
