@@ -10,8 +10,8 @@ exports.lastTwoHours = (date) => {
   const TWO_HOURS_AGO = Date.now() - TWO_HOURS;
   let d = new Date(date);
 
-  console.log('[DATE HELPER]: ' + new Date(TWO_HOURS_AGO));
-  console.log('[DATE HELPER]: ' + new Date(date));
+  console.log('[Date Helper]: ' + new Date(TWO_HOURS_AGO));
+  console.log('[Date Helper]: ' + new Date(date));
 
   if (d > TWO_HOURS_AGO) {
     return true;

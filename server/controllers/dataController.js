@@ -18,8 +18,6 @@ class DataController extends BaseController {
   getData(req, res) {
     console.log('[Data Controller] Getting all data');
 
-    console.log('[USER ID COOKIE]', req.cookies.user_id);
-
     // Check the cache for recent data
     let cacheData = {};
     CacheModel.findOne({ id: process.env.CACHE_ID}, function(err, cache) {
@@ -27,7 +25,7 @@ class DataController extends BaseController {
         cacheData = cache;
         // check to see if the cache is fresh
         if (dateHelpers.lastTwoHours(cache.date)){
-        // if (1 ===2){
+        // if (1 === 2){
           console.log('[Cache] Is fresh', cache.date);
           res.send(JSON.stringify(cache.data));
         } else {
@@ -93,7 +91,7 @@ class DataController extends BaseController {
             })
             .catch(err => {
               console.log('Error retrieving events', err);
-              res.send(500, { error: 'Error retrieving events' });
+              res.status(500).send({ error: 'Error retrieving events' });
             });
 
           }, function(err) {

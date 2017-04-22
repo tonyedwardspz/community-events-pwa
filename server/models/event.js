@@ -29,8 +29,8 @@ class Evnt extends BaseModel {
   processMeetupData(events, subgroups) {
     let processed = [];
     events.forEach(evt => {
-      console.log('processing: ', evt.name);
       if (evt.name.toLowerCase() !== 'tbc' && evt.name.toLowerCase() !== 'tbd') {
+        console.log('processing: ', evt.name);
         try {
           processed.push({
             'id': evt.id,
