@@ -56,10 +56,24 @@ a.button.tracked {
   clear: both;
 }
 
+
+
 .button-disabled {
   background-color: grey;
   border: .1rem solid #000;
 }
+
+.button.danger {
+  background-color: $danger-red;
+  border-color: lighten($danger-red, 10%);
+}
+
+.button.success {
+  background-color: $success-green;
+  border-color: lighten($success-green, 10%);
+}
+
+
 
 .center {
   text-align: center;

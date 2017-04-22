@@ -41,7 +41,7 @@ class UserView extends BaseView {
 
         <div class="column">
         <p>
-          <a href="" id="edit-profile" class="button">Edit Profile</a>
+          <a href="" id="edit-profile" class="button success">Edit Profile</a>
         </p>
         ${updated ? updatedText : ''}
         <form name="show_user">
@@ -76,8 +76,9 @@ class UserView extends BaseView {
 
           </div>
 
-          <input class="button-primary pull-right" type="submit" value="Update" id="save_user"
-                  ${app.online ? '' : 'disabled'} disabled>
+          <input class="button pull-right success" type="submit"
+                 value="Update" id="save_user"
+                 ${app.online ? '' : 'disabled'} disabled>
 
         </fieldset>
         </form>

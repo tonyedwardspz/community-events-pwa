@@ -34,6 +34,7 @@ class DataController extends BaseController {
       User.processUserData(user, () => {
         let userMenu = document.getElementById('user-menu');
         userMenu.innerHTML = app.userView.loggedIn();
+        loadContent();
 
         if (app.user && (app.user.email.length === 0 || app.user.email === null)){
           let body = document.getElementsByTagName('body')[0];

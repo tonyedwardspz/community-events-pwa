@@ -25,6 +25,7 @@ class OrganisationController extends BaseController {
 
     let org = Organisation.findByID(id, app.organisations);
     let orgEvents = Organisation.getOrgEvents(id, app.events);
+    orgEvents.sort(sortByDate);
 
     let html = app.organisationView.show(org, orgEvents);
 
@@ -37,13 +38,17 @@ class OrganisationController extends BaseController {
     // if user follows, unfollow the org else follow it
     let el = document.getElementById('org-follow-' + id);
     let container = document.getElementById('org-item-' + id);
+    let button = document.getElementById('org-follow-' + id);
     if (app.user.trackedOrgs.includes(id)) {
       app.user.unfollowOrg(id);
       switchClass(container, 'tracked', 'untracked');
+      switchClass(button, 'danger', 'success');
       el.innerHTML = 'follow';
     } else {
       app.user.followOrg(id);
       switchClass(container, 'untracked', 'tracked');
+      switchClass(button, 'success', 'danger');
+
       el.innerHTML = 'unfollow';
     }
     app.db.publish(`/user/${app.user.id}`, app.user, 'PUT');
