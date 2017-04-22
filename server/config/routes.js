@@ -86,11 +86,11 @@ module.exports = function(app, passport) {
      res.sendFile(path.join(__dirname + '/../../public/serviceworker.js'));
    });
 
-    app.get('/favicon-16x16.png', (req, res) => {
+    app.get('/images/icons/favicon-16x16.png', (req, res) => {
       res.sendFile(path.join(__dirname + '/../../public/images/icons/favicon-16x16.png'));
     });
 
-    app.get('/favicon.ico', (req, res) => {
+    app.get('/images/icons/favicon.ico', (req, res) => {
       res.sendFile(path.join(__dirname + '/../../public/images/icons/favicon-16x16.png'));
     });
 
