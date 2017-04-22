@@ -101,7 +101,7 @@ class EventView extends BaseView {
 
   eventList(events, showImage = true) {
     if (events.length === 0) {
-      return 'No upcoming events';
+      return 'No upcoming events.';
     }
 
     let list = `<div class="list-wrap">`;
