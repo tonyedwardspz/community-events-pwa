@@ -8,10 +8,20 @@
 
   .item {
     padding: .6em;
+    padding-bottom: 1em;
     text-align: center;
+
+    img {
+      max-height: 105px;
+
+      @media screen and (min-width: $mobile-breakpoint) {
+        max-height: 123px;
+      }
+    }
 
     &.tracked img {
       filter: none;
+
     }
 
     &.untracked img {

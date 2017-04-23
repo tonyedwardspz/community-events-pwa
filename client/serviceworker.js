@@ -16,21 +16,7 @@ const cacheFiles = [
   '/images/icons/favicon-32x32.png',
   '/',
 
-  '/events/month',
-  '/events/month/jan',
-  '/events/month/feb',
-  '/events/month/mar',
-  '/events/month/apr',
-  '/events/month/may',
-  '/events/month/jun',
-  '/events/month/jul',
-  '/events/month/aug',
-  '/events/month/sep',
-  '/events/month/oct',
-  '/events/month/nov',
-  '/events/month/dec',
-  '/user',
-  '/user/login'
+  '/events/month'
 ];
 
 // Open the cache and store static files

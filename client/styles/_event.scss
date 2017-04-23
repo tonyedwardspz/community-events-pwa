@@ -57,6 +57,10 @@
   letter-spacing: .1em;
 }
 
+a.button.tracked {
+  background-color: $success-green;
+}
+
 // Map
 .map-embed {
   width: 100%;
