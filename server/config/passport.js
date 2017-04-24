@@ -35,6 +35,12 @@ module.exports = function(passport) {
         return done(err, user);
       } else if (!user) {
         console.log('No error, user dosnt exist');
+        try {
+          console.log(profile.profile_image_url_https.replace('_normal', ''));
+        } catch (e) {
+          console.log('----Could not parse----', profile.profile_image_url_https);
+        }
+
         user = new UserModel({
           userID: strHelpers.randomString(20),
           twitterID: profile.id,
