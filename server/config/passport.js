@@ -39,6 +39,7 @@ module.exports = function(passport) {
           console.log(profile.profile_image_url_https.replace('_normal', ''));
         } catch (e) {
           console.log('----Could not parse----', profile.profile_image_url_https);
+          console.log('----Could not parse----', profile._json);
         }
 
         user = new UserModel({
@@ -52,7 +53,7 @@ module.exports = function(passport) {
           recievePush: false,
           accessToken: token,
           refreshToken: tokenSecret,
-          profilePhoto: profile.profile_image_url_https.replace('_normal', ''),
+          profilePhoto: profile._json.profile_image_url_https.replace('_normal', ''),
           trackedEvents: [],
           trackedOrgs: User.defaulTrackedOrgs()
         });
