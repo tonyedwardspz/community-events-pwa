@@ -35,12 +35,12 @@ class DataController extends BaseController {
         let userMenu = document.getElementById('user-menu');
         userMenu.innerHTML = app.userView.loggedIn();
 
-        if (!user.email || user.email === null) {
-          let body = document.getElementsByTagName('body')[0];
-          app.shell.innerHTML = app.userView.emailPopover();
-        } else {
+        // if (!user.email || user.email === null) {
+        //   let body = document.getElementsByTagName('body')[0];
+        //   app.shell.innerHTML = app.userView.emailPopover();
+        // } else {
           loadContent();
-        }
+        // }
       });
       cb();
     });
