@@ -32,19 +32,21 @@ module.exports = function(app, passport) {
 
   app.get('/user/auth/twitter', passport.authenticate('twitter'), users.auth);
 
-  app.get('/user/auth/twitter/callback',
-    passport.authenticate('twitter', {
-      failWithError: true
-    }),
-    function(req, res) {
-      console.log('[Twitter] Auth success route hit');
-      users.authSuccess(req, res);
-    },
-    function(err, req, res, next) {
-      console.log('[Twitter] Auth failure route hit');
-      users.authFailure(err, req, res, next);
-    }
-  );
+  ['/user/auth/twitter/callback', '/user/auth/twitter/=callback'].forEach(cb => {
+    app.get(cb,
+      passport.authenticate('twitter', {
+        failWithError: true
+      }),
+      function(req, res) {
+        console.log('[Twitter] Auth success route hit');
+        users.authSuccess(req, res);
+      },
+      function(err, req, res, next) {
+        console.log('[Twitter] Auth failure route hit');
+        users.authFailure(err, req, res, next);
+      }
+    );
+  });
 
   app.get('/user/auth/google',
            passport.authenticate('google', { scope: ['profile'] }), users.auth);
