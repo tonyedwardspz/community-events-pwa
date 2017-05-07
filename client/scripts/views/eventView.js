@@ -32,7 +32,7 @@ class EventView extends BaseView {
         </div>
         <div class="column">
           <a href="/organisation/${org.id}" title="View organiser">
-          <img src="${org.logoURL}" alt="${org.name} logo" class="event-org-logo">
+            <img src="${org.logoURL}" alt="${org.name} logo" class="event-org-logo">
           </a>
         </div>
       </div>
@@ -132,8 +132,10 @@ class EventView extends BaseView {
                 Location: ${hasVenue ? venue.getDisplayVenue() : 'TBC'}</p>
               </div>
               <div class="column event-list-profile-photo">
-                <img src="${org.logoURL}" alt="${org.name} logo"
-                class="org-logo pull-right">
+                <a href="/organisation/${org.id}" title="${org.name} page">
+                  <img src="${org.logoURL}" alt="${org.name} logo"
+                  class="org-logo pull-right">
+                </a>
               </div>
             </div>
             <div class="row divider"></div>`;
