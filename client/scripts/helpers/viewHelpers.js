@@ -86,6 +86,10 @@ function debounce(fn, wait) {
 }
 
 let switchClass = (el, old, nw) => {
-  el.classList.add(nw);
-  el.classList.remove(old);
+  try {
+    el.classList.add(nw);
+    el.classList.remove(old);
+  } catch (e) {
+    console.log('Unable to switch css class: ', el);
+  }
 };

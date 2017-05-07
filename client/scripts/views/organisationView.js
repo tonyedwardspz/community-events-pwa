@@ -15,11 +15,22 @@ class OrganisationView extends BaseView {
   show(org, orgEvents) {
     const website = org.website ? webLink(org.website, org.name) : '';
     const twitter = org.twitterHandle ? twitterLink(org.twitterHandle): '';
+    let isTracked = true;
+    if (app.user !== null) {
+      if (!app.user.trackedOrgs.includes(org.id)) {
+        isTracked = false;
+      }
+    }
+
     return `<div class="row">
               <div class="column column-75">
                 <h1>${org.name}</h1>
                 <p>${website}<br />
                    ${twitter}</p>
+                <p>
+                <a href="#" id="org-follow-${org.id}" data-id="${org.id}" data-action="track-org"
+                  class="button ${org.isTracked?'danger':'success'}">${org.isTracked?'un':''}follow</a>
+                </p>
               </div>
               <div class="column">
                 <img src="${org.logoURL}" alt="${org.name} logo" class="event-org-logo">
@@ -31,6 +42,11 @@ class OrganisationView extends BaseView {
             `;
   }
 
+  /**
+  * Returns HTML for the organisation index view
+  * @param {Organisation.Array} orgs An array of organisation objects to be displayed
+  * @return {String} The HTML string for display
+  */
   index(orgs = app.organisations) {
     let noUserTxt = `<p><a href="/user/login">Login</a> to filter organisations.</p>`;
     let html = `<h2>Organisers</h2>
@@ -42,11 +58,10 @@ class OrganisationView extends BaseView {
 
     orgs.forEach(org => {
       let isTracked = true;
-
-      if (app.user !== null){
-        if (app.user.trackedOrgs.includes(org.id)) {
-          isTracked = true;
-        } else { isTracked = false; }
+      if (app.user !== null) {
+        if (!app.user.trackedOrgs.includes(org.id)) {
+          isTracked = false;
+        }
       }
       html += `<div class="item ${isTracked ? 'tracked' : 'untracked'}" id="org-item-${org.id}">
                 <p>${org.name}</p>
@@ -56,11 +71,11 @@ class OrganisationView extends BaseView {
                   </a>
                 </div>`;
 
-                if (app.user) {
-                  html += `<a href="#" id="org-follow-${org.id}" data-id="${org.id}" data-action="track-org"
-                    class="button ${isTracked?'danger':'success'}">${isTracked?'un':''}follow</a>`;
-                }
-                html +=`</div>`;
+      if (app.user) {
+        html += `<a href="#" id="org-follow-${org.id}" data-id="${org.id}" data-action="track-org"
+          class="button ${isTracked?'danger':'success'}">${isTracked?'un':''}follow</a>`;
+      }
+      html +=`</div>`;
     });
 
     return html += `</div>`;
