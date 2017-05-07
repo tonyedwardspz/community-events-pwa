@@ -2,6 +2,7 @@
 
 let BaseController = require('./baseController');
 let User = require('../models/user').getMongooseModel();
+let notification = require('../models/notification');
 
 class UserController extends BaseController {
   constructor() {
@@ -35,7 +36,11 @@ class UserController extends BaseController {
       if (err) {
         res.send(JSON.stringify({'error' : err}));
       } else {
-        res.send(JSON.stringify(user));
+        // Convert from mongoose doc to add extra features
+        let thisUser = JSON.parse(JSON.stringify(user));
+        thisUser.pushpadURL = notification.getPushpadURL(req.params.id);
+
+        res.send(JSON.stringify(thisUser));
       }
     });
   }

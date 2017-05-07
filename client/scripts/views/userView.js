@@ -67,9 +67,9 @@ class UserView extends BaseView {
 
           <div>
 
-          <input type="checkbox" id="recievePush"
-            ${user.recievePush ? 'checked' : ''} disabled>
-          <label class="label-inline" for="recievePush">Recieve Push Notifications?</label>
+          <a href="${user.pushpadURL}" target="_blank" rel="noopener noreferrer"
+            title="Manage push notifications">
+            Manage push notifications</a>
 
           </div>
 
