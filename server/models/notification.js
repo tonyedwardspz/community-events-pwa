@@ -22,36 +22,13 @@ class Notification {
       return this.pushPadProject.pathFor(userID);
   }
 
-  getNewNotification() {
+  getNewNotification(body, title) {
     return new pushpad.Notification({
       project: this.pushPadProject,
-      body: this.notificationBody(), // max 120 characters
-      title: this.notificationTitle() //  max 30 characters
+      body: body, // max 120 characters
+      title: title //  max 30 characters
     });
   }
-
-  notificationBody() {
-    let bodies = [
-      'Fill your social media queue with just a couple of clicks',
-      'Click here to schedule posts and send to buffer',
-      'Send updates to buffer with just a couple of clicks',
-      'Queue up today\'s social media posts in a flash',
-      'You\'re a couple of clicks away from filling up your buffer account',
-      'That came around quick! Top up your buffer feed now'
-    ];
-    return bodies[Math.floor(Math.random() * bodies.length)];
-  }
-
-  notificationTitle() {
-    let titles = [
-      'It\'s top up time',
-      'Top up your queue',
-      'Time to top up',
-      'Schedule some posts'
-    ];
-    return titles[Math.floor(Math.random() * titles.length)];
-  }
-
 }
 
 module.exports = new Notification();
