@@ -11,6 +11,14 @@
     padding-bottom: 1em;
     text-align: center;
 
+    .org-logo-container {
+      height: 123px;
+
+      @media screen and (min-width: $mobile-breakpoint) {
+        height: 136px;
+      }
+    }
+
     img {
       max-height: 105px;
 
@@ -21,7 +29,6 @@
 
     &.tracked img {
       filter: none;
-
     }
 
     &.untracked img {

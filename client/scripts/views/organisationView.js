@@ -50,9 +50,11 @@ class OrganisationView extends BaseView {
       }
       html += `<div class="item ${isTracked ? 'tracked' : 'untracked'}" id="org-item-${org.id}">
                 <p>${org.name}</p>
-                <a href="/organisation/${org.id}" title="${org.name} page">
-                  <img src="${org.logoURL}" alt="${org.name}">
-                </a>`;
+                <div class="org-logo-container">
+                  <a href="/organisation/${org.id}" title="${org.name} page">
+                    <img src="${org.logoURL}" alt="${org.name}">
+                  </a>
+                </div>`;
 
                 if (app.user) {
                   html += `<a href="#" id="org-follow-${org.id}" data-id="${org.id}" data-action="track-org"
