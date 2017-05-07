@@ -40,30 +40,27 @@ class UserView extends BaseView {
         </div>
 
         <div class="column">
-        <p>
-          <a href="" id="edit-profile" class="button success">Edit Profile</a>
-        </p>
         ${updated ? updatedText : ''}
         <form name="show_user">
         <fieldset>
 
           <label for="firstName">First Name</label>
           <input type="text" name="firstName" id="firstName" autofocus require
-            value="${user.firstName ? user.firstName : ''}" class="colum-50" disabled>
+            value="${user.firstName ? user.firstName : ''}" class="colum-50">
 
           <label for="lastName">Last Name</label>
           <input type="text" name="lastName" id="lastName" require
-            value="${user.lastName ? user.lastName : ''}" disabled>
+            value="${user.lastName ? user.lastName : ''}">
 
           <label for="email">Email</label>
           <input type="email" name="email" id="email" require
             placeholder="you@companyname.com"
-            value="${user.email ? user.email : ''}" disabled>
+            value="${user.email ? user.email : ''}">
 
           <div>
 
           <input type="checkbox" id="recieveEmail"
-            ${user.recieveEmail ? 'checked' : ''} disabled>
+            ${user.recieveEmail ? 'checked' : ''}>
           <label class="label-inline" for="recieveEmail">Recieve Emails?</label>
 
           </div>
@@ -78,7 +75,7 @@ class UserView extends BaseView {
 
           <input class="button pull-right success" type="submit"
                  value="Update" id="save_user"
-                 ${app.online ? '' : 'disabled'} disabled>
+                 ${app.online ? '' : 'disabled'}>
 
         </fieldset>
         </form>

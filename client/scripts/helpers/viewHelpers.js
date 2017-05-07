@@ -38,16 +38,6 @@ let formListeners = () => {
       app.userController.update();
     }
 
-    else if (e.target.id ==='edit-profile') {
-      console.log('edit-profile');
-      e.preventDefault();
-      let els = document.querySelectorAll('input');
-      els.forEach(elm => {
-        elm.disabled = false;
-      });
-      document.getElementById('edit-profile').classList += ' disabled';
-    }
-
     else if (e.target.id === 'update-profile') {
       console.log('update hit');
       e.preventDefault();
