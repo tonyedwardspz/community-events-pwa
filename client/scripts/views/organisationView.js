@@ -29,7 +29,7 @@ class OrganisationView extends BaseView {
                    ${twitter}</p>
                 <p>
                 <a href="#" id="org-follow-${org.id}" data-id="${org.id}" data-action="track-org"
-                  class="button ${org.isTracked?'danger':'success'}">${org.isTracked?'un':''}follow</a>
+                  class="button ${isTracked?'danger':'success'}">${isTracked?'un':''}follow</a>
                 </p>
               </div>
               <div class="column">
