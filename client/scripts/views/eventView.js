@@ -54,7 +54,7 @@ class EventView extends BaseView {
   showMonth(events, month, currentMonth) {
     let html = `<h2>${getFullMonthName(month)}'s Events</h2>`;
     html += `<p>Showing ${capitalize(getFullMonthName(month))}'s events for all organisations.<p>`;
-    html += this.monthButtons(getNextFourMonths(), month);
+    html += this.monthButtons(getNextNMonths(4), month);
     html += '<hr />';
     html += app.eventView.eventList(events);
     return html;
@@ -165,7 +165,7 @@ class EventView extends BaseView {
           current = true;
         }
         html += `
-          <div class="month-box column column-25 ${current ? 'current' : ''}">
+          <div class="month-box column ${current ? 'current' : ''}">
             <a class="button ${current ? 'success' : ''}"
             href="/events/month/${month.toLowerCase()}">${month}</a>
           </div>

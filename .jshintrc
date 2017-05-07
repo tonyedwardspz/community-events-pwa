@@ -25,7 +25,7 @@
     "caches": true,
     "setupRoutes": true,
     "requirejs": true,
-    "getNextFourMonths": true,
+    "getNextNMonths": true,
     "capitalize": true,
     "getFullMonthName": true,
     "getMonthNumberFromName": true,
