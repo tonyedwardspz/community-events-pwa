@@ -88,19 +88,9 @@ class UserView extends BaseView {
   }
 
   /**
-  * The popover presented to the user if they have no email.
+  * The user related menu items (profile photo, profile links)
   * @return {String} The HTML string for display
   */
-  emailPopover() {
-    return `<div class="popover" id="popover">
-            <p>We dont seem to have an email address asociated to your acount.
-            Please provide one so that we can link your social profiles</p>
-            <p>
-              <a href="/user" title="Update user profile" id="update-profile">Update Profile</a>
-            </p>
-            </div>`;
-  }
-
   loggedIn(){
     return `<div class="menu-profile-photo">
               <a href="/user" title="User profile">
