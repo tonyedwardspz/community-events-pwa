@@ -32,7 +32,6 @@ let loadContent = () => {
         }
       }
 
-
       // redirect the user to the appropriate view, not that data has loaded
       if(newUrl === '/events'){
         app.eventController.index();
@@ -50,13 +49,9 @@ let loadContent = () => {
         app.organisationController.show(url[url.length - 1]);
       }
 
-      // else if (newUrl === '/user') {
-      //   app.userController.show();
-      // }
       else if (newUrl === '/user/login') {
         app.userController.login();
-      }
-      else if (newUrl === '/user') {
+      } else if (newUrl === '/user') {
         app.userController.show();
       }
 
