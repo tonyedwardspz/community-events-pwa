@@ -1,0 +1,23 @@
+<% include ../partials/header %>
+
+      <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        <h1 class="page-header">Events</h1>
+
+
+        <div class="row">
+
+          <% events.forEach(event => { %>
+            <div class="col-xs-12 col-sm-6 col-xlg-3">
+              <h4><%= event.title %></h4>
+              <a href="/admin/events/<%= event.id %>"
+                class="btn btn-primary pull-right">View Event</a>
+              <p>Date: <%= new Date(event.start).toLocaleDateString('en-GB') %></p>
+              <hr />
+            </div>
+           <% }); %>
+
+        </div>
+
+      </div>
+
+<% include ../partials/footer %>

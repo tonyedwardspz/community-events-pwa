@@ -42,9 +42,9 @@ describe('Date Helpers', () => {
     });
   });
 
-  describe('#getNextFourMonths()', () => {
+  describe('#getNextNMonths()', () => {
     let expected = ['Apr','May','Jun','Jul'];
-    let actual = getNextFourMonths(new Date('2017-04-01T13:00:00'));
+    let actual = getNextNMonths(4, new Date('2017-04-01T13:00:00'));
 
     it('Returns an array containing 4 three letter month names', () => {
       assert.deepEqual(expected, actual);

@@ -6,6 +6,7 @@ let users = require('../controllers/userController');
 let CacheModel = require('../models/cache').getMongooseModel();
 let adminOrgs = require('../admin/controllers/organisation');
 let adminDashboard = require('../admin/controllers/dashboard');
+let adminEvents = require('../admin/controllers/event');
 
 
 /**
@@ -95,6 +96,7 @@ module.exports = function(app, passport) {
      res.redirect('/user/login');
    }
 
+   // GET admin/dashboard
    app.get('/admin/dashboard', ensureAdmin, adminDashboard.index);
 
    // GET admin/organisations
@@ -103,13 +105,13 @@ module.exports = function(app, passport) {
    // POST admin/organisations
    app.post('/admin/organisations', ensureAdmin, adminOrgs.create);
 
-   // GET admin/organisation/edit/:id
+   // GET admin/organisations/edit/:id
    app.get('/admin/organisations/edit/:id', ensureAdmin, adminOrgs.edit);
 
-   // GET admin/organisation/new
+   // GET admin/organisations/new
    app.get('/admin/organisations/new', ensureAdmin, adminOrgs.new);
 
-   // GET admin/organisation/:id
+   // GET admin/organisations/:id
    app.get('/admin/organisations/:id', ensureAdmin, adminOrgs.show);
 
    // PUT admin/organisations/:id
@@ -118,6 +120,11 @@ module.exports = function(app, passport) {
    // DELETE admin/organisations/:id
    app.delete('/admin/organisations/:id', ensureAdmin, adminOrgs.delete);
 
+   // GET admin/events
+   app.get('/admin/events', ensureAdmin, adminEvents.index);
+
+   // GET admin/events/:id
+   app.get('/admin/events/:id', ensureAdmin, adminEvents.show);
 
    //-------------- Misc Routes --------------\\
 

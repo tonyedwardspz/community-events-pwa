@@ -1,0 +1,38 @@
+<% include ../partials/header %>
+
+      <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        <h1 class="page-header">Show event: <%= event.title %></h1>
+
+        <div class="row">
+
+          <div class="col-xs-12 col-sm-9">
+            <p>
+              <strong>Organisation Name:</strong> <%= organisation.name %>
+            </p>
+            <p>
+              <strong>Venue Name:</strong> <%= venue.name %>
+            </p>
+            <p>
+              <strong>Start Time:</strong> <%= event.start %>
+            </p>
+            <p>
+              <strong>End Time:</strong> <%= event.end %>
+            </p>
+            <p>
+              <strong>Ticket URL:</strong> <%= event.ticketURL %>
+            </p>
+            <p>
+              <strong>Source:</strong> <%= event.source %>
+            </p>
+            <hr />
+            <p>
+              <strong>Description:</strong><br /> <%= event.description %>
+            </p>
+            <a href="/admin/events" class="btn btn-primary">Back</a>
+          </div>
+
+        </div>
+
+      </div>
+
+<% include ../partials/footer %>
