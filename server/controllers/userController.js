@@ -16,7 +16,9 @@ class UserController extends BaseController {
   authSuccess(req, res) {
     console.log('[User] Auth Success');
 
-    console.log('[User Controller] User',req.user);
+    console.log('[User Controller] User', req.user);
+
+    req.session.user = req.user;
 
     res.cookie('user_auth', 'true');
     res.cookie('user_id', req.user.userID);

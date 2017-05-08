@@ -36,6 +36,7 @@
     "cookie-parser": "^1.4.3",
     "del": "^2.0.2",
     "dotenv": "^4.0.0",
+    "ejs": "^2.5.6",
     "express": "^4.15.0",
     "express-session": "^1.14.2",
     "formidable": "^1.0.17",

@@ -26,12 +26,14 @@ module.exports = function(app, passport, root){
   // MMMMM..... cookies
   app.use(cookieParser());
 
+  // set the view engine to ejs
+  app.set('view engine', 'ejs');
+
   // Enable compression
   app.use(compress());
 
   // Configure express to you passport for auth / middleware
   app.use(session({
-    secret: 'keyboard cat',
     secret: process.env.SESSION_KEY,
     resave: false,
     saveUninitialized: true

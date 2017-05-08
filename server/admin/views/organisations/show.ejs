@@ -1,0 +1,40 @@
+<% include ../partials/header %>
+
+      <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        <h1 class="page-header">Show Organisation</h1>
+
+        <div class="row">
+
+          <div class="col-xs-12 col-sm-9">
+            <h4><%= organisation.name %></h4>
+            <p>
+              <strong>ID:</strong> <%= organisation.id %>
+            </p>
+            <p>
+              <strong>Name:</strong> <%= organisation.name %>
+            </p>
+            <p>
+              <strong>Twitter Handle:</strong> <%= organisation.twitterHandle %>
+            </p>
+            <p>
+              <strong>Logo URL:</strong> <%= organisation.logoURL %>
+            </p>
+            <p>
+              <strong>Website URL:</strong> <%= organisation.website %>
+            </p>
+            <p>
+              <strong>API URL:</strong> <%= organisation.apiURL %>
+            </p>
+            <a href="/admin/organisations" class="btn btn-primary">Back</a>
+            <a href="/admin/organisation/edit/<%= organisation.id %>" class="btn btn-warning">Edit</a>
+          </div>
+
+          <div class="col-xs-12 col-sm-3">
+            <img src="<%= organisation.logoURL %>" />
+          </div>
+
+        </div>
+
+      </div>
+
+<% include ../partials/footer %>

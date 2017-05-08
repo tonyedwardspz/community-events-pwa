@@ -1,0 +1,31 @@
+<% include ../partials/header %>
+
+      <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        <h1 class="page-header">Edit Organisation: <%= organisation.name %></h1>
+
+        <div class="row">
+
+          <div class="col-xs-12 col-sm-9">
+            <form action="/admin/organisation/update/<%= organisation.id %>" method="POST">
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name" name="name"
+                       value="<%= organisation.name %>"/>
+
+              </div>
+
+              <a href="/admin/organisations" class="btn btn-danger">Cancel</a>
+              <button type="submit" class="btn btn-sucess">Submit</button>
+            </form>
+
+          </div>
+
+          <div class="col-xs-12 col-sm-3">
+            <img src="<%= organisation.logoURL %>" />
+          </div>
+
+        </div>
+
+      </div>
+
+<% include ../partials/footer %>

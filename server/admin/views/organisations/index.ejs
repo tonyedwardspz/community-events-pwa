@@ -1,0 +1,30 @@
+<% include ../partials/header %>
+
+      <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        <a href="/admin/organisation/new" class="btn btn-success pull-right">New</a>
+        <h1 class="page-header">Organisations</h1>
+
+
+        <div class="row">
+
+          <% organisations.forEach(org => { %>
+            <div class="col-xs-12 col-sm-6 col-xlg-3">
+              <img src="<%= org.logoURL %>" class="pull-right" width="80px"/>
+              <h4><%= org.name %></h4>
+              <a href="/admin/organisation/<%= org.id %>" class="btn btn-primary">View</a>
+              <a href="/admin/organisation/edit/<%= org.id %>" class="btn btn-warning">Edit</a>
+              <a href="/admin/organisations/delete/<%= org.id %>" class="btn btn-danger">Delete</a>
+              <hr />
+            </div>
+           <% }); %>
+
+        </div>
+
+      </div>
+
+      <script>
+        let el = document.g
+
+      </script>
+
+<% include ../partials/footer %>

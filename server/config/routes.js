@@ -3,6 +3,8 @@
 let path = require('path');
 let data = require('../controllers/dataController');
 let users = require('../controllers/userController');
+let CacheModel = require('../models/cache').getMongooseModel();
+let adminOrgs = require('../admin/controllers/organisation');
 
 
 /**
@@ -23,6 +25,8 @@ module.exports = function(app, passport) {
   //-------------- Data Routes --------------\\
 
   app.get('/getData', data.getData);
+
+
 
   //-------------- User / Authentication Routes --------------\\
 
@@ -75,6 +79,50 @@ module.exports = function(app, passport) {
     res.cookie('auth_token', null);
     res.redirect('/');
   });
+
+
+
+   //-------------- Admin Routes --------------\\
+
+   // really basic admin check
+   function ensureAdmin(req, res, next) {
+     console.log('Admin check', req.cookies.user_id);
+     if (req.isAuthenticated && req.cookies.user_id === process.env.ADMIN_ID) {
+       return next();
+     }
+     console.log('[Admin] Not admin: ', req.cookies.user_id);
+     res.redirect('/user/login');
+   }
+
+   app.get('/admin/dashboard', ensureAdmin, function(req, res){
+       res.render(path.join(__dirname + '/../admin/views/dashboard'), {
+                    organisations: [{ name: 'Bloody Mary', drunkness: 3 },
+                                    { name: 'Martini', drunkness: 5 },
+                                    { name: 'Scotch', drunkness: 10 }]
+        });
+   });
+
+   // GET admin/organisations
+   app.get('/admin/organisations', ensureAdmin, adminOrgs.index);
+
+   // POST admin/organisations
+   app.post('/admin/organisations', ensureAdmin, adminOrgs.create);
+
+   // GET admin/organisation/edit/:id
+   app.get('/admin/organisation/edit/:id', ensureAdmin, adminOrgs.edit);
+
+   // GET admin/organisation/new
+   app.get('/admin/organisation/new', ensureAdmin, adminOrgs.new);
+
+   // GET admin/organisation/:id
+   app.get('/admin/organisation/:id', ensureAdmin, adminOrgs.show);
+
+   // PUT admin/organisations/:id (mimicd with posts)
+   app.post('/admin/organisation/update/:id', ensureAdmin, adminOrgs.update);
+
+   // DELETE admin/organisations/:id
+   app.get('/admin/organisations/delete/:id', ensureAdmin, adminOrgs.delete);
+
 
    //-------------- Misc Routes --------------\\
 
