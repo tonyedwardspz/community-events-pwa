@@ -2,6 +2,7 @@
 
 let cookieParser = require('cookie-parser');
 let express = require('express');
+let methodOverride = require('method-override');
 let bodyParser = require('body-parser');
 let session = require('express-session');
 let compress = require('compression');
@@ -19,6 +20,9 @@ module.exports = function(app, passport, root){
   app.use('/styles', express.static(root + '/public/styles'));
   app.use('/images', express.static(root + '/public/images'));
 
+  // override form methods to allow full use of HTTP verbs
+  app.use(methodOverride('_method'));
+
   // Set various body parsers
   app.use(bodyParser.urlencoded({ extended: true }));
   app.use(bodyParser.json({limit: '2mb'}));
@@ -32,7 +36,7 @@ module.exports = function(app, passport, root){
   // Enable compression
   app.use(compress());
 
-  // Configure express to you passport for auth / middleware
+  // Configure express to the passport for auth / middleware
   app.use(session({
     secret: process.env.SESSION_KEY,
     resave: false,
@@ -44,5 +48,4 @@ module.exports = function(app, passport, root){
 
   app.use(passport.initialize());
   app.use(passport.session());
-
 };

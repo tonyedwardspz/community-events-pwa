@@ -26,7 +26,12 @@
               <strong>API URL:</strong> <%= organisation.apiURL %>
             </p>
             <a href="/admin/organisations" class="btn btn-primary">Back</a>
-            <a href="/admin/organisation/edit/<%= organisation.id %>" class="btn btn-warning">Edit</a>
+            <a href="/admin/organisation/edit/<%= organisation.id %>"
+              class="btn btn-warning">Edit</a>
+            <form action="/admin/organisations/<%= org.id %>?_method=DELETE"
+                  method="POST" class="inline-form">
+              <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
           </div>
 
           <div class="col-xs-12 col-sm-3">

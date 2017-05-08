@@ -61,6 +61,7 @@
     "gulp-strip-debug": "^1.1.0",
     "gulp-uglify": "^1.4.2",
     "gulp-util": "^3.0.7",
+    "method-override": "^2.3.8",
     "milligram": "^1.2.0",
     "mocha": "^3.2.0",
     "mongodb": "^2.2.11",

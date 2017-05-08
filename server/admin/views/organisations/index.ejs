@@ -13,7 +13,10 @@
               <h4><%= org.name %></h4>
               <a href="/admin/organisation/<%= org.id %>" class="btn btn-primary">View</a>
               <a href="/admin/organisation/edit/<%= org.id %>" class="btn btn-warning">Edit</a>
-              <a href="/admin/organisations/delete/<%= org.id %>" class="btn btn-danger">Delete</a>
+              <form action="/admin/organisations/<%= org.id %>?_method=DELETE"
+                    method="POST" class="inline-form">
+                <button type="submit" class="btn btn-danger">Delete</button>
+              </form>
               <hr />
             </div>
            <% }); %>

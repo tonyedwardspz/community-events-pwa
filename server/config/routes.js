@@ -121,7 +121,7 @@ module.exports = function(app, passport) {
    app.post('/admin/organisation/update/:id', ensureAdmin, adminOrgs.update);
 
    // DELETE admin/organisations/:id
-   app.get('/admin/organisations/delete/:id', ensureAdmin, adminOrgs.delete);
+   app.delete('/admin/organisations/:id', ensureAdmin, adminOrgs.delete);
 
 
    //-------------- Misc Routes --------------\\
