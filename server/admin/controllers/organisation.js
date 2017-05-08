@@ -92,7 +92,14 @@ class AdminOrganisationController {
     organiser.getMongooseModel().findOne({ 'id': req.params.id }, function (err, org) {
       if (err) {return;}
 
-      org.save(function (err, updatedOrg) {
+      org.id = req.body.id;
+      org.name = req.body.name;
+      org.twitterHandle = req.body.twitterHandle;
+      org.logoURL = req.body.logoURL;
+      org.website = req.body.website;
+      org.apiURL = req.body.apiURL;
+
+      org.save((err, updatedOrg) => {
         if (err) {return;}
 
         res.render(path.resolve(__dirname + '/../views/organisations/show'), {
@@ -100,7 +107,6 @@ class AdminOrganisationController {
         });
       });
     });
-
   }
 
   edit(req, res) {

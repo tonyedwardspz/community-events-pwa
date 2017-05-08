@@ -5,6 +5,7 @@ let data = require('../controllers/dataController');
 let users = require('../controllers/userController');
 let CacheModel = require('../models/cache').getMongooseModel();
 let adminOrgs = require('../admin/controllers/organisation');
+let adminDashboard = require('../admin/controllers/dashboard');
 
 
 /**
@@ -94,13 +95,7 @@ module.exports = function(app, passport) {
      res.redirect('/user/login');
    }
 
-   app.get('/admin/dashboard', ensureAdmin, function(req, res){
-       res.render(path.join(__dirname + '/../admin/views/dashboard'), {
-                    organisations: [{ name: 'Bloody Mary', drunkness: 3 },
-                                    { name: 'Martini', drunkness: 5 },
-                                    { name: 'Scotch', drunkness: 10 }]
-        });
-   });
+   app.get('/admin/dashboard', ensureAdmin, adminDashboard.index);
 
    // GET admin/organisations
    app.get('/admin/organisations', ensureAdmin, adminOrgs.index);
@@ -109,16 +104,16 @@ module.exports = function(app, passport) {
    app.post('/admin/organisations', ensureAdmin, adminOrgs.create);
 
    // GET admin/organisation/edit/:id
-   app.get('/admin/organisation/edit/:id', ensureAdmin, adminOrgs.edit);
+   app.get('/admin/organisations/edit/:id', ensureAdmin, adminOrgs.edit);
 
    // GET admin/organisation/new
-   app.get('/admin/organisation/new', ensureAdmin, adminOrgs.new);
+   app.get('/admin/organisations/new', ensureAdmin, adminOrgs.new);
 
    // GET admin/organisation/:id
-   app.get('/admin/organisation/:id', ensureAdmin, adminOrgs.show);
+   app.get('/admin/organisations/:id', ensureAdmin, adminOrgs.show);
 
-   // PUT admin/organisations/:id (mimicd with posts)
-   app.post('/admin/organisation/update/:id', ensureAdmin, adminOrgs.update);
+   // PUT admin/organisations/:id
+   app.put('/admin/organisations/:id', ensureAdmin, adminOrgs.update);
 
    // DELETE admin/organisations/:id
    app.delete('/admin/organisations/:id', ensureAdmin, adminOrgs.delete);

@@ -6,16 +6,51 @@
         <div class="row">
 
           <div class="col-xs-12 col-sm-9">
-            <form action="/admin/organisation/update/<%= organisation.id %>" method="POST">
+            <form action="/admin/organisations/<%= organisation.id %>?_method=PUT" method="POST">
+
               <div class="form-group">
                 <label for="name">Name</label>
                 <input type="text" class="form-control" id="name" name="name"
+                       placeholder="Name" required
                        value="<%= organisation.name %>"/>
+              </div>
 
+              <div class="form-group">
+                <label for="id">ID</label>
+                <input type="text" class="form-control" id="id" name="id"
+                       placeholder="1243598236" required
+                       value="<%= organisation.id %>"/>
+              </div>
+
+              <div class="form-group">
+                <label for="twitterHandle">Twitter Hadle</label>
+                <input type="text" class="form-control" id="twitterHandle"
+                       placeholder="@funky_name" name="twitterHandle"
+                       value="<%= organisation.twitterHandle %>"/>
+              </div>
+
+              <div class="form-group">
+                <label for="logoURL">Logo URL</label>
+                <input type="text" class="form-control" id="logoURL" name="logoURL"
+                       placeholder="https://some.url" required
+                       value="<%= organisation.logoURL %>"/>
+              </div>
+
+              <div class="form-group">
+                <label for="website">Website</label>
+                <input type="text" class="form-control" id="website" name="website"
+                       placeholder="https://acoolwebsite.com" required
+                       value="<%= organisation.website %>"/>
+              </div>
+
+              <div class="form-group">
+                <label for="apiURL">API URL</label>
+                <input type="text" class="form-control" id="apiURL" name="apiURL"
+                       required value="<%= organisation.apiURL %>"/>
               </div>
 
               <a href="/admin/organisations" class="btn btn-danger">Cancel</a>
-              <button type="submit" class="btn btn-sucess">Submit</button>
+              <button type="submit" class="btn btn-success">Submit</button>
             </form>
 
           </div>
