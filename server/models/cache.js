@@ -26,11 +26,14 @@ class Cache extends BaseModel {
     });
   }
 
-  getCachedData(){
+  getCachedData(cb = null){
     this.mongooseModel.findOne({ id: process.env.CACHE_ID}, function(err, cache) {
       if (err) {
-        return { 'error' : err }
+        return { 'error' : err };
       } else {
+        if (cb) {
+          cb(cache.data);
+        }
         return cache.data;
       }
     });
