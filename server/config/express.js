@@ -32,6 +32,7 @@ module.exports = function(app, passport, root){
   // Configure express to you passport for auth / middleware
   app.use(session({
     secret: 'keyboard cat',
+    secret: process.env.SESSION_KEY,
     resave: false,
     saveUninitialized: true
   }));
