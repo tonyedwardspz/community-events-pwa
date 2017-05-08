@@ -1,5 +1,6 @@
 'use strict';
 
+/** An object representing an Organisation */
 class Organisation extends BaseModel {
   constructor(id, name, logoURL, apiURL, twitterHandle, website) {
     super();
@@ -11,6 +12,11 @@ class Organisation extends BaseModel {
     this.website = website;
   }
 
+  /**
+  * Sets the apps organisations, processing them from raw data
+  * @param {Organisation.Array} data An JSON array of organisation data
+  * @return {}
+  */
   static processOrgData(data) {
     let orgs = [];
 
@@ -31,6 +37,12 @@ class Organisation extends BaseModel {
     return;
   }
 
+  /**
+  * Returns the upcoming events for the provided organisation id
+  * @param {String} is The organisation ID
+  * @param {Event.Array} events The array of events to test
+  * @return {Event.array} The matching events
+  */
   static getOrgEvents(id, events){
     let orgEvents = [];
 
