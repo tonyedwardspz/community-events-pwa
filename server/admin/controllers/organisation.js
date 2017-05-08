@@ -43,7 +43,8 @@ class AdminOrganisationController {
 
     Organiser.remove({ 'id': req.params.id}, function(err) {
       if (!err) {
-        this.index();
+        res.writeHead(302, {'Location': '/admin/organisations'});
+        res.end();
       }
       else {
         console.log('[ADMIN] Organiser delete error', err);
@@ -56,13 +57,18 @@ class AdminOrganisationController {
 
     let Organiser = organiser.getMongooseModel();
 
+    let apiURL = null;
+    if (req.body.source === 'eventbrite') {
+      apiURL = `https://www.eventbriteapi.com/v3/organizers/${req.body.id}/events/?status=live&order_by=start_desc`;
+    }
+
     let org = new Organiser({
       id: req.body.id,
       name: req.body.name,
       twitterHandle: req.body.twitterHandle,
       logoURL: req.body.logoURL,
       website: req.body.website,
-      apiURL: null
+      apiURL: apiURL
     });
 
     let result = 'sucess';
