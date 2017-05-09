@@ -18,6 +18,10 @@ let loadContent = () => {
   }
 };
 
+/**
+* Parses the current url for use in routing and caching methods.
+* @return {String.Array} The parsed URLs
+*/
 let getRoutingUrl = () => {
   let url = window.location.href.split('/');
   url.splice(0, 3);
@@ -27,20 +31,35 @@ let getRoutingUrl = () => {
 };
 
 
+/**
+* Loads data from LocalStorage and parses in oobjects, allowing the app
+* to boot and me useful quicker.
+*/
 let loadLocalCache = () => {
   console.log('[Cache] Locaing local cache');
 
   if (app.localStorageAPI.isSupported()) {
-    let data = app.localStorageAPI.getObject('cache');
+    try {
+      let data = app.localStorageAPI.getObject('cache');
 
-    EventModel.processEventData(data.events);
-    Organisation.processOrgData(data.organisations);
-    Venue.processVenueData(data.venues);
+      EventModel.processEventData(data.events);
+      Organisation.processOrgData(data.organisations);
+      Venue.processVenueData(data.venues);
 
-    directURL(getRoutingUrl()[0], getRoutingUrl()[1]);
+      directURL(getRoutingUrl()[0], getRoutingUrl()[1]);
+      console.log('[Cache] Data loaded from cache');
+    } catch (e) {
+      console.log('[Cache] Error: No local cache - ', e);
+    }
   }
 };
 
+/**
+* Directs to the correct controller action, dependent upon the current URL. This
+* allows the user to land on any page, and makes the apps links sharable
+* @param {String.Array} url The component parts of the current URL
+* @param {String} newUrl The current 'after the slash' URL
+*/
 let directURL = (url, newUrl) => {
   // If user is logged in, get that data too
   if (!app.user) {
