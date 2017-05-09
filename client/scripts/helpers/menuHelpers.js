@@ -21,11 +21,16 @@ let setMenuListeners = () => {
   app.wrap.onscroll = e => {
     debounce(closeMenu(), 200);
   };
+
+  app.menuCheckBox.onchange = e => {
+    console.log('Menu clicked');
+    positionMenu();
+  };
 };
 
 
 /**
-* Closes the menu by delelecting the checkbox
+* Closes the menu by deselecting the checkbox
 */
 let closeMenu = () => {
   if (app.menuCheckBox.checked){
@@ -38,10 +43,14 @@ let closeMenu = () => {
 */
 function positionMenu() {
   if (app.menuCheckBox.checked) {
-    app.menu.removeAttribute('style');
+    // app.menu.removeAttribute('style');
+    let padding = window.getComputedStyle(app.main).getPropertyValue('padding-left').replace('px', '');
+    let margin = window.getComputedStyle(app.main).getPropertyValue('margin-left').replace('px', '');
+
+    app.menu.style.left = parseInt(padding) + parseInt(app.main.offsetLeft) + 250 + 'px';
   } else {
-    let padding = window.getComputedStyle(app.header).getPropertyValue('padding-left').replace('px', '');
-    app.menu.style.left = parseInt(padding) + parseInt(app.header.offsetLeft) + 'px';
+    let padding = window.getComputedStyle(app.main).getPropertyValue('padding-left').replace('px', '');
+    app.menu.style.left = parseInt(padding) + parseInt(app.main.offsetLeft) + 'px';
   }
 }
 

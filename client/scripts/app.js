@@ -12,7 +12,7 @@ var app;
     shell: document.querySelector('main'),
     menuCheckbox: document.getElementById('nav-trigger-label'),
     menu: document.getElementById('nav-trigger-label'),
-    header: document.getElementsByTagName('header')[0],
+    main: document.getElementsByTagName('main')[0],
     wrap: document.getElementById('site-wrap'),
     menuCheckBox: document.getElementById('nav-trigger'),
     db: new Database(),
