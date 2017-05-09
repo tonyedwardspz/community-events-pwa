@@ -28,6 +28,7 @@ var app;
     localStorageAPI: new LocalStorageAPI()
   };
 
+  // Load the locally cached data
   loadLocalCache();
 
   // Style the menu on load & screen resize
@@ -42,13 +43,12 @@ var app;
   // listen for changes to the update user form
   formListeners();
 
-  // Load up the content and direct as appropriate
-  loadContent();
-
   // Register service workers
   setupServiceWorker();
 
   // Listen for changes in online status
   offlineListener();
 
+  // Load up the content and direct as appropriate
+  loadContent();
 })();

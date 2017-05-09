@@ -42,6 +42,7 @@
     "debounce": true,
     "switchClass": true,
     "LocalStorageAPI": true,
+    "loadLocalCache": true,
 
     "BaseController": true,
     "EventController": true,

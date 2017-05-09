@@ -41,7 +41,7 @@ class DataController extends BaseController {
           console.log('[DATA] User email is null');
           app.userController.show('Please add an email to your profile.');
         } else {
-          loadContent();
+          directURL(getRoutingUrl()[0], getRoutingUrl()[1]);
         }
       });
       cb();
