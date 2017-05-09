@@ -25,6 +25,8 @@ class DataController extends BaseController {
       Organisation.processOrgData(data.organisations);
       Venue.processVenueData(data.venues);
 
+      app.localStorageAPI.setObject('cache', data);
+
       cb();
     });
   }

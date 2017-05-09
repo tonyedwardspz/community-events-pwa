@@ -41,6 +41,7 @@
     "menuStyleListener": true,
     "debounce": true,
     "switchClass": true,
+    "LocalStorageAPI": true,
 
     "BaseController": true,
     "EventController": true,

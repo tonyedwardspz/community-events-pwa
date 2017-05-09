@@ -24,8 +24,11 @@ var app;
     organisationController: new OrganisationController(),
     organisationView: new OrganisationView(),
     userController: new UserController(),
-    userView: new UserView()
+    userView: new UserView(),
+    localStorageAPI: new LocalStorageAPI()
   };
+
+  loadLocalCache();
 
   // Style the menu on load & screen resize
   menuStyleListener();
