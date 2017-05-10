@@ -75,3 +75,19 @@ a.button.tracked {
 .month-box {
   text-align: center;
 }
+
+.map-container {
+  background-color: $white;
+  background-image: url('/images/map-placeholder.jpg');
+  background-size: cover;
+  height: 300px;
+  width: 100%;
+  max-width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @media screen and (min-width: $mobile-breakpoint) {
+    height: 300px;
+  }
+}
