@@ -14,6 +14,7 @@ const cacheFiles = [
   '/images/icons/favicon-16x16.png',
   '/images/icons/favicon-194x194.png',
   '/images/icons/favicon-32x32.png',
+  '/images/map-placeholder.jpg',
   '/',
 
   '/events/month'

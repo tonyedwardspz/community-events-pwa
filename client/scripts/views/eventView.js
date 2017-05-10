@@ -16,6 +16,10 @@ class EventView extends BaseView {
   */
   show(evnt, org, orgEvents, venue, tracked = false) {
     let hasVenue = evnt.venueID ? true : false;
+    let map =  `<div class="row divider"></div>
+                <div class="map-container" id="map-container">
+                  <a href="" id="show-map" data-id="${evnt.id}" class="button">Show map</a>
+                </div>`;
     return `
       <div class="row">
         <div class="column column-75 full-width">
@@ -40,11 +44,7 @@ class EventView extends BaseView {
       <div class="row divider"></div>
       ${evnt.description}
 
-      <div class="row divider"></div>
-
-      <div class="map-container" id="map-container">
-        <a href="" id="show-map" data-id="${evnt.id}" class="button">Show map</a>
-      </div>
+      ${ hasVenue && app.online ? map : ''}
 
       <div class="row divider"></div>
       <h2>Upcoming <a href="/organisation/${org.id}">${org.name}</a> events</h2>
