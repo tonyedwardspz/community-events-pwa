@@ -41,7 +41,10 @@ class EventView extends BaseView {
       ${evnt.description}
 
       <div class="row divider"></div>
-      <a href="" id="show-map" data-id="${evnt.id}" class="button">Show map</a>
+
+      <div class="map-container" id="map-container">
+        <a href="" id="show-map" data-id="${evnt.id}" class="button">Show map</a>
+      </div>
 
       <div class="row divider"></div>
       <h2>Upcoming <a href="/organisation/${org.id}">${org.name}</a> events</h2>
