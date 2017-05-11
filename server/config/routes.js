@@ -39,8 +39,7 @@ module.exports = function(app, passport) {
   app.get('/user/auth/twitter', passport.authenticate('twitter'), users.auth);
 
   ['/user/auth/twitter/callback', '/user/auth/twitter/=callback'].forEach(cb => {
-    app.get(cb,
-      passport.authenticate('twitter', {
+    app.get(cb, passport.authenticate('twitter', {
         failWithError: true
       }),
       function(req, res) {
