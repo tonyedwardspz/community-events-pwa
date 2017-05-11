@@ -189,7 +189,7 @@ class EventView extends BaseView {
 
   // 106 chars before end
   tweetButton(evnt, org) {
-    let base = '<a class="button" target="_blank" href="http://twitter.com/home?status=MESSAGE">Tweet this</a>';
+    let base = '<a class="button" target="_blank" rel="noopener" href="http://twitter.com/home?status=MESSAGE">Tweet this</a>';
     let msg = `Check out this event by ${org.twitterHandle ? '@' + org.twitterHandle : org.name} - ${evnt.title} `;
     if (msg.length >=106) {
       msg = msg.slice(0, 102);
