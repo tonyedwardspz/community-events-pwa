@@ -12,7 +12,7 @@ class DashboardView extends BaseView {
   * @return {String} The HTML string for display
   */
   index(msg) {
-    let descText = '';
+    let descText = '<p>Showing the next 7 events.</p>';
     let msgText = false;
     if (msg !== null) {
       msgText = `<p><strong>ERROR:</strong> ${msg}</p>`;
@@ -21,8 +21,6 @@ class DashboardView extends BaseView {
       descText = `<p>Showing the next 7 events for your
                   <a href="/organisations" title="Tracked organisers">tracked
                   organisations</a>.</p>`;
-    } else {
-      descText = '<p>Showing the next 7 events.</p>';
     }
     return `
       <h2>Dashboard</h2>
