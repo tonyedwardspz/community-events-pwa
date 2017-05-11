@@ -7,7 +7,7 @@ class DashboardController extends BaseController {
   }
 
   /** Fetches all data, displays the dashboard view */
-  index() {
+  index(msg = null) {
     console.info('[Dashboard]: index');
 
     let evnts = EventModel.getTrackedEvents();
@@ -15,7 +15,7 @@ class DashboardController extends BaseController {
       evnts.length = 7;
     }
 
-    let html = app.dashboardView.index();
+    let html = app.dashboardView.index(msg);
     html += app.eventView.eventList(evnts);
 
     this.updateShell(html);

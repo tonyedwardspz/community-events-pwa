@@ -9,6 +9,10 @@ class EventController extends BaseController {
     console.info('[Event] Show: ', id);
 
     let thisEvent = EventModel.findByID(id, app.events);
+    if (!this.validItem(thisEvent, 'title', 'Event', id)) {
+      return;
+    }
+
     let thisOrg = Organisation.findByID(thisEvent.organiserID, app.organisations);
     let thisVenue = Venue.findByID(thisEvent.venueID, app.venues);
 

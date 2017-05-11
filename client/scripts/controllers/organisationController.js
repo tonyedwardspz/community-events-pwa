@@ -24,6 +24,10 @@ class OrganisationController extends BaseController {
     console.info('[Organisation] Show: ' + id);
 
     let org = Organisation.findByID(id, app.organisations);
+    if (!this.validItem(org, 'name', 'Organisation', id)) {
+      return;
+    }
+
     let orgEvents = Organisation.getOrgEvents(id, app.events);
     orgEvents.sort(sortByDate);
 

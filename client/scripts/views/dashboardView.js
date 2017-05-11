@@ -8,11 +8,16 @@ class DashboardView extends BaseView {
 
   /**
   * Returns HTML for the index of events
+  * @param {String} msg A message to be displayed to the user
   * @return {String} The HTML string for display
   */
-  index() {
+  index(msg) {
     let descText = '';
-    if (app.user !== null){
+    let msgText = false;
+    if (msg !== null) {
+      msgText = `<p><strong>ERROR:</strong> ${msg}</p>`;
+    }
+    if (app.user !== null) {
       descText = `<p>Showing the next 7 events for your
                   <a href="/organisations" title="Tracked organisers">tracked
                   organisations</a>.</p>`;
@@ -20,7 +25,8 @@ class DashboardView extends BaseView {
       descText = '<p>Showing the next 7 events.</p>';
     }
     return `
-      <h2>Your Dashboard</h2>
+      <h2>Dashboard</h2>
+      ${msgText ? msgText : ''}
       ${descText}
       <a href="/events/month" class="button">Filter by month</a>
       <hr />
