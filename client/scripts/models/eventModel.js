@@ -52,15 +52,23 @@ class EventModel extends BaseModel {
     return events;
   }
 
-  getDisplayDate(){
+  getDisplayDate() {
     return convertDateToLocale(this.start);
+  }
+
+  getDislpayTime() {
+    try {
+      return new Date(app.events[0].start).toUTCString().slice(17,22);
+    } catch (e) {
+      console.log('[Event] Unable to get display time: ', e);
+    }
   }
 
   isTracked() {
     try {
       return app.user.trackedEvents.includes(this.id);
     } catch (e) {
-      console.log('[Event] Failed to get tracked status');
+      console.log('[Event] Failed to get tracked status: ', e);
       return false;
     }
   }

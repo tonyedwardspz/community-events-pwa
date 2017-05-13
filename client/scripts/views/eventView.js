@@ -24,7 +24,7 @@ class EventView extends BaseView {
       <div class="row">
         <div class="column column-75 full-width">
           <h2>${evnt.title}</h2>
-          <p>Date: ${evnt.getDisplayDate()}<br />
+          <p>Date: ${evnt.getDisplayDate()} - ${evnt.getDislpayTime()}<br />
              Location: ${hasVenue ? venue.getDisplayVenue() : 'TBC'}</p>
           <p>
             <a href="${evnt.ticketURL}" class="button"
