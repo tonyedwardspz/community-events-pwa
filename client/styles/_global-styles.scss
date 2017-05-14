@@ -56,6 +56,21 @@ a.disabled {
 
 p {
     word-wrap: break-word;
+    @media screen and (max-width: $mobile-breakpoint) {
+      margin-bottom: 1rem;
+    }
+}
+
+h2 {
+  font-size: 3rem;
+
+  @media screen and (max-width: $mobile-breakpoint) {
+    margin-bottom: .5rem;
+  }
+}
+
+h3 {
+  font-size: 2.2rem;
 }
 
 
