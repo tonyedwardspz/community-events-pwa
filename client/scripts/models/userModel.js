@@ -53,6 +53,22 @@ class User extends BaseModel {
     }
   }
 
+  getTrackedEvents() {
+    let events = [];
+    app.events.forEach(e => {
+      if (app.user && app.user.trackedEvents){
+        if (app.user.trackedEvents.includes(e.id)){
+          events.push(e);
+        }
+      } else {
+        events.push(e);
+      }
+
+    });
+    events.sort(sortByDate);
+    return events;
+  }
+
   updateFromForm(form) {
     this.firstName = form.firstName.value;
     this.lastName = form.lastName.value;

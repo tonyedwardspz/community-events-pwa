@@ -78,7 +78,27 @@ p {
 
 
 .center {
+  display: flex;
   text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.content-stack {
+
+  @media screen and (min-width: $mobile-breakpoint) {
+    a:first-of-type {
+      margin-right: 1em;
+    }
+
+    a:last-of-type {
+      margin-left: 1em;
+    }
+  }
+
+  @media screen and (max-width: $mobile-breakpoint) {
+    flex-direction: column;
+  }
 }
 
 .divider {

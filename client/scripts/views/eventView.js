@@ -161,8 +161,18 @@ class EventView extends BaseView {
             <div class="row divider"></div>`;
   }
 
+  welcomeEvent(evnt, venue, org) {
+    let hasVenue = evnt.venueID ? true : false;
+    return `<div class="column column-75 full-width">
+              <p class="half-padding">Your next tracked event:</p>
+              <h3><a href="/event/${evnt.id}">${evnt.title}</a></h3>
+              <p><a href="/organisation/${org.id}" title="${org.name} page">${org.name}</a><br />
+              ${evnt.getDisplayDate()} - ${hasVenue ? venue.getDisplayVenue() : 'TBC'}</p>
+            </div>`;
+  }
+
   monthButtons(months, currentMonth = null){
-      let html =  `<div class="month-boxes row">`;
+      let html = `<div class="month-boxes row">`;
 
       months.forEach(month => {
         let current = false;
