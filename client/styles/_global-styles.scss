@@ -56,8 +56,33 @@ a.disabled {
 
 p {
     word-wrap: break-word;
+    @media screen and (max-width: $mobile-breakpoint) {
+      margin-bottom: 1rem;
+    }
 }
 
+h2 {
+  font-size: 3rem;
+
+  @media screen and (max-width: $mobile-breakpoint) {
+    margin-bottom: .5rem;
+  }
+}
+
+h3 {
+  font-size: 2.2rem;
+
+  @media screen and (max-width: $mobile-breakpoint) {
+    margin-bottom: 1rem;
+  }
+}
+
+hr {
+  @media screen and (max-width: $mobile-breakpoint) {
+    margin-bottom: 1.5rem;
+    margin-top: 1.5rem;
+  }
+}
 
 
 .button-disabled {
@@ -70,15 +95,46 @@ p {
   border-color: lighten($danger-red, 10%);
 }
 
-.button.success {
+.button.danger:hover {
+  background-color: darken($danger-red, 10%);
+  transition: background-color linear .2s;
+}
+
+.button.success,
+a.button.tracked {
   background-color: $success-green;
   border-color: lighten($success-green, 10%);
 }
 
+.button.success:hover,
+a.button.tracked:hover {
+  background-color: darken($success-green, 10%);
+  transition: background-color linear .2s;
+}
 
 
 .center {
+  display: flex;
   text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.content-stack {
+
+  @media screen and (min-width: $mobile-breakpoint) {
+    a:first-of-type {
+      margin-right: 1em;
+    }
+
+    a:last-of-type {
+      margin-left: 1em;
+    }
+  }
+
+  @media screen and (max-width: $mobile-breakpoint) {
+    flex-direction: column;
+  }
 }
 
 .divider {

@@ -32,6 +32,10 @@ module.exports = function(app, passport) {
 
   //-------------- User / Authentication Routes --------------\\
 
+  app.get('/user/login', function(req, res){
+    res.sendFile(path.resolve(__dirname, '../../public/index.html'));
+  });
+
   app.get('/user/:id', ensureAuthenticated, users.getUser);
 
   app.put('/user/:id', ensureAuthenticated, users.update);
@@ -68,9 +72,7 @@ module.exports = function(app, passport) {
     }
   );
 
-  app.get('/user/login', function(req, res){
-    res.sendFile(path.resolve(__dirname, '../../public/index.html'));
-  });
+
 
   app.get('/logout', function(req, res) {
     req.logout();

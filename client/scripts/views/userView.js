@@ -12,11 +12,25 @@ class UserView extends BaseView {
     return `<h2>Login</h2>
             ${app.online ? '' : offlineText}
             ${msg.length > 0 ? message : ''}
-            <a href="/user/auth/twitter" class="button ${app.online ? '' : 'button-disabled'}"
-              ${app.online ? '' : 'onclick="return false;"'}>
-              Login with Twitter</a>
-            <a href="/user/auth/google" class="button ${app.online ? '' : 'button-disabled'}"
-              ${app.online ? '' : 'onclick="return false;"'}>Login with Google</a>`;
+
+            <div class="row">
+              <div class="column">
+                <p>Login to to create a Gather-SW account.</p>
+                <p>After signing up, you'll be able to:
+                  <ul>
+                    <li>Filter events by following organisers.</li>
+                    <li>Track events for quick access.</li>
+                  </ul>
+                </p>
+              </div>
+            </div>
+            <div class="center content-stack">
+              <a href="/user/auth/twitter" class="button ${app.online ? '' : 'button-disabled'}"
+                ${app.online ? '' : 'onclick="return false;"'}>
+                Login with Twitter</a>
+              <a href="/user/auth/google" class="button ${app.online ? '' : 'button-disabled'}"
+                ${app.online ? '' : 'onclick="return false;"'}>Login with Google</a>
+            </div>`;
   }
 
   /**
