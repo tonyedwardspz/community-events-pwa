@@ -71,8 +71,18 @@ h2 {
 
 h3 {
   font-size: 2.2rem;
+
+  @media screen and (max-width: $mobile-breakpoint) {
+    margin-bottom: 1rem;
+  }
 }
 
+hr {
+  @media screen and (max-width: $mobile-breakpoint) {
+    margin-bottom: 1.5rem;
+    margin-top: 1.5rem;
+  }
+}
 
 
 .button-disabled {
@@ -85,11 +95,22 @@ h3 {
   border-color: lighten($danger-red, 10%);
 }
 
-.button.success {
+.button.danger:hover {
+  background-color: darken($danger-red, 10%);
+  transition: background-color linear .2s;
+}
+
+.button.success,
+a.button.tracked {
   background-color: $success-green;
   border-color: lighten($success-green, 10%);
 }
 
+.button.success:hover,
+a.button.tracked:hover {
+  background-color: darken($success-green, 10%);
+  transition: background-color linear .2s;
+}
 
 
 .center {

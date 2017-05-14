@@ -22,15 +22,15 @@ class EventView extends BaseView {
                 </div>`;
     return `
       <div class="row">
-        <div class="column column-75 full-width">
+        <div class="column column-75 full-width show-event">
           <h2>${evnt.title}</h2>
           <p>Date: ${evnt.getDisplayDate()} - ${evnt.getDislpayTime()}<br />
              Location: ${hasVenue ? venue.getDisplayVenue() : 'TBC'}</p>
           <p>
             <a href="${evnt.ticketURL}" class="button"
-              title="Book your place">Book your place</a>
-            <a href="#" title="Track this event" data-id="${evnt.id}" class="button"
-              id="${tracked ? 'un': ''}track-event">${tracked ? 'Untrack Event': 'Track Event'}</a>
+              title="Book your place">Tickets</a>
+            <a href="#" title="Track this event" data-id="${evnt.id}" class="button ${tracked ? 'tracked': ''}"
+              id="${tracked ? 'un': ''}track-event">${tracked ? 'Tracked': 'Not Tracked'}</a>
             ${this.tweetButton(evnt, org)}
           </p>
         </div>
@@ -49,8 +49,8 @@ class EventView extends BaseView {
       <div class="row divider"></div>
       <h2>Upcoming <a href="/organisation/${org.id}">${org.name}</a> events</h2>
       ${app.organisationView.upcoming(org, orgEvents, false)}
-      <a href="/organisation/${org.id}" class="button pull-right">
-      View organisation events</a>
+      <a href="/organisation/${org.id}" class="button pull-right more">
+      View organisation</a>
     `;
   }
 
@@ -126,7 +126,7 @@ class EventView extends BaseView {
   eventListItem(event, venue, org){
     let hasVenue = event.venueID ? true : false;
     const trackedBullet = '<span class="is-tracked">Tracked</span>';
-    return `<div class="row event-list-item">
+    return `<div class="row event-list-item photo">
               <div class="column column-75">
                 <h3><a href="/event/${event.id}">${event.title}</a>
                 ${event.isTracked() ? trackedBullet : ''}</h3>
@@ -199,7 +199,7 @@ class EventView extends BaseView {
 
   // 106 chars before end
   tweetButton(evnt, org) {
-    let base = '<a class="button" target="_blank" rel="noopener" href="http://twitter.com/home?status=MESSAGE">Tweet this</a>';
+    let base = '<a class="button share" target="_blank" rel="noopener" href="http://twitter.com/home?status=MESSAGE">Share</a>';
     let msg = `Check out this event by ${org.twitterHandle ? '@' + org.twitterHandle : org.name} - ${evnt.title} `;
     if (msg.length >=106) {
       msg = msg.slice(0, 102);
