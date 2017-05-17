@@ -52,6 +52,7 @@ class OrganisationView extends BaseView {
     let html = `<h2>Organisers</h2>
                 ${app.user ? '' : noUserTxt}
                 <p>Showing all ${orgs.length} organisers.</p>
+                <p>Follow and unfollow organisers for quick filtering of their events throughout the app.</p>
                 <a href="https://tonyedwardspz.typeform.com/to/jwEbTA" title="Suggest new organiser"
                 target="_blank" class="button">Add organiser</a>
                 <div class="org-grid">`;

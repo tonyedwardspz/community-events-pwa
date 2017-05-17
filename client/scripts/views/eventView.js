@@ -20,6 +20,10 @@ class EventView extends BaseView {
                 <div class="map-container" id="map-container">
                   <a href="" id="show-map" data-id="${evnt.id}" class="button">Show map</a>
                 </div>`;
+    let mapUnavailable =  `<div class="row divider"></div>
+                <div class="map-container" id="map-container">
+                  <a href="" class="button disabled" onclick="return false;">Map Unavailable Offline</a>
+                </div>`;
     return `
       <div class="row">
         <div class="column column-75 full-width show-event">
@@ -34,7 +38,7 @@ class EventView extends BaseView {
             ${this.tweetButton(evnt, org)}
           </p>
         </div>
-        <div class="column">
+        <div class="column event-org-logo-container">
           <a href="/organisation/${org.id}" title="View organiser">
             <img src="${org.logoURL}" alt="${org.name} logo" class="event-org-logo">
           </a>
@@ -44,7 +48,7 @@ class EventView extends BaseView {
       <div class="row divider"></div>
       ${evnt.description}
 
-      ${ hasVenue && app.online ? map : ''}
+      ${ hasVenue && app.online ? map : mapUnavailable}
 
       <div class="row divider"></div>
       <h2>Upcoming <a href="/organisation/${org.id}">${org.name}</a> events</h2>

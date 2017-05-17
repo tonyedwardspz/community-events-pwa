@@ -107,7 +107,7 @@ module.exports = function(app, passport) {
    app.post('/admin/organisations', ensureAdmin, adminOrgs.create);
 
    // GET admin/organisations/edit/:id
-   app.get('/admin/organisations/edit/:id', ensureAdmin, adminOrgs.edit);
+   app.get('/admin/organisations/:id/edit', ensureAdmin, adminOrgs.edit);
 
    // GET admin/organisations/new
    app.get('/admin/organisations/new', ensureAdmin, adminOrgs.new);

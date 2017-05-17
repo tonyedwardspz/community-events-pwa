@@ -9,6 +9,12 @@
   }
 }
 
+.event-org-logo-container {
+  @media screen and (max-width: $mobile-breakpoint) {
+    text-align: center;
+  }
+}
+
 .event-list-profile-photo {
   // margin-top: -8em;
 

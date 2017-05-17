@@ -29,11 +29,13 @@ input[type=email] {
 
   &:disabled {
     background-color: lightgrey;
+    border-color: darken(lightgrey, 10%)
   }
 }
 
 a.disabled {
   background-color: lightgrey;
+  border-color: darken(lightgrey, 10%)
 }
 
 .main {

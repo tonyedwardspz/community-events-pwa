@@ -12,7 +12,7 @@
               <img src="<%= org.logoURL %>" class="pull-right" width="80px"/>
               <h4><%= org.name %></h4>
               <a href="/admin/organisations/<%= org.id %>" class="btn btn-primary">View</a>
-              <a href="/admin/organisations/edit/<%= org.id %>" class="btn btn-warning">Edit</a>
+              <a href="/admin/organisations/<%= org.id %>/edit" class="btn btn-warning">Edit</a>
               <form action="/admin/organisations/<%= org.id %>?_method=DELETE"
                     method="POST" class="inline-form">
                 <button type="submit" class="btn btn-danger">Delete</button>
