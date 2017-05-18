@@ -1,9 +1,10 @@
 'use strict';
 
+/** An object representing an User */
 class User extends BaseModel {
   constructor(userID, twitterID, googleID, email, firstName, lastName,
-      recieveEmail, recievePush, accessToken, refreshToken, profilePhoto,
-      trackedEvents, trackedOrgs, pushpadURL) {
+      recieveEmail, recievePush, profilePhoto, trackedEvents, trackedOrgs,
+      pushpadURL) {
     super();
     this.userID = userID;
     this.twitterID = twitterID;
@@ -13,14 +14,17 @@ class User extends BaseModel {
     this.lastName = lastName;
     this.recieveEmail = recieveEmail;
     this.recievePush = recievePush;
-    this.accessToken = accessToken;
-    this.refreshToken = refreshToken;
     this.profilePhoto = profilePhoto;
     this.trackedEvents = trackedEvents;
     this.trackedOrgs = trackedOrgs;
     this.pushpadURL = pushpadURL;
   }
 
+  /**
+  * Sets the apps user, processing it from the raw data
+  * @param {String} data An JSON object representing the user
+  * @return {}
+  */
   static processUserData(data, cb) {
     app.user = new User(
       data.userID,
@@ -31,8 +35,6 @@ class User extends BaseModel {
       data.lastName,
       data.recieveEmail,
       data.recievePush,
-      data.accessToken,
-      data.refreshToken,
       data.profilePhoto,
       data.trackedEvents,
       data.trackedOrgs,

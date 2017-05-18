@@ -1,5 +1,6 @@
 'use strict';
 
+/** An object representing an Event */
 class EventModel extends BaseModel {
   constructor(id, title, description, organiserID, venueID,start, end,
               ticketURL, source) {
@@ -15,6 +16,10 @@ class EventModel extends BaseModel {
     this.source = source;
   }
 
+  /**
+  * Removes certain HTML elements from the description
+  * @return {String} The cleaned description
+  */
   get description(){
     let clean = this._description;
     clean = clean.replace('<H1>', '<p><strong>');
@@ -32,6 +37,10 @@ class EventModel extends BaseModel {
     return clean;
   }
 
+  /**
+  * Updates the objects description
+  * @param {String} The new description
+  */
   set description(desc) {
     this._description = desc;
   }
@@ -52,10 +61,18 @@ class EventModel extends BaseModel {
     return events;
   }
 
+  /**
+  * Converts the events start date to human readable form
+  * @return {String} A string representation of the date
+  */
   getDisplayDate() {
     return convertDateToLocale(this.start);
   }
 
+  /**
+  * Converts the events start date to human readable form
+  * @return {Date} A Date object containg the time
+  */
   getDislpayTime() {
     try {
       return new Date(app.events[0].start).toUTCString().slice(17,22);
@@ -64,6 +81,10 @@ class EventModel extends BaseModel {
     }
   }
 
+  /**
+  * Is the event is tracked by the user
+  * @return {Boolean}
+  */
   isTracked() {
     try {
       return app.user.trackedEvents.includes(this.id);
@@ -73,10 +94,19 @@ class EventModel extends BaseModel {
     }
   }
 
+  /**
+  * Does the event has a venue
+  * @return {Boolean}
+  */
   hasVenue() {
     return this.venueID ? true : false;
   }
 
+  /**
+  * Sets the apps events, processing them from raw data
+  * @param {Event.Array} data An JSON array of event data
+  * @return {}
+  */
   static processEventData(data){
     let events = [];
     data.forEach(evt => {
@@ -98,6 +128,11 @@ class EventModel extends BaseModel {
     return;
   }
 
+  /**
+  * Sets the apps events, processing them from raw data
+  * @param {String} month The month to find events for
+  * @return {Event.Array} the array of events
+  */
   static getEventsForMonth(month) {
     let events = [];
     app.events.forEach(event => {

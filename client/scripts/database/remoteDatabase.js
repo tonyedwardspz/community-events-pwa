@@ -43,8 +43,8 @@ class Database {
 
   /**
   * Retrieve data from the remote database, passing it to the supplied callback
-  * @param {String} route The API route which should be published to
-  * @callback cb The callbak method ( typically launches the dashboard )
+  * @param {String} route The API route which should be retrieved from
+  * @callback cb The callbak method
   */
   retrieve(route, cb) {
     // Send request to DB

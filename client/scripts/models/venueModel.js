@@ -1,5 +1,6 @@
 'use strict';
 
+/** An object representing a Venue */
 class Venue extends BaseModel {
   constructor(id, name, address, geographic, postcode, lat, long) {
     super();
