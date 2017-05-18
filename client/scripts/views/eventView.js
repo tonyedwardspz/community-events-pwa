@@ -1,9 +1,9 @@
 'use strict';
 
 /** Class representing a events's views */
-class EventView extends BaseView {
+class EventView {
   constructor(){
-    super();
+
   }
 
   /**

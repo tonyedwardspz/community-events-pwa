@@ -1,9 +1,9 @@
 'use strict';
 
 /** Class representing a dashboard's views */
-class DashboardView extends BaseView {
+class DashboardView {
   constructor(){
-    super();
+
   }
 
   /**
