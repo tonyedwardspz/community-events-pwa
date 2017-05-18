@@ -43,6 +43,7 @@
     "switchClass": true,
     "LocalStorageAPI": true,
     "loadLocalCache": true,
+    "getRoutingUrl": true,
 
     "BaseController": true,
     "EventController": true,
