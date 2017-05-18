@@ -7,7 +7,7 @@ let fetch = require('node-fetch');
 class Cache extends BaseModel {
   constructor() {
     super();
-    if (mongoose.models.cache) {
+    if (mongoose.models.caches) {
       this.mongooseModel = mongoose.models.caches;
     } else {
       this.mongooseModel = mongoose.model('caches', this.mongooseSchema);

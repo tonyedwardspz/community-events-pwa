@@ -27,7 +27,7 @@ class Notification {
   }
 
   /**
-  * Returns the push pad object
+  * Returns the push pad url for the provided user ID
   * @return {String} The path for the current user, to allow targeting of messages
   */
   getPushpadURL(userID) {
@@ -35,7 +35,7 @@ class Notification {
   }
 
   /**
-  * Returns a ne pushpad object
+  * Returns a new pushpad object
   * @return {Pushpad.Notification} The notification object
   */
   getNewNotification(body, title) {

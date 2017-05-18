@@ -3,9 +3,9 @@
 let BaseModel = require('./base');
 let fetch = require('node-fetch');
 
-class Venue extends BaseModel {
+class Venue {
   constructor() {
-    super();
+    
   }
 
   /**

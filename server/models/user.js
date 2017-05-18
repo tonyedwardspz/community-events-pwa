@@ -7,7 +7,7 @@ let fetch = require('node-fetch');
 class User extends BaseModel {
   constructor() {
     super();
-    if (mongoose.models.organisers) {
+    if (mongoose.models.user) {
       this.mongooseModel = mongoose.models.user;
     } else {
       this.mongooseModel = mongoose.model('users', this.mongooseSchema);

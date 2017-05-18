@@ -3,9 +3,9 @@
 let BaseModel = require('./base');
 let fetch = require('node-fetch');
 
-class Evnt extends BaseModel {
+class Evnt {
   constructor() {
-    super();
+
   }
 
   processEventbriteData(events) {
