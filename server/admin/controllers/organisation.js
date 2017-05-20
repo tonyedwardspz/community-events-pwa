@@ -3,6 +3,7 @@
 let path = require('path');
 let organiser = require('../../models/organiser');
 
+/** A class represting the Admin Organisation uController */
 class AdminOrganisationController {
   constructor() {
 
@@ -27,7 +28,6 @@ class AdminOrganisationController {
         organisation: org
       });
     });
-
   }
 
   new(req, res) {

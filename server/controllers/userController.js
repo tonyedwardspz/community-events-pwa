@@ -9,6 +9,10 @@ class UserController extends BaseController {
     super('user controller');
   }
 
+  auth() {
+    console.log('[User] Auth hit');
+  }
+
   authSuccess(req, res) {
     console.log('[User] Auth Success');
 
