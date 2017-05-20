@@ -39,6 +39,9 @@ class DashboardView {
     if (evnt && venue) {
       html += `${app.eventView.welcomeEvent(evnt, venue, org)}`;
 
+    } else if (app.user && app.user.firstName) {
+      html += `<p>You're not currently tracking any events. When you do, the next one
+               will appear here.</p>`;
     } else {
       html += `<div class="column column-75 full-width">
             <p><a href="/user/login" class="button-nav" title="Login">Login</a>

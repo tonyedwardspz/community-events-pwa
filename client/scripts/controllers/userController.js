@@ -45,7 +45,7 @@ class UserController extends BaseController {
 
     let el = document.getElementById('track-event');
     el.classList.add('tracked');
-    el.innerHTML = 'Tracked';
+    el.innerHTML = 'Untrack';
     el.id = 'untrack-event';
 
     if (app.user.trackEvent(id)) {
@@ -59,7 +59,7 @@ class UserController extends BaseController {
 
     let el = document.getElementById('untrack-event');
     el.classList.remove('tracked');
-    el.innerHTML = 'Not tracked';
+    el.innerHTML = 'Track';
     el.id = 'track-event';
 
     if (app.user.removeTrackedEvent(id)) {

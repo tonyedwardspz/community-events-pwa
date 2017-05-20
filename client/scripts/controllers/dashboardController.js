@@ -19,10 +19,12 @@ class DashboardController extends BaseController {
     let event = false;
     let venue = false;
     let org = false;
-    if (app.user && app.user.firstName){
+    try {
       event = app.user.getTrackedEvents().sort(sortByDate)[0];
       venue = Venue.findByID(event.venueID, app.venues);
       org = Organisation.findByID(event.organiserID, app.organisations);
+    } catch (err) {
+      console.log('[DASH] No tracked events');
     }
 
     html += app.dashboardView.welcomeSplash(event, venue, org);

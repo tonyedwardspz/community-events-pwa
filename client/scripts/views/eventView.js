@@ -34,7 +34,7 @@ class EventView {
             <a href="${evnt.ticketURL}" class="button"
               title="Book your place">Tickets</a>
             <a href="#" title="Track this event" data-id="${evnt.id}" class="button ${tracked ? 'tracked': ''}"
-              id="${tracked ? 'un': ''}track-event">${tracked ? 'Tracked': 'Not Tracked'}</a>
+              id="${tracked ? 'un': ''}track-event">${tracked ? 'Untrack': 'Track'}</a>
             ${this.tweetButton(evnt, org)}
           </p>
         </div>
