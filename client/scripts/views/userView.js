@@ -11,7 +11,7 @@ class UserView extends BaseView {
     let offlineText = this.offlineMessage('login to the app');
     return `<h2>Login</h2>
             ${app.online ? '' : offlineText}
-            ${msg ? `<strong>${message}</strong>` : ''}
+            ${msg ? `<hr><strong>${message}</strong><hr>` : ''}
 
             <div class="row">
               <div class="column">

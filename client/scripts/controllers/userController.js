@@ -54,7 +54,7 @@ class UserController extends BaseController {
         console.log('[User] Event tracked: ', app.user.trackedEvents);
       }
     } else {
-      this.login('Please login to track events');
+      this.login('Please login to track events.');
       let newURL = `${window.location.protocol}//${window.location.host}/user/login`;
       history.pushState({},'Gather-SW: Login', newURL);
     }
