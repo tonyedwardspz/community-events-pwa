@@ -120,6 +120,7 @@ class User extends BaseModel {
   cleanup(cb) {
     console.log('cleanup');
     try {
+      // find matching events
       let matchedEvents = [];
       app.events.forEach(e => {
         this.trackedEvents.forEach(t => {
@@ -128,14 +129,25 @@ class User extends BaseModel {
           }
         });
       });
-      //
-      // console.log('[USER] Tracked Events', this.trackedEvents);
-      // console.log(app.user);
 
-      if(this.trackedEvents.length !== matchedEvents.length && app.user) {
+      // find matching organisations
+      let matchedOrgs = [];
+      app.organisations.forEach(o => {
+        this.trackedOrgs.forEach(t => {
+          if (o.id === t) {
+            matchedOrgs.push(o.id);
+          }
+        });
+      });
+
+      let orgUpdate = this.trackedOrgs.length !== matchedOrgs.length;
+      let eventUpdate = this.trackedEvents.length !== matchedEvents.length;
+
+      // publish if changes
+      if(orgUpdate || eventUpdate) {
         this.trackedEvents = matchedEvents;
-        // console.log('-----tracked', this.trackedEvents);
-        cb(true);
+        this.trackedOrgs = matchedOrgs;
+        app.db.publish(`/user/${app.user.id}`, app.user, 'PUT');
       }
 
     } catch (error) {
