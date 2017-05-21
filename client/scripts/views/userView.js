@@ -6,12 +6,12 @@ class UserView extends BaseView {
     super();
   }
 
-  login(msg = '') {
+  login(msg = null) {
     let message = `<p>${msg}</p>`;
     let offlineText = this.offlineMessage('login to the app');
     return `<h2>Login</h2>
             ${app.online ? '' : offlineText}
-            ${msg.length > 0 ? message : ''}
+            ${msg ? `<strong>${message}</strong>` : ''}
 
             <div class="row">
               <div class="column">

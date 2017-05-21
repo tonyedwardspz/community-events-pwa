@@ -5,10 +5,10 @@ class UserController extends BaseController {
     super();
   }
 
-  login(){
+  login(msg = null){
     console.log('Login clicked');
 
-    let html = app.userView.login();
+    let html = app.userView.login(msg);
 
     this.updateShell(html);
   }
@@ -43,15 +43,22 @@ class UserController extends BaseController {
   trackEvent(id) {
     console.info('[User] Track event: ', id);
 
-    let el = document.getElementById('track-event');
-    el.classList.add('tracked');
-    el.innerHTML = 'Untrack';
-    el.id = 'untrack-event';
+    if (app.user) {
+      let el = document.getElementById('track-event');
+      el.classList.add('tracked');
+      el.innerHTML = 'Untrack';
+      el.id = 'untrack-event';
 
-    if (app.user.trackEvent(id)) {
-      app.db.publish(`/user/${app.user.id}`, app.user, 'PUT');
-      console.log('[User] Event tracked: ', app.user.trackedEvents);
+      if (app.user.trackEvent(id)) {
+        app.db.publish(`/user/${app.user.id}`, app.user, 'PUT');
+        console.log('[User] Event tracked: ', app.user.trackedEvents);
+      }
+    } else {
+      this.login('Please login to track events');
+      let newURL = `${window.location.protocol}//${window.location.host}/user/login`;
+      history.pushState({},'Gather-SW: Login', newURL);
     }
+
   }
 
   untrackEvent(id) {
