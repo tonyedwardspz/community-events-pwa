@@ -7,6 +7,7 @@ let CacheModel = require('../models/cache').getMongooseModel();
 let adminOrgs = require('../admin/controllers/organisation');
 let adminDashboard = require('../admin/controllers/dashboard');
 let adminEvents = require('../admin/controllers/event');
+let adminCache = require('../admin/controllers/cache');
 
 
 /**
@@ -126,6 +127,9 @@ module.exports = function(app, passport) {
 
    // GET admin/events/:id
    app.get('/admin/events/:id', ensureAdmin, adminEvents.show);
+
+   // GET admin/cache/invalidateCache
+   app.get('/admin/cache/invalidateCache', ensureAdmin, adminCache.invalidate);
 
    //-------------- Misc Routes --------------\\
 

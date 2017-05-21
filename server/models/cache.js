@@ -38,6 +38,14 @@ class Cache extends BaseModel {
       }
     });
   }
+
+  invalidateCache() {
+    this.mongooseModel.update({ id: process.env.CACHE_ID},{
+      date: new Date('2010-05-21T01:28:34.551Z')
+    }, function(err) {
+
+    });
+  }
 }
 
 module.exports = new Cache();
