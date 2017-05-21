@@ -15,10 +15,12 @@ class OrganisationView {
   show(org, orgEvents) {
     const website = org.website ? webLink(org.website, org.name) : '';
     const twitter = org.twitterHandle ? twitterLink(org.twitterHandle): '';
-    let isTracked = true;
+
+    let isTracked = false;
+
     if (app.user !== null) {
-      if (!app.user.trackedOrgs.includes(org.id)) {
-        isTracked = false;
+      if (app.user.trackedOrgs.includes(org.id)) {
+        isTracked = true;
       }
     }
 

@@ -43,18 +43,25 @@ class OrganisationController extends BaseController {
     let el = document.getElementById('org-follow-' + id);
     let container = document.getElementById('org-item-' + id);
     let button = document.getElementById('org-follow-' + id);
-    if (app.user.trackedOrgs.includes(id)) {
-      app.user.unfollowOrg(id);
-      switchClass(container, 'tracked', 'untracked');
-      switchClass(button, 'danger', 'success');
-      el.innerHTML = 'follow';
-    } else {
-      app.user.followOrg(id);
-      switchClass(container, 'untracked', 'tracked');
-      switchClass(button, 'success', 'danger');
 
-      el.innerHTML = 'unfollow';
+    if (app.user) {
+      if (app.user.trackedOrgs.includes(id)) {
+        app.user.unfollowOrg(id);
+        switchClass(container, 'tracked', 'untracked');
+        switchClass(button, 'danger', 'success');
+        el.innerHTML = 'follow';
+      } else {
+        app.user.followOrg(id);
+        switchClass(container, 'untracked', 'tracked');
+        switchClass(button, 'success', 'danger');
+
+        el.innerHTML = 'unfollow';
+      }
+      app.db.publish(`/user/${app.user.id}`, app.user, 'PUT');
+    } else {
+      app.userController.login('Please login to follow organisations.');
+      let newURL = `${window.location.protocol}//${window.location.host}/user/login`;
+      history.pushState({},'Gather-SW: Login', newURL);
     }
-    app.db.publish(`/user/${app.user.id}`, app.user, 'PUT');
   }
 }
