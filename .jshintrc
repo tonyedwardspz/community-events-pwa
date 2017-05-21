@@ -44,6 +44,7 @@
     "LocalStorageAPI": true,
     "loadLocalCache": true,
     "getRoutingUrl": true,
+    "directURL": true,
 
     "BaseController": true,
     "EventController": true,

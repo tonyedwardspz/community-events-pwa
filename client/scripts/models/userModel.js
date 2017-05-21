@@ -117,7 +117,7 @@ class User extends BaseModel {
     }
   }
 
-  cleanup(cb) {
+  cleanup() {
     console.log('cleanup');
     try {
       // find matching events
