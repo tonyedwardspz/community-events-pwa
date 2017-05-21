@@ -90,7 +90,7 @@ class UserView extends BaseView {
           <input class="button pull-right success" type="submit"
                  value="Update" id="save_user"
                  ${app.online ? '' : 'disabled'}>
-          <p>${app.online ? '' : 'Saving unavailable, currently offline'}</p>
+          <p>${app.online ? '' : '<strong>Saving unavailable, currently offline</strong>'}</p>
 
         </fieldset>
         </form>

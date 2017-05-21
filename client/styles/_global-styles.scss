@@ -56,6 +56,12 @@ a.disabled {
   clear: both;
 }
 
+a.button:hover,
+input.button:hover {
+  background-color: lighten($main-color, 5%);
+  border-color: lighten($main-color, 10%);
+}
+
 p {
     word-wrap: break-word;
     @media screen and (max-width: $mobile-breakpoint) {

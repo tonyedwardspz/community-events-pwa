@@ -30,8 +30,8 @@
   }
 
   a.button-nav:hover {
-    background-color: #606c76;
-    border-color: #606c76;
+    background-color: lighten($main-color, 10%);
+    border-color: lighten($main-color, 10%);
     color: #fff;
     outline: 0;
   }
@@ -79,8 +79,8 @@
 }
 
 .nav-item a:hover {
-  color: #c74438;
-  background: linear-gradient(135deg, rgba(0,0,0,0) 0%,rgba(75,20,20,0.65) 100%);
+  color: darken($white, 20%);
+  border-right: 5px solid $main-color;
 }
 
 .site-wrap {
