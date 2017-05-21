@@ -24,7 +24,7 @@ class EventView {
                 <div class="map-container" id="map-container">
                   <a href="" class="button disabled" onclick="return false;">Map Unavailable Offline</a>
                 </div>`;
-    return `
+    let html = `
       <div class="row">
         <div class="column column-75 full-width show-event">
           <h2>${evnt.title}</h2>
@@ -32,10 +32,14 @@ class EventView {
              Location: ${hasVenue ? venue.getDisplayVenue() : 'TBC'}</p>
           <p>
             <a href="${evnt.ticketURL}" class="button"
-              title="Book your place">Tickets</a>
-            <a href="#" title="Track this event" data-id="${evnt.id}" class="button ${tracked ? 'tracked': ''}"
-              id="${tracked ? 'un': ''}track-event">${tracked ? 'Untrack': 'Track'}</a>
-            ${this.tweetButton(evnt, org)}
+              title="Book your place">Tickets</a>`;
+
+      if (app.user) {
+        html += `<a href="#" title="Track this event" data-id="${evnt.id}" class="button ${tracked ? 'tracked': ''}"
+                 id="${tracked ? 'un': ''}track-event">${tracked ? 'Untrack': 'Track'}</a>`;
+      }
+
+      html += `${this.tweetButton(evnt, org)}
           </p>
         </div>
         <div class="column event-org-logo-container">
@@ -56,6 +60,8 @@ class EventView {
       <a href="/organisation/${org.id}" class="button pull-right more">
       View organisation</a>
     `;
+
+    return html;
   }
 
   showMonth(events, month, currentMonth) {
