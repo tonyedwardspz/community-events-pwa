@@ -89,7 +89,7 @@ class EventModel extends BaseModel {
     try {
       return app.user.trackedEvents.includes(this.id);
     } catch (e) {
-      console.log('[Event] Failed to get tracked status: ', e);
+      // console.log('[Event] Failed to get tracked status: ', e);
       return false;
     }
   }

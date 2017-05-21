@@ -28,7 +28,7 @@ function updateStaticCache() {
 
 // Save an item into the cache
 function stashInCache(cacheName, request, response) {
-  console.log('[SW] Stashing in cache');
+  // console.log('[SW] Stashing in cache');
   caches.open(cacheName).then( cache => cache.put(request, response));
 }
 
@@ -103,7 +103,7 @@ self.addEventListener('fetch', event => {
   // return the index file and let the app 'reboot'.
     event.respondWith(
       fetch(request).then( response => {
-        console.log('[SW] Getting from network');
+        // console.log('[SW] Getting from network');
         // NETWORK - Stash a copy of this response in the pages cache
         let copy = response.clone();
         stashInCache(cacheName, request, copy);

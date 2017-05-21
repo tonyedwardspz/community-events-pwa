@@ -18,6 +18,9 @@ class User extends BaseModel {
     this.trackedEvents = trackedEvents;
     this.trackedOrgs = trackedOrgs;
     this.pushpadURL = pushpadURL;
+
+    console.log('user created');
+    // this.cleanup();
   }
 
   /**
@@ -56,6 +59,7 @@ class User extends BaseModel {
   }
 
   getTrackedEvents() {
+
     let events = [];
     app.events.forEach(e => {
       if (app.user && app.user.trackedEvents){
@@ -110,6 +114,32 @@ class User extends BaseModel {
     let index = this.trackedOrgs.indexOf(id);
     if (index > -1) {
       this.trackedOrgs.splice(index, 1);
+    }
+  }
+
+  cleanup(cb) {
+    console.log('cleanup');
+    try {
+      let matchedEvents = [];
+      app.events.forEach(e => {
+        this.trackedEvents.forEach(t => {
+          if (e.id === t) {
+            matchedEvents.push(e.id);
+          }
+        });
+      });
+      //
+      // console.log('[USER] Tracked Events', this.trackedEvents);
+      // console.log(app.user);
+
+      if(this.trackedEvents.length !== matchedEvents.length && app.user) {
+        this.trackedEvents = matchedEvents;
+        // console.log('-----tracked', this.trackedEvents);
+        cb(true);
+      }
+
+    } catch (error) {
+      console.log('[User] Error cleaning up user data', error);
     }
   }
 }

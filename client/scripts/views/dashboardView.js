@@ -51,7 +51,7 @@ class DashboardView {
               <ul>
                 <li>${app.events.length} Events</li>
                 <li>${app.organisations.length} Organisations</li>
-                <li>${app.user ? app.user.trackedEvents.length : 0} Tracked Events</li>
+                <li id="dash-track">${app.user ? app.user.trackedEvents.length : 0} Tracked Events</li>
               </ul>
             </div>`;
     return html += '</div></div></div>';

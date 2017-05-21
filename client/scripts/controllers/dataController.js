@@ -44,6 +44,12 @@ class DataController extends BaseController {
           directURL(getRoutingUrl()[0], getRoutingUrl()[1]);
         }
       });
+      app.user.cleanup(updated => {
+        if (updated) {
+          console.log('[callback]', app.user);
+          app.db.publish(`/user/${app.user.id}`, app.user, 'PUT');
+        }
+      });
       cb();
     });
   }
