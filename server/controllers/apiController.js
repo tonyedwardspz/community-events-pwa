@@ -17,7 +17,7 @@ class APIController extends BaseController {
     });
   }
 
-  cleanedData(req, res) {
+  upcomingEvents(req, res) {
     CacheModel.findOne({ id: process.env.CACHE_ID}, function(err, cache) {
 
       let parsed = JSON.parse(cache.data);
@@ -31,13 +31,13 @@ class APIController extends BaseController {
           if (evnt.hasOwnProperty('description')) {
               // do something with `key'
               console.log('Event has description');
-              delete evnt['description'];
+              delete evnt.description;
           }
 
           if (evnt.hasOwnProperty('source')) {
               // do something with `key'
               console.log('Event has source');
-              delete evnt['source'];
+              delete evnt.source;
           }
         }
 

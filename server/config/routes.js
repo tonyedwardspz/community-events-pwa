@@ -88,9 +88,9 @@ module.exports = function(app, passport) {
 
   //-------------- API Routes --------------\\
 
-  app.get('/api/all-data', api.allData);
+  app.get('/api/v1/all-data', api.allData);
 
-  app.get('/api/cleaned-data', api.cleanedData);
+  app.get('/api/v1/upcoming-events', api.upcomingEvents);
 
    //-------------- Admin Routes --------------\\
 
