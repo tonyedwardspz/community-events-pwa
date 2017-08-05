@@ -3,6 +3,7 @@
 let path = require('path');
 let data = require('../controllers/dataController');
 let users = require('../controllers/userController');
+let api = require('../controllers/apiController');
 let CacheModel = require('../models/cache').getMongooseModel();
 let adminOrgs = require('../admin/controllers/organisation');
 let adminDashboard = require('../admin/controllers/dashboard');
@@ -85,6 +86,11 @@ module.exports = function(app, passport) {
   });
 
 
+  //-------------- API Routes --------------\\
+
+  app.get('/api/v1/all-data', api.allData);
+
+  app.get('/api/v1/upcoming-events', api.upcomingEvents);
 
    //-------------- Admin Routes --------------\\
 
