@@ -56,6 +56,7 @@ class APIController extends BaseController {
             delete evnt.venueID;
             evnt.venueName = ven.name;
             evnt.venueAddress = ven.address;
+            evnt.geographic = ven.geographic;
           }
         });
 
