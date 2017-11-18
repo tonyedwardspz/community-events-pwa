@@ -2,6 +2,8 @@
 
 'use strict';
 
+console.log('Update cache file triggered');
+
 let BaseController = require('../server/controllers/baseController');
 let Evnt = require('../server/models/event');
 let Organiser = require('../server/models/organiser');
