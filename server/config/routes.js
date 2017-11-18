@@ -30,7 +30,7 @@ module.exports = function(app, passport) {
 
   app.get('/getData', data.getData);
 
-
+  app.get('/updateCache', data.updateCache);
 
   //-------------- User / Authentication Routes --------------\\
 
