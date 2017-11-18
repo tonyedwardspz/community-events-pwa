@@ -11,7 +11,7 @@ let process = () => {
   console.log('[Cache] Updating cache from scheduled task');
 
   http.get({
-        host: 'https://community-events-pwa.herokuapp.com',
+        host: 'community-events-pwa.herokuapp.com',
         path: '/updateCache'
     }, function(response) {
         console.log('HTTP response recieved. Cache updated');
