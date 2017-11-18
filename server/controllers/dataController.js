@@ -104,6 +104,10 @@ class DataController extends BaseController {
       }
     });
   }
+
+  scheduledTask() {
+    console.log('Scheduled task executed by Heroku.');
+  }
 }
 
 module.exports = new DataController();
