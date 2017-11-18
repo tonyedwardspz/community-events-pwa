@@ -4,20 +4,18 @@
 
 console.log('Update cache file triggered');
 
-let BaseController = require('../server/controllers/baseController');
-let Evnt = require('../server/models/event');
-let Organiser = require('../server/models/organiser');
-let Venue = require('../server/models/venue');
-let Subgroup = require('../server/models/subgroup');
-let fetch = require('node-fetch');
-let Cache = require('../server/models/cache');
-let CacheModel = Cache.getMongooseModel();
-let dateHelpers = require('../server/helpers/dateHelpers');
+let http = require('http');
 
-var process = () => {
+let process = () => {
 
-  xhttp.open('GET', 'https://community-events-pwa.herokuapp.com/updateCache', false);
   console.log('[Cache] Updating cache from scheduled task');
+
+  http.get({
+        host: 'https://community-events-pwa.herokuapp.com',
+        path: '/updateCache'
+    }, function(response) {
+        console.log('HTTP response recieved. Cache updated');
+    });
 };
 
 process();
