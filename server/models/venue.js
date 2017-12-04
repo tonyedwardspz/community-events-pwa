@@ -5,7 +5,7 @@ let fetch = require('node-fetch');
 
 class Venue {
   constructor() {
-    
+
   }
 
   /**
@@ -56,7 +56,7 @@ class Venue {
 
         results.push(venue);
       } catch (err) {
-        console.log('[Evenbrite Venue] Error processing venue: ', err);
+        console.log('[Evenbrite Venue] Error processing venue: ' + data.name , err);
       }
     });
 
@@ -103,12 +103,16 @@ class Venue {
   }
 
   extractPostcode(address) {
-    let postcode_regex = /[A-Z]{1,2}[0-9][0-9A-Z]?\s?[0-9][A-Z]{2}/gi;
-    let pc = address.match(postcode_regex);
-    if (pc) {
-      return pc;
-    } else {
-      return address;
+    try {
+      let postcode_regex = /[A-Z]{1,2}[0-9][0-9A-Z]?\s?[0-9][A-Z]{2}/gi;
+      let pc = address.match(postcode_regex);
+      if (pc) {
+        return pc;
+      } else {
+        return address;
+      }
+    } catch (e) {
+      return ' ';
     }
   }
 }

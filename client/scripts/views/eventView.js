@@ -15,7 +15,7 @@ class EventView {
   * @return {String} The HTML string for display
   */
   show(evnt, org, orgEvents, venue, tracked = false) {
-    let hasVenue = evnt.venueID ? true : false;
+    let hasVenue = evnt.venueID && venue.venueID ? true : false;
     let map =  `<div class="row divider"></div>
                 <div class="map-container" id="map-container">
                   <a href="" id="show-map" data-id="${evnt.id}" class="button">Show map</a>
@@ -128,41 +128,58 @@ class EventView {
   }
 
   eventListItem(event, venue, org){
-    let hasVenue = event.venueID ? true : false;
-    const trackedBullet = '<span class="is-tracked">Tracked</span>';
-    return `<div class="row event-list-item photo">
-              <div class="column column-75">
-                <h3><a href="/event/${event.id}">${event.title}</a>
-                ${event.isTracked() ? trackedBullet : ''}</h3>
+    let hasVenue = event.venueID && venue.venueID ? true : false;
 
-                <p>Date: ${event.getDisplayDate()}<br />
-                Location: ${hasVenue ? venue.getDisplayVenue() : 'TBC'}</p>
+
+    const trackedBullet = '<span class="is-tracked">Tracked</span>';
+
+    try {
+      return `<div class="row event-list-item photo">
+                <div class="column column-75">
+                  <h3><a href="/event/${event.id}">${event.title}</a>
+                  ${event.isTracked() ? trackedBullet : ''}</h3>
+
+                  <p>Date: ${event.getDisplayDate()}<br />
+                  Location: ${hasVenue ? venue.getDisplayVenue() : 'TBC'}</p>
+                </div>
+                <div class="column event-list-profile-photo">
+                  <a href="/organisation/${org.id}" title="${org.name} page">
+                    <img src="${org.logoURL}" alt="${org.name} logo"
+                    class="org-logo pull-right">
+                  </a>
+                </div>
               </div>
-              <div class="column event-list-profile-photo">
-                <a href="/organisation/${org.id}" title="${org.name} page">
-                  <img src="${org.logoURL}" alt="${org.name} logo"
-                  class="org-logo pull-right">
-                </a>
-              </div>
-            </div>
-            <div class="row divider"></div>`;
+              <div class="row divider"></div>`;
+    } catch (e) {
+      console.log('event: ', event);
+      console.log('venue: ', venue);
+      console.log('org: ', org);
+      return '';
+    }
   }
 
   eventListItemNoImage(event, venue){
     let hasVenue = event.venueID ? true : false;
     const trackedBullet = '<span class="is-tracked">Tracked</span>';
-    return `<div class="row event-list-item">
-              <div class="column column-75 full-width">
-                <h3><a href="/event/${event.id}">${event.title}</a>
-                ${event.isTracked() ? trackedBullet : ''}</h3>
-                <p>${event.getDisplayDate()}<br />
-                   Location: ${hasVenue ? venue.getDisplayVenue() : 'TBC'}</p>
+
+    try {
+      return `<div class="row event-list-item">
+                <div class="column column-75 full-width">
+                  <h3><a href="/event/${event.id}">${event.title}</a>
+                  ${event.isTracked() ? trackedBullet : ''}</h3>
+                  <p>${event.getDisplayDate()}<br />
+                     Location: ${hasVenue ? venue.getDisplayVenue() : 'TBC'}</p>
+                </div>
+                <div class="column">
+                  <a href="/event/${event.id}" class="button pull-right">View Event</a>
+                </div>
               </div>
-              <div class="column">
-                <a href="/event/${event.id}" class="button pull-right">View Event</a>
-              </div>
-            </div>
-            <div class="row divider"></div>`;
+              <div class="row divider"></div>`;
+    } catch (e) {
+      console.log('error processing event: ', event);
+      console.log('error processing event venue: ', venue);
+      return '';
+    }
   }
 
   welcomeEvent(evnt, venue, org) {
