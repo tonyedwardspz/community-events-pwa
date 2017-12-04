@@ -46,19 +46,26 @@ class APIController extends BaseController {
           if (org.id === evnt.organiserID) {
             delete evnt.organiserID;
             evnt.organiser = org.name;
+            evnt.organiserLogo = org.logoURL;
           }
         });
 
 
         // swap venue ID for details
+        let venueMatched = false;
         venues.forEach(ven => {
           if (ven.id === evnt.venueID) {
+            venueMatched = true;
             delete evnt.venueID;
             evnt.venueName = ven.name;
             evnt.venueAddress = ven.address;
             evnt.geographic = ven.geographic;
           }
         });
+
+        if (!venueMatched) {
+          evnt.geographic = 'TBC';
+        }
 
       });
 
