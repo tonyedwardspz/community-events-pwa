@@ -15,7 +15,7 @@ class EventView {
   * @return {String} The HTML string for display
   */
   show(evnt, org, orgEvents, venue, tracked = false) {
-    let hasVenue = evnt.venueID && venue.venueID ? true : false;
+    let hasVenue = evnt.venueID && venue.id ? true : false;
     let map =  `<div class="row divider"></div>
                 <div class="map-container" id="map-container">
                   <a href="" id="show-map" data-id="${evnt.id}" class="button">Show map</a>
@@ -128,9 +128,7 @@ class EventView {
   }
 
   eventListItem(event, venue, org){
-    let hasVenue = event.venueID && venue.venueID ? true : false;
-
-
+    let hasVenue = event.venueID && venue.id ? true : false;
     const trackedBullet = '<span class="is-tracked">Tracked</span>';
 
     try {
@@ -159,7 +157,7 @@ class EventView {
   }
 
   eventListItemNoImage(event, venue){
-    let hasVenue = event.venueID ? true : false;
+    let hasVenue = event.venueID && venue.id ? true : false;
     const trackedBullet = '<span class="is-tracked">Tracked</span>';
 
     try {
@@ -183,7 +181,7 @@ class EventView {
   }
 
   welcomeEvent(evnt, venue, org) {
-    let hasVenue = evnt.venueID ? true : false;
+    let hasVenue = event.venueID && venue.id ? true : false;
     return `<div class="column column-75 full-width">
               <p class="half-padding">Your next tracked event:</p>
               <h3><a href="/event/${evnt.id}">${evnt.title}</a></h3>
