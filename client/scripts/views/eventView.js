@@ -181,12 +181,12 @@ class EventView {
   }
 
   welcomeEvent(evnt, venue, org) {
-    let hasVenue = event.venueID && venue.id ? true : false;
+    let hasVenue = evnt.venueID && venue.id ? true : false;
     return `<div class="column column-75 full-width">
               <p class="half-padding">Your next tracked event:</p>
               <h3><a href="/event/${evnt.id}">${evnt.title}</a></h3>
               <p><a href="/organisation/${org.id}" title="${org.name} page">${org.name}</a><br />
-              ${evnt.getDisplayDate()} - ${hasVenue ? venue.getDisplayVenue() : 'TBC'}</p>
+              ${evnt.getDisplayDate()} - ${hasVenue ? venue.getDisplayVenue() : 'Venue TBC'}</p>
             </div>`;
   }
 
