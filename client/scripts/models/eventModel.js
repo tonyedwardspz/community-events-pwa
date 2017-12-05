@@ -70,12 +70,12 @@ class EventModel extends BaseModel {
   }
 
   /**
-  * Converts the events start date to human readable form
+  * Converts the events start time to human readable form
   * @return {Date} A Date object containg the time
   */
   getDislpayTime() {
     try {
-      return new Date(app.events[0].start).toUTCString().slice(17,22);
+      return new Date(this.start).toUTCString().slice(17,22);
     } catch (e) {
       console.log('[Event] Unable to get display time: ', e);
     }
@@ -136,8 +136,7 @@ class EventModel extends BaseModel {
   static getEventsForMonth(month) {
     let events = [];
     app.events.forEach(event => {
-      let eventDate = new Date(event.start);
-      let eventMonth = eventDate.getMonth();
+      let eventMonth = new Date(event.start).getMonth();
 
       if (month === eventMonth){
         events.push(event);
