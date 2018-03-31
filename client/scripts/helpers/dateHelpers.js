@@ -99,3 +99,8 @@ let getMonthNameFromNumber = (num) =>{
                   'Jul','Aug','Sep','Oct','Nov','Dec'];
   return months[num];
 };
+
+Date.prototype.addHours = function(h){
+  this.setHours(this.getHours()+h);
+  return this;
+};

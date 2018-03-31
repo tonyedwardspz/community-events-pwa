@@ -79,7 +79,12 @@ class EventModel extends BaseModel {
   */
   getDislpayTime() {
     try {
-      return new Date(this.start).toUTCString().slice(17,22);
+      let thisDate = new Date(this.start);
+      if (thisDate.getTimezoneOffset() === -60 && this.source === 'eventbrite') {
+        return thisDate.addHours(1).toUTCString().slice(17,22);
+      } else {
+        return thisDate.toUTCString().slice(17,22);
+      }
     } catch (e) {
       console.log('[Event] Unable to get display time: ', e);
     }
